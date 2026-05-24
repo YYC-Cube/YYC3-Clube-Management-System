@@ -34,3 +34,10 @@ docs-check-report.json
 summary.json
 kanban-schema-gate.json
 .env.local
+
+# pnpm store (local)
+.pnpm-store/
+
+# sub-projects (independent repos)
+/club-system/
+/F-ktv/
