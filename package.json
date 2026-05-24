@@ -1,7 +1,7 @@
 {
-  "name": "yyc3-qz-merchant-management-system",
+  "name": "yyc3-clube-system",
   "version": "0.1.0",
-  "description": "YYC³-QZ-Merchant-Management-System: AI-Powered KTV Business Management Platform",
+  "description": "YYC³ Clube Management System - AI-Powered KTV Business Management Platform",
   "private": true,
   "scripts": {
     "build": "next build",
@@ -154,13 +154,13 @@
   },
   "author": "YYC³ <admin@0379.email>",
   "license": "MIT",
-  "homepage": "https://github.com/YYC-Cube/yyc3-qz-merchant-management-system",
+  "homepage": "https://clube.yyc3.top",
   "repository": {
     "type": "git",
-    "url": "https://github.com/YYC-Cube/yyc3-qz-merchant-management-system.git"
+    "url": "https://github.com/YYC-Cube/YYC3-Clube-Management-System.git"
   },
   "bugs": {
-    "url": "https://github.com/YYC-Cube/yyc3-qz-merchant-management-system/issues"
+    "url": "https://github.com/YYC-Cube/YYC3-Clube-Management-System/issues"
   },
   "keywords": "[\"yyc3\",\"ktv\",\"admin-system\",\"next.js\",\"react\",\"typescript\",\"ai\",\"blockchain\",\"iot\",\"5g\",\"edge-computing\",\"big-data\"]",
   "overrides": {

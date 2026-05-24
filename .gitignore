@@ -39,5 +39,4 @@ kanban-schema-gate.json
 .pnpm-store/
 
 # sub-projects (independent repos)
-/club-system/
-/F-ktv/
+/club-ops/
