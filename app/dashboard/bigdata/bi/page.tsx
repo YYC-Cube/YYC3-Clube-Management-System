@@ -1,5 +1,6 @@
 "use client"
 
+
 import { Suspense } from "react"
 import { BIDashboard } from "@/components/bigdata/bi-dashboard"
 

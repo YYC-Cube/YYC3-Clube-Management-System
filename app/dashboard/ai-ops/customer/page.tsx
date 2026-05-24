@@ -1,5 +1,8 @@
+
 import { Suspense } from "react"
 import { CustomerPromotionDashboard } from "@/components/ai-ops/customer-promotion-dashboard"
+
+export const dynamic = "force-dynamic"
 
 export default function CustomerPromotionPage() {
   return (

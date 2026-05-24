@@ -1,5 +1,6 @@
 "use client"
 
+
 import { Suspense } from "react"
 import { PredictiveDashboard } from "@/components/bigdata/predictive-dashboard"
 

@@ -1,5 +1,6 @@
 "use client"
 
+
 import { Suspense } from "react"
 import { UserBehaviorDashboard } from "@/components/bigdata/user-behavior-dashboard"
 

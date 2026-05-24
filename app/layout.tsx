@@ -4,20 +4,7 @@ import { Geist, Geist_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { Toaster } from '@/components/ui/toaster'
 import { ThemeProvider } from '@/components/theme-provider'
-import { validateEnv } from '@/config/env.validator'
 import './globals.css'
-
-// cspell:ignore OLAP
-// ✅ 环境变量验证（仅在构建时执行，不影响客户端渲染）
-validateEnv([
-  'NEXT_PUBLIC_API_BASE_URL',
-  'JWT_SECRET',
-  'YYC3_YY_DB_HOST',
-  'EMAIL_HOST',
-  'BI_HOST',
-  'OLAP_HOST',
-  'REDIS_URL',
-])
 
 const geist = Geist({ subsets: ['latin'] })
 const geistMono = Geist_Mono({ subsets: ['latin'] })

@@ -1,5 +1,6 @@
 "use client"
 
+
 import { motion } from "framer-motion"
 import { useState } from "react"
 import { Printer, Receipt, Settings, ChevronLeft, ArrowLeft, ArrowRight } from "lucide-react"

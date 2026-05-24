@@ -1,5 +1,6 @@
 "use client"
 
+
 import { Suspense } from "react"
 import { TrafficPredictionDashboard } from "@/components/ai/traffic-prediction-dashboard"
 import { TrafficForecastChart } from "@/components/ai/traffic-forecast-chart"

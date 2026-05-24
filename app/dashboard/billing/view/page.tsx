@@ -1,5 +1,6 @@
 "use client"
 
+
 import { motion } from "framer-motion"
 // 移除未使用的导入
 import { Receipt, Printer, Download, ChevronLeft } from "lucide-react"

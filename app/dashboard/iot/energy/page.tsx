@@ -1,5 +1,6 @@
 "use client"
 
+
 import { Suspense } from "react"
 import { SmartEnergyDashboard } from "@/components/iot/smart-energy-dashboard"
 

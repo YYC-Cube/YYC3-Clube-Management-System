@@ -1,5 +1,6 @@
 "use client"
 
+
 import { Suspense } from "react"
 import { EdgeAIDashboard } from "@/components/edge/edge-ai-dashboard"
 

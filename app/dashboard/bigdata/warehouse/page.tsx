@@ -1,5 +1,6 @@
 "use client"
 
+
 import { Suspense } from "react"
 import { DataWarehouseDashboard } from "@/components/bigdata/data-warehouse-dashboard"
 

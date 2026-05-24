@@ -1,3 +1,4 @@
+
 import { Suspense } from "react"
 import { VideoRoomDashboard } from "@/components/5g/video-room-dashboard"
 

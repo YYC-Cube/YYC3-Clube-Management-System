@@ -1,5 +1,6 @@
 "use client"
 
+
 import { Suspense } from "react"
 import { ProfitDashboard } from "@/components/ai-ops/profit-dashboard"
 

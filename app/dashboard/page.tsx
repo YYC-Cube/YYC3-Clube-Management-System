@@ -1,8 +1,11 @@
+
 import { Suspense } from "react"
 import { DashboardStats } from "@/components/dashboard/dashboard-stats"
 import { RecentOrders } from "@/components/dashboard/recent-orders"
 import { QuickActions } from "@/components/dashboard/quick-actions"
 import { Skeleton } from "@/components/ui/skeleton"
+
+export const dynamic = "force-dynamic"
 
 // 服务端组件可以直接获取数据，提升性能和SEO
 

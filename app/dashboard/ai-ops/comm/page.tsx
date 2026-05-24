@@ -1,5 +1,6 @@
 "use client"
 
+
 import { Suspense } from "react"
 import { InternalCommDashboard } from "@/components/ai-ops/internal-comm-dashboard"
 
