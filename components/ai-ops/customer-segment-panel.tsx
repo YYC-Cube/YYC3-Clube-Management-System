@@ -18,7 +18,7 @@ interface CustomerSegmentPanelProps {
   segments: CustomerSegment[]
 }
 
-export function CustomerSegmentPanel({ segments }: CustomerSegmentPanelProps) {
+export function CustomerSegmentPanel({ segments = [] }: CustomerSegmentPanelProps) {
   return (
     <Card>
       <CardHeader>

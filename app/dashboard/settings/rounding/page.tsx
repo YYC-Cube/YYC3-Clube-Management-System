@@ -21,7 +21,7 @@ import { toast } from 'sonner'
 // 抹零设置页面
 export default function RoundingSettingsPage() {
   const [basicRounding, setBasicRounding] = useState('none')
-  const [advancedSettings, setAdvancedSettings] = useState([
+  const [advancedSettings] = useState([
     {
       id: '1',
       storeId: 'store_1',

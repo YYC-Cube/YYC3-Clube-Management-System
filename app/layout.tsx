@@ -1,9 +1,9 @@
-import type React from 'react'
+import { ThemeProvider } from '@/components/theme-provider'
+import { Toaster } from '@/components/ui/toaster'
+import { Analytics } from '@vercel/analytics/next'
 import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
-import { Analytics } from '@vercel/analytics/next'
-import { Toaster } from '@/components/ui/toaster'
-import { ThemeProvider } from '@/components/theme-provider'
+import type React from 'react'
 import './globals.css'
 
 const geist = Geist({ subsets: ['latin'] })
@@ -64,7 +64,7 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-title" content="启智商家" />
       </head>
       <body
-        className={`${geist.className} ${geistMono.variable} font-sans antialiased`}
+        className={`${geist.className} ${geistMono.className} font-sans antialiased`}
         suppressHydrationWarning
       >
         <ThemeProvider
