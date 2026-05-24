@@ -242,7 +242,7 @@ This fix is part of our comprehensive security strategy:
 
 For questions or concerns about this fix:
 - **Email**: admin@0379.email
-- **Repository**: https://github.com/YYC-Cube/yyc3-admin-system
+- **Repository**: https://github.com/YYC-Cube/yyc3-clube-system
 - **Issue**: Copilot Auto-Fix - High Priority Security Vulnerabilities
 
 ---

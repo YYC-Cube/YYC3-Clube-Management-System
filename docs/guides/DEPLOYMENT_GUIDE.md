@@ -460,7 +460,7 @@ sudo tail -f /var/log/nginx/ktv-admin-error.log
 
 # 检查上游服务器
 
-curl <http://localhost:3000/health>
+curl <http://localhost:5001/health>
 \`\`\`
 
 #### 4. 内存不足

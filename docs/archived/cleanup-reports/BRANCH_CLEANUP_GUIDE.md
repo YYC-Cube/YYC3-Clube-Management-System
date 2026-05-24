@@ -2,9 +2,9 @@
 
 ## 概览 / Overview
 
-本文档提供了清理和管理 `yyc3-admin-system` 仓库分支的完整指南。
+本文档提供了清理和管理 `yyc3-clube-system` 仓库分支的完整指南。
 
-This document provides a complete guide for cleaning up and managing branches in the `yyc3-admin-system` repository.
+This document provides a complete guide for cleaning up and managing branches in the `yyc3-clube-system` repository.
 
 ## 当前分支状态 / Current Branch Status
 
@@ -38,7 +38,7 @@ The following branches have their changes merged into `main` and can be safely d
 1. 访问仓库页面 / Visit repository page:
 
    ```
-   https://github.com/YYC-Cube/yyc3-admin-system
+   https://github.com/YYC-Cube/yyc3-clube-system
    ```
 
 2. 点击 "Branches" 标签 / Click "Branches" tab

@@ -94,7 +94,7 @@ NEXT_PUBLIC_TURN_CREDENTIAL=credential
 1. **访问项目设置**
 
    ```
-   https://vercel.com/your-team/yyc3-admin-system/settings/environment-variables
+   https://vercel.com/your-team/yyc3-clube-system/settings/environment-variables
    ```
 
 2. **添加环境变量**
@@ -262,7 +262,7 @@ export async function GET() {
 
 - **文档**: `/docs/README.md`
 - **环境变量模板**: `/.env.example`
-- **GitHub Issues**: <https://github.com/YYC-Cube/yyc3-admin-system/issues>
+- **GitHub Issues**: <https://github.com/YYC-Cube/yyc3-clube-system/issues>
 - **邮箱**: <admin@0379.email>
 
 ---

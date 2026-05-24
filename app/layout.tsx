@@ -10,14 +10,14 @@ const geist = Geist({ subsets: ['latin'] })
 const geistMono = Geist_Mono({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'YYC³-QZ-Merchant-Management-System',
-  description: 'AI-Powered KTV Merchant Management Platform - 销售、商品、仓库、报表一体化管理',
+  title: 'YYC³ Clube System',
+  description: 'YYC³ AI-Powered KTV Business Management Platform - 销售、商品、仓库、报表一体化管理',
   generator: 'v0.app',
   manifest: '/manifest.json',
   appleWebApp: {
     capable: true,
     statusBarStyle: 'default',
-    title: '启智商家',
+    title: 'YYC³ Clube',
     startupImage: [
       {
         url: '/splash-640x1136.png',
@@ -61,7 +61,7 @@ export default function RootLayout({
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-        <meta name="apple-mobile-web-app-title" content="启智商家" />
+        <meta name="apple-mobile-web-app-title" content="YYC³ Clube" />
       </head>
       <body
         className={`${geist.className} ${geistMono.className} font-sans antialiased`}

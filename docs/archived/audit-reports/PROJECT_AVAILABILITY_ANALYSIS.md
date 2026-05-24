@@ -318,9 +318,9 @@ __tests__/        # 测试文件 (完整)
 
 #### 访问地址
 
-- 本地: <http://localhost:3555/> ✅
+- 本地: <http://localhost:5001/> ✅
 - 局域网: <http://192.168.3.22:3555/> ✅
-- 测试页: <http://localhost:3555/test> ✅
+- 测试页: <http://localhost:5001/test> ✅
 
 ### ⚠️ 生产环境: 需要配置
 

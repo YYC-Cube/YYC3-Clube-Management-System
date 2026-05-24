@@ -319,7 +319,7 @@ export const options = {
 }
 
 export default function () {
-  const res = http.get('http://localhost:3000/api/products')
+  const res = http.get('http://localhost:5001/api/products')
   check(res, { 'status is 200': r => r.status === 200 })
   sleep(1)
 }
@@ -433,7 +433,7 @@ import * as chromeLauncher from 'chrome-launcher'
 async function runLighthouse() {
   const chrome = await chromeLauncher.launch({ chromeFlags: ['--headless'] })
   const options = { logLevel: 'info', output: 'json', port: chrome.port }
-  const runnerResult = await lighthouse('http://localhost:3000', options)
+  const runnerResult = await lighthouse('http://localhost:5001', options)
 
   const {
     performance,
@@ -659,7 +659,7 @@ git push origin feature/phase1-integration-tests
 
 **项目负责人**: YYC-Cube  
 **邮箱**: <admin@0379.email>  
-**文档维护**: [GitHub Repository](https://github.com/YYC-Cube/yyc3-admin-system)
+**文档维护**: [GitHub Repository](https://github.com/YYC-Cube/yyc3-clube-system)
 
 **更新日志**:
 

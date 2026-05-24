@@ -2,7 +2,7 @@
 
 ## Supported Versions
 
-The following versions of YYC³-QZ-Merchant-Management-System are currently being supported with security updates:
+The following versions of YYC³ Clube System are currently being supported with security updates:
 
 | Version | Supported          |
 | ------- | ------------------ |

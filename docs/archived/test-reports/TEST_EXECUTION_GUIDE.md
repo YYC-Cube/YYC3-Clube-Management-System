@@ -177,7 +177,7 @@ export const options = {
 }
 
 export default function () {
-  http.get('<http://localhost:3000/api/products>')
+  http.get('<http://localhost:5001/api/products>')
 }
 \`\`\`
 

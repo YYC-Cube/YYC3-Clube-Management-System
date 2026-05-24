@@ -2,9 +2,9 @@
 
 ## 任务概述 / Task Overview
 
-本次工作的目标是为 `yyc3-admin-system` 仓库创建完整的分支管理和清理方案。
+本次工作的目标是为 `yyc3-clube-system` 仓库创建完整的分支管理和清理方案。
 
-The goal of this work is to create a complete branch management and cleanup solution for the `yyc3-admin-system` repository.
+The goal of this work is to create a complete branch management and cleanup solution for the `yyc3-clube-system` repository.
 
 ## 完成的工作 / Completed Work
 
@@ -128,11 +128,11 @@ The following branches have PRs merged to main and can be safely deleted:
 
 ### 方式 2: 使用 GitHub 网页界面 / Method 2: Using GitHub Web Interface
 
-1. 访问：<https://github.com/YYC-Cube/yyc3-admin-system/branches>
+1. 访问：<https://github.com/YYC-Cube/yyc3-clube-system/branches>
 2. 找到已合并的分支（通常标有"merged"标签）
 3. 点击分支旁边的删除按钮
 
-Visit: <https://github.com/YYC-Cube/yyc3-admin-system/branches>
+Visit: <https://github.com/YYC-Cube/yyc3-clube-system/branches>
 Find merged branches (usually labeled "merged")
 Click the delete button next to each branch
 

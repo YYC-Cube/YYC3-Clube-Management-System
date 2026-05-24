@@ -77,7 +77,7 @@ import { GET } from '@/app/api/products/route'
 
 describe('Products API', () => {
   it('should return products', async () => {
-    const request = new NextRequest('http://localhost:3000/api/products')
+    const request = new NextRequest('http://localhost:5001/api/products')
     const response = await GET(request)
 
     // ✅ 现在可以正常工作
@@ -174,7 +174,7 @@ describe('Products API', () => {
       })
     )
 
-    const res = await fetch('http://localhost:3000/api/products')
+    const res = await fetch('http://localhost:5001/api/products')
     const data = await res.json()
     expect(data.success).toBe(true)
   })

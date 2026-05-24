@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "description": "YYC3 Admin System - 统一监控告警系统",
   "author": "YYC",
-  "homepage": "https://github.com/yyc/yyc3-admin-system",
+  "homepage": "https://github.com/yyc/yyc3-clube-system",
   "repository": {
     "type": "git",
-    "url": "https://github.com/yyc/yyc3-admin-system.git"
+    "url": "https://github.com/yyc/yyc3-clube-system.git"
   },
   "scripts": {
     "monitor": "node monitoring/scripts/unified-monitor.js",

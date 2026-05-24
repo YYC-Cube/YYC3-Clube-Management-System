@@ -6,7 +6,7 @@
 
 ---
 
-**项目**: yyc3-admin-system (KTV 商家管理系统)  
+**项目**: yyc3-clube-system (KTV 商家管理系统)  
 **创建日期**: 2025-01-19  
 **作者**: YYC³ 团队  
 **版本**: 1.0.0  
@@ -22,7 +22,7 @@
 /**
  * @fileoverview {文件功能简述}
  * @description {详细描述 - 说明文件的主要功能、职责和使用场景}
- * @module yyc3-admin-system/{module-path}
+ * @module yyc3-clube-system/{module-path}
  * @author YYC³
  * @version 1.0.0
  * @created 2025-01-19
@@ -39,7 +39,7 @@
  * @fileoverview 商品服务 - 提供商品CRUD操作和业务逻辑
  * @description 实现商品的增删改查、库存管理、价格计算等核心业务功能，
  *              与数据库层交互并提供给API路由使用
- * @module yyc3-admin-system/lib/services/products
+ * @module yyc3-clube-system/lib/services/products
  * @author YYC³
  * @version 1.0.0
  * @created 2025-01-19
@@ -63,7 +63,7 @@ import type { Product, CreateProductInput } from '@/lib/types'
  * @fileoverview {组件名称} - {组件功能简述}
  * @description {详细描述 - 说明组件的作用、Props、使用场景}
  * @component
- * @module yyc3-admin-system/components/{component-path}
+ * @module yyc3-clube-system/components/{component-path}
  * @author YYC³
  * @version 1.0.0
  * @created 2025-01-19
@@ -81,7 +81,7 @@ import type { Product, CreateProductInput } from '@/lib/types'
  * @description 用于展示单个商品信息的卡片组件，支持点击查看详情、
  *              加入购物车等交互功能。包含商品图片、名称、价格、库存等信息
  * @component
- * @module yyc3-admin-system/components/products/product-card
+ * @module yyc3-clube-system/components/products/product-card
  * @author YYC³
  * @version 1.0.0
  * @created 2025-01-19
@@ -122,7 +122,7 @@ export function ProductCard({ product, onAddToCart }: ProductCardProps) {
  * @fileoverview API 路由 - {路由功能描述}
  * @description {详细描述 - 说明接口的功能、请求方法、参数、返回值}
  * @route {HTTP_METHOD} {路由路径}
- * @module yyc3-admin-system/app/api/{route-path}
+ * @module yyc3-clube-system/app/api/{route-path}
  * @author YYC³
  * @version 1.0.0
  * @created 2025-01-19
@@ -141,7 +141,7 @@ export function ProductCard({ product, onAddToCart }: ProductCardProps) {
  *              批量操作等功能。需要管理员权限访问
  * @route GET /api/products - 获取商品列表
  * @route POST /api/products - 创建新商品
- * @module yyc3-admin-system/app/api/products/route
+ * @module yyc3-clube-system/app/api/products/route
  * @author YYC³
  * @version 1.0.0
  * @created 2025-01-19
@@ -183,7 +183,7 @@ export async function POST(request: NextRequest) {
  * @description {详细描述 - 说明页面的功能、布局、数据获取方式}
  * @page
  * @route {页面路由}
- * @module yyc3-admin-system/app/{page-path}/page
+ * @module yyc3-clube-system/app/{page-path}/page
  * @author YYC³
  * @version 1.0.0
  * @created 2025-01-19
@@ -202,7 +202,7 @@ export async function POST(request: NextRequest) {
  *              使用 Server Component 进行服务端数据获取
  * @page
  * @route /dashboard/products
- * @module yyc3-admin-system/app/dashboard/products/page
+ * @module yyc3-clube-system/app/dashboard/products/page
  * @author YYC³
  * @version 1.0.0
  * @created 2025-01-19
@@ -232,7 +232,7 @@ export default async function ProductsPage() {
 /**
  * @fileoverview {工具功能描述}
  * @description {详细描述 - 说明工具函数的用途和使用方法}
- * @module yyc3-admin-system/lib/utils/{util-name}
+ * @module yyc3-clube-system/lib/utils/{util-name}
  * @author YYC³
  * @version 1.0.0
  * @created 2025-01-19
@@ -249,7 +249,7 @@ export default async function ProductsPage() {
  * @fileoverview 日期格式化工具函数
  * @description 提供各种日期格式化、解析、计算等实用功能，
  *              基于 date-fns 库封装，提供统一的日期处理接口
- * @module yyc3-admin-system/lib/utils/date
+ * @module yyc3-clube-system/lib/utils/date
  * @author YYC³
  * @version 1.0.0
  * @created 2025-01-19
@@ -280,7 +280,7 @@ export function formatDateCN(date: Date): string {
  * @fileoverview {配置文件名称} - {配置用途}
  * @description {详细描述 - 说明配置项的作用和使用场景}
  * @config
- * @module yyc3-admin-system/{config-path}
+ * @module yyc3-clube-system/{config-path}
  * @author YYC³
  * @version 1.0.0
  * @created 2025-01-19
@@ -298,7 +298,7 @@ export function formatDateCN(date: Date): string {
  * @description 配置 Next.js 应用的各项参数，包括图片域名、
  *              环境变量、webpack 配置、实验性功能等
  * @config
- * @module yyc3-admin-system/next.config
+ * @module yyc3-clube-system/next.config
  * @author YYC³
  * @version 1.0.0
  * @created 2025-01-19
@@ -330,7 +330,7 @@ export default nextConfig
 
 ---
 
-**项目**: yyc3-admin-system (KTV 商家管理系统)  
+**项目**: yyc3-clube-system (KTV 商家管理系统)  
 **文档类型**: {技术文档/API 文档/设计文档/用户指南}  
 **创建日期**: YYYY-MM-DD  
 **作者**: YYC³ 团队  
@@ -362,7 +362,7 @@ export default nextConfig
 
 ---
 
-**项目**: yyc3-admin-system (KTV 商家管理系统)  
+**项目**: yyc3-clube-system (KTV 商家管理系统)  
 **API 版本**: v1.0  
 **文档版本**: 1.0.0  
 **创建日期**: YYYY-MM-DD  
@@ -417,7 +417,7 @@ GET /api/endpoint
 /**
  * @fileoverview 批量添加文件头注释脚本
  * @description 扫描项目文件并为缺少头注释的文件添加标准注释
- * @module yyc3-admin-system/scripts/add-file-headers
+ * @module yyc3-clube-system/scripts/add-file-headers
  * @author YYC³
  * @version 1.0.0
  * @created 2025-12-01
@@ -430,7 +430,7 @@ import { glob } from 'glob'
 
 const HEADER_TEMPLATE = `/**
  * @fileoverview {DESCRIPTION}
- * @module yyc3-admin-system/{MODULE_PATH}
+ * @module yyc3-clube-system/{MODULE_PATH}
  * @author YYC³
  * @version 1.0.0
  * @created 2025-01-19
@@ -473,7 +473,7 @@ files.forEach(file => {
       "/**",
       " * @fileoverview ${1:文件功能简述}",
       " * @description ${2:详细描述}",
-      " * @module yyc3-admin-system/${3:module-path}",
+      " * @module yyc3-clube-system/${3:module-path}",
       " * @author YYC³",
       " * @version 1.0.0",
       " * @created 2025-01-19",
@@ -494,7 +494,7 @@ files.forEach(file => {
 如有疑问，请联系：
 
 - **技术支持**: <admin@0379.email>
-- **项目仓库**: https://github.com/YYC-Cube/yyc3-admin-system
+- **项目仓库**: https://github.com/YYC-Cube/yyc3-clube-system
 
 ---
 

@@ -2,13 +2,13 @@
 
 import * as React from 'react'
 
-import { motion } from 'framer-motion'
-import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { Store, ArrowRight, Sparkles } from 'lucide-react'
+import { motion } from 'framer-motion'
+import { ArrowRight, Sparkles, Store } from 'lucide-react'
+import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 
 export default function HomePage() {
@@ -52,7 +52,7 @@ export default function HomePage() {
 
             {/* 标题 */}
             <div className="space-y-2">
-              <CardTitle className="text-3xl font-bold">启智商家后台</CardTitle>
+              <CardTitle className="text-3xl font-bold">YYC³ Clube System</CardTitle>
               <CardDescription className="flex items-center justify-center gap-2 text-base">
                 <Sparkles className="h-4 w-4" />
                 智慧管理，高效运营
@@ -137,8 +137,8 @@ export default function HomePage() {
           transition={{ delay: 0.5 }}
           className="mt-8 text-center text-sm text-muted-foreground"
         >
-          <p>启智商家桌面版 v2.0</p>
-          <p className="mt-1">© 2025 启智网络科技</p>
+          <p>YYC³ Clube System v2.0</p>
+          <p className="mt-1">© 2026 YYC-Cube</p>
         </motion.div>
       </motion.div>
     </div>

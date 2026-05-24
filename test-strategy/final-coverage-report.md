@@ -1,4 +1,4 @@
-# 🎯 启智商家后台管理系统 - 完整测试覆盖率分析报告
+# 🎯 YYC³ Clube后台管理系统 - 完整测试覆盖率分析报告
 
 **生成时间**: 2025-01-15  
 **报告类型**: 全项目测试覆盖率分析  
@@ -294,7 +294,7 @@ grep -E "All files|Statements|Branches|Functions|Lines" coverage.log
 ### 1. 运行核心测试 (5分钟)
 ```bash
 # 进入项目目录
-cd /Users/yanyu/yyc3-admin-system-2
+cd /Users/yanyu/yyc3-clube-system-2
 
 # 执行已生成的测试
 npx jest __tests__/quick/ --verbose

@@ -306,7 +306,7 @@ await businessIntelligence.generateAutomatedReport()
 ### 7.1 访问BI仪表盘
 
 \`\`\`
-http://localhost:3000/dashboard/bigdata/bi
+http://localhost:5001/dashboard/bigdata/bi
 \`\`\`
 
 ### 7.2 选择分析类型

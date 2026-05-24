@@ -360,7 +360,7 @@ export default defineConfig({
   retries: 2,
 
   use: {
-    baseURL: 'http://localhost:3000',
+    baseURL: 'http://localhost:5001',
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
   },

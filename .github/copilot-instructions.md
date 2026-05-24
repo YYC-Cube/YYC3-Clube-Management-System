@@ -613,7 +613,7 @@ import { NextRequest } from 'next/server'
 
 describe('Products API Integration', () => {
   it('GET /api/products 应该返回商品列表', async () => {
-    const request = new NextRequest('http://localhost:3000/api/products?page=1&pageSize=10')
+    const request = new NextRequest('http://localhost:5001/api/products?page=1&pageSize=10')
     const response = await GET(request)
     const data = await response.json()
 
@@ -632,7 +632,7 @@ import { test, expect } from '@playwright/test'
 
 test.describe('商品管理', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('http://localhost:3000/dashboard/products')
+    await page.goto('http://localhost:5001/dashboard/products')
   })
 
   test('应该显示商品列表', async ({ page }) => {
@@ -848,7 +848,7 @@ export function ProductForm() {
 ```typescript
 // Server Component数据获取
 export default async function ProductsPage() {
-  const products = await fetch('http://localhost:3000/api/products', {
+  const products = await fetch('http://localhost:5001/api/products', {
     cache: 'no-store', // 禁用缓存
     // next: { revalidate: 60 }, // 或使用ISR
   }).then(res => res.json())

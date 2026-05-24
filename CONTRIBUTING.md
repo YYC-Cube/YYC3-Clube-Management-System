@@ -21,8 +21,8 @@
 ### 克隆仓库
 
 ```bash
-git clone https://github.com/YYC-Cube/yyc3-admin-system.git
-cd yyc3-admin-system
+git clone https://github.com/YYC-Cube/yyc3-clube-system.git
+cd yyc3-clube-system
 ```
 
 ### 安装依赖
@@ -45,7 +45,7 @@ cp .env.example .env.local
 npm run dev
 ```
 
-访问 http://localhost:3000 查看应用。
+访问 http://localhost:5001 查看应用。
 
 ## 🔄 开发流程
 
@@ -220,8 +220,8 @@ git push origin feature/your-feature-name
 
 ## 📞 获取帮助
 
-- **Issues**: [GitHub Issues](https://github.com/YYC-Cube/yyc3-admin-system/issues)
-- **讨论**: [GitHub Discussions](https://github.com/YYC-Cube/yyc3-admin-system/discussions)
+- **Issues**: [GitHub Issues](https://github.com/YYC-Cube/yyc3-clube-system/issues)
+- **讨论**: [GitHub Discussions](https://github.com/YYC-Cube/yyc3-clube-system/discussions)
 - **文档**: 查看 `docs/` 目录
 
 ---

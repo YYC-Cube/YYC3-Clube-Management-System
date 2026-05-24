@@ -304,7 +304,7 @@
   testDir: "./e2e",
   fullyParallel: true,        // 并行执行
   retries: CI ? 2 : 0,        // CI环境重试2次
-  baseURL: "http://localhost:3000",
+  baseURL: "http://localhost:5001",
 
   // 5个浏览器环境
   projects: [
@@ -318,7 +318,7 @@
   // 自动启动dev服务器
   webServer: {
     command: "npm run dev",
-    url: "http://localhost:3000",
+    url: "http://localhost:5001",
     reuseExistingServer: !CI
   }
 }

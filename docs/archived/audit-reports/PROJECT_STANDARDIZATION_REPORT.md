@@ -6,7 +6,7 @@
 
 ---
 
-**项目**: yyc3-admin-system (KTV 商家管理系统)  
+**项目**: yyc3-clube-system (KTV 商家管理系统)  
 **文档类型**: 标准化完成报告  
 **执行日期**: 2025-12-01  
 **作者**: YYC³ 团队  
@@ -64,16 +64,16 @@
 
 ```json
 {
-  "name": "yyc3-admin-system",
+  "name": "yyc3-clube-system",
   "author": "YYC³ <admin@0379.email>",
   "license": "MIT",
-  "homepage": "https://github.com/YYC-Cube/yyc3-admin-system",
+  "homepage": "https://github.com/YYC-Cube/yyc3-clube-system",
   "repository": {
     "type": "git",
-    "url": "https://github.com/YYC-Cube/yyc3-admin-system.git"
+    "url": "https://github.com/YYC-Cube/yyc3-clube-system.git"
   },
   "bugs": {
-    "url": "https://github.com/YYC-Cube/yyc3-admin-system/issues"
+    "url": "https://github.com/YYC-Cube/yyc3-clube-system/issues"
   },
   "keywords": [
     "yyc3",
@@ -226,7 +226,7 @@ chmod +x scripts/add-doc-headers.sh
 | 检查项                    | 标准化前           | 标准化后                     | 状态   |
 | ------------------------- | ------------------ | ---------------------------- | ------ |
 | 项目命名规范              | ✓                  | ✓                            | 保持   |
-| package.json `name`       | ❌ `my-v0-project` | ✅ `yyc3-admin-system`       | 已修复 |
+| package.json `name`       | ❌ `my-v0-project` | ✅ `yyc3-clube-system`       | 已修复 |
 | package.json `author`     | ❌ 缺失            | ✅ `YYC³ <admin@0379.email>` | 已添加 |
 | package.json `license`    | ❌ 缺失            | ✅ `MIT`                     | 已添加 |
 | package.json `homepage`   | ❌ 缺失            | ✅ GitHub 仓库地址           | 已添加 |
@@ -415,7 +415,7 @@ chmod +x scripts/add-doc-headers.sh
 - **项目负责人**: YYC³ 团队
 - **技术支持**: <admin@0379.email>
 - **GitHub**: [@YYC-Cube](https://github.com/YYC-Cube)
-- **问题反馈**: [GitHub Issues](https://github.com/YYC-Cube/yyc3-admin-system/issues)
+- **问题反馈**: [GitHub Issues](https://github.com/YYC-Cube/yyc3-clube-system/issues)
 
 ---
 

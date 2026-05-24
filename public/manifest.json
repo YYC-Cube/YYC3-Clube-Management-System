@@ -1,7 +1,7 @@
 {
-  "name": "YYC³-QZ-Merchant-Management-System",
-  "short_name": "启智商家",
-  "description": "AI-Powered KTV Merchant Management Platform",
+  "name": "YYC³ Clube System",
+  "short_name": "YYC³ Clube",
+  "description": "YYC³ AI-Powered KTV Business Management Platform",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
