@@ -1,12 +1,21 @@
-name: Deploy to Vercel
+name: Deploy to GitHub Pages
 
 on:
   push:
     branches: [main]
   workflow_dispatch:
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -21,21 +30,26 @@ jobs:
 
       - run: pnpm install --no-frozen-lockfile
 
-      - name: Build check
-        run: pnpm build
+      - name: Build static export
+        run: |
+          mv app/api _api_disabled
+          pnpm build
+          mv _api_disabled app/api
         env:
           NEXT_PUBLIC_API_BASE_URL: /api
-          JWT_SECRET: build-time-placeholder
-          PG_HOST: localhost
-          REDIS_URL: redis://localhost:6379
 
-      - name: Install Vercel CLI
-        run: pnpm add -g vercel@latest
+      - run: echo "clube.yyc3.top" > out/CNAME
 
-      - name: Pull Vercel Environment
-        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
-        continue-on-error: true
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: out
 
-      - name: Deploy to Vercel
-        run: vercel deploy --prod --token=${{ secrets.VERCEL_TOKEN }} --yes
-        continue-on-error: true
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
