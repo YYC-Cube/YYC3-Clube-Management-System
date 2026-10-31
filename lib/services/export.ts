@@ -76,3 +76,36 @@ export async function exportMembers(_filters?: any) {
 
   downloadFile(blob, `members_${Date.now()}.csv`)
 }
+
+// 通用报表导出（CSV，带 UTF-8 BOM 以兼容 Excel 中文）
+export interface ReportExportField<T> {
+  key: keyof T & string
+  label: string
+}
+
+function toCsvCell(value: unknown): string {
+  if (value === null || value === undefined) return ""
+  const text = String(value)
+  return /[",\n]/.test(text) ? `"${text.replace(/"/g, '""')}"` : text
+}
+
+export function exportReportRows<T extends object>(
+  rows: T[],
+  fields: ReportExportField<T>[],
+  filename: string
+) {
+  if (rows.length === 0) return
+
+  const header = fields.map((field) => field.label).join(",")
+  const body = rows.map((row) =>
+    fields
+      .map((field) => toCsvCell((row as Record<string, unknown>)[field.key]))
+      .join(",")
+  )
+  const csv = [header, ...body].join("\n")
+
+  downloadFile(
+    new Blob([`\uFEFF${csv}`], { type: "text/csv;charset=utf-8;" }),
+    filename
+  )
+}
