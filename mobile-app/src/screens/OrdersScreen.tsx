@@ -3,6 +3,7 @@
 import * as React from "react"
 import { useState, useEffect } from "react"
 import { View, Text, FlatList, TouchableOpacity, StyleSheet, RefreshControl, ActivityIndicator } from "react-native"
+import { apiBaseUrl } from "../services/api"
 
 interface Order {
   id: string
@@ -20,9 +21,9 @@ export default function OrdersScreen({ navigation }: any) {
 
   const fetchOrders = async () => {
     try {
-      const response = await fetch("/api/orders")
+      const response = await fetch(`${apiBaseUrl}/api/orders`)
       const data = await response.json()
-      setOrders(data.orders || [])
+      setOrders(data.data?.data || [])
     } catch (error) {
       console.error("Failed to fetch orders:", error)
     } finally {

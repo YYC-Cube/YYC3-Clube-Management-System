@@ -1,23 +1,37 @@
 {
   "name": "ktv-admin-mobile",
   "version": "1.0.0",
-  "main": "expo/AppEntry.js",
+  "private": true,
+  "main": "index.js",
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
-    "web": "expo start --web"
+    "web": "expo start --web",
+    "export": "expo export --platform all",
+    "export:android": "expo export --platform android",
+    "export:web": "expo export --platform web",
+    "doctor": "expo-doctor"
   },
   "dependencies": {
-    "react": "19.0.0",
-    "react-native": "0.79.2",
-    "expo": "~53.0.0",
+    "@expo/metro-runtime": "~58.0.15",
     "@react-navigation/native": "^7.1.9",
     "@react-navigation/stack": "^7.3.2",
-    "axios": "^1.9.0",
-    "zustand": "^5.0.13",
-    "react-native-gesture-handler": "~2.25.0",
-    "react-native-reanimated": "~3.18.0",
-    "react-native-screens": "~4.11.0"
+    "axios": "^1.21.0",
+    "expo": "~58.0.21",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "react-native": "0.88.1",
+    "react-native-gesture-handler": "~3.3.0",
+    "react-native-reanimated": "4.7.1",
+    "react-native-safe-area-context": "~5.10.1",
+    "react-native-screens": "~4.30.1",
+    "react-native-web": "~0.21.4",
+    "react-native-worklets": "0.13.0",
+    "zustand": "^5.0.16"
+  },
+  "devDependencies": {
+    "@types/react": "~19.3.0",
+    "typescript": "~6.0.3"
   }
 }

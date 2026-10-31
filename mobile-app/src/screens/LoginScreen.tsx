@@ -12,6 +12,7 @@ import {
   Platform,
   Alert,
 } from "react-native"
+import { apiBaseUrl } from "../services/api"
 
 export default function LoginScreen({ navigation }: any) {
   const [phone, setPhone] = useState("13103790379")
@@ -26,7 +27,7 @@ export default function LoginScreen({ navigation }: any) {
 
     setLoading(true)
     try {
-      const response = await fetch("/api/auth/login", {
+      const response = await fetch(`${apiBaseUrl}/api/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ phone, password }),

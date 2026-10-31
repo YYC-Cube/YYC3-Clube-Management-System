@@ -1,0 +1,21 @@
+{
+  "expo": {
+    "name": "YYC³ Clube Mobile",
+    "slug": "yyc3-clube-mobile",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "platforms": ["ios", "android", "web"],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "top.yyc3.clube.mobile"
+    },
+    "android": {
+      "package": "top.yyc3.clube.mobile"
+    },
+    "web": {
+      "bundler": "metro"
+    }
+  }
+}

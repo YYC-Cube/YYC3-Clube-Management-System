@@ -1,9 +1,9 @@
 import { NavigationContainer } from "@react-navigation/native"
 import { createStackNavigator } from "@react-navigation/stack"
 import { GestureHandlerRootView } from "react-native-gesture-handler"
-import { LoginScreen } from "./screens/LoginScreen"
+import LoginScreen from "./screens/LoginScreen"
 import { DashboardScreen } from "./screens/DashboardScreen"
-import { OrdersScreen } from "./screens/OrdersScreen"
+import OrdersScreen from "./screens/OrdersScreen"
 
 const Stack = createStackNavigator()
 

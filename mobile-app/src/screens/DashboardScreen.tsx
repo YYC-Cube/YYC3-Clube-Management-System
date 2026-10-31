@@ -6,8 +6,15 @@ import { useEffect, useState } from "react"
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, RefreshControl } from "react-native"
 import { api } from "../services/api"
 
+interface DashboardStats {
+  todaySales: number
+  todayOrders: number
+  activeMembers: number
+  lowStock: number
+}
+
 export function DashboardScreen({ navigation }: any) {
-  const [stats, setStats] = useState({
+  const [stats, setStats] = useState<DashboardStats>({
     todaySales: 0,
     todayOrders: 0,
     activeMembers: 0,
@@ -17,8 +24,10 @@ export function DashboardScreen({ navigation }: any) {
 
   const loadStats = async () => {
     try {
-      const response = await api.get("/dashboard/stats")
-      setStats(response.data)
+      const response = await api.get<DashboardStats>("/dashboard/stats")
+      if (response.success && response.data) {
+        setStats(response.data)
+      }
     } catch (error) {
       console.error("加载统计数据失败:", error)
     }
