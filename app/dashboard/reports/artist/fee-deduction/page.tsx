@@ -20,7 +20,7 @@ import {
   type DeductionStatus,
   type DeductionType,
 } from '@/lib/services/artist-report'
-import { exportReportRows } from '@/lib/services/export'
+import { exportArtistReport, toArtistExportDate } from '@/lib/services/artist-report-export-client'
 
 const DEDUCTION_TYPE_OPTIONS = [
   { label: '全部类型', value: 'all' },
@@ -141,25 +141,17 @@ export default function ArtistFeeDeductionPage() {
   ]
 
   const handleExport = () => {
-    exportReportRows(
-      records,
-      [
-        { key: 'time', label: '扣款时间' },
-        { key: 'id', label: '扣款单号' },
-        { key: 'artistCode', label: '艺人编号' },
-        { key: 'artistName', label: '艺人姓名' },
-        { key: 'level', label: '艺人等级' },
-        { key: 'store', label: '门店' },
-        { key: 'room', label: '包厢' },
-        { key: 'clockRecordId', label: '关联上钟单' },
-        { key: 'type', label: '扣款类型' },
-        { key: 'stageFee', label: '关联台费' },
-        { key: 'amount', label: '扣款金额' },
-        { key: 'reason', label: '扣款原因' },
-        { key: 'operator', label: '经办人' },
-        { key: 'status', label: '状态' },
-      ],
-      `艺人台费扣款明细_${new Date().toISOString().slice(0, 10)}.csv`
+    void exportArtistReport(
+      'fee-deduction',
+      {
+        from: toArtistExportDate(dateRange?.from),
+        to: toArtistExportDate(dateRange?.to),
+        store: store === 'all' ? undefined : store,
+        type: type === 'all' ? undefined : type,
+        status: status === 'all' ? undefined : status,
+        search: search || undefined,
+      },
+      records
     )
   }
 

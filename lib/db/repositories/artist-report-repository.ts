@@ -426,6 +426,17 @@ SELECT a.id,
   FROM artist_clock_record r
   JOIN artist a ON a.id = r.artist_id${EFFECTIVE_DEDUCTION_JOIN}`
 
+export interface ArtistExportAuditEntry {
+  reportType: string
+  filter: Record<string, unknown>
+  rowCount: number
+  dataSource: string
+  operatorId?: string
+  operatorName?: string
+  clientIp?: string
+  userAgent?: string
+}
+
 export class ArtistReportRepository {
   async findClockRecords(
     filter: ArtistClockQueryFilter,
@@ -613,6 +624,28 @@ export class ArtistReportRepository {
       unsettledFee,
       settlementRate: netFee === 0 ? 0 : (settledFee / netFee) * 100,
     }
+  }
+
+  /**
+   * 写入导出审计日志。
+   * 审计为合规要求，但不应阻断业务导出：调用方负责捕获异常并记录 warn。
+   */
+  async recordExportAudit(entry: ArtistExportAuditEntry): Promise<void> {
+    await query(
+      `INSERT INTO artist_report_export_audit
+         (report_type, filter_json, row_count, data_source, operator_id, operator_name, client_ip, user_agent)
+       VALUES (?, ?::jsonb, ?, ?, ?, ?, ?, ?)`,
+      [
+        entry.reportType,
+        JSON.stringify(entry.filter ?? {}),
+        entry.rowCount,
+        entry.dataSource,
+        entry.operatorId ?? null,
+        entry.operatorName ?? null,
+        entry.clientIp ?? null,
+        entry.userAgent ?? null,
+      ]
+    )
   }
 }
 

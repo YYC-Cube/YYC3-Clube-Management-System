@@ -14,6 +14,7 @@
 
 import { closePool, query } from '@/lib/db'
 import { artistReportRepository } from '@/lib/db/repositories/artist-report-repository'
+import { getArtistExportData } from '@/lib/services/artist-report-data'
 
 const enabled = process.env.ARTIST_REPORT_IT === '1'
 const describeIf = enabled ? describe : describe.skip
@@ -213,5 +214,51 @@ describeIf('艺人报表仓储层（PostgreSQL 集成）', () => {
     expect(feeMetrics.settledFee).toBe(500)
     expect(feeMetrics.unsettledFee).toBe(500)
     expect(feeMetrics.settlementRate).toBe(50)
+  })
+
+  it('导出数据与报表口径一致，审计写入可查询', async () => {
+    const filter = { from: '2027-01-10', to: '2027-01-11', artistId: ARTIST_ID }
+
+    const detail = await getArtistExportData('clock-detail', filter)
+    expect(detail.source).toBe('db')
+    expect(detail.total).toBe(2)
+    expect(detail.data).toHaveLength(2)
+
+    const summary = await getArtistExportData('clock-summary', filter)
+    expect(summary.total).toBe(1)
+    expect(summary.data).toHaveLength(1)
+
+    await artistReportRepository.recordExportAudit({
+      reportType: 'clock-detail',
+      filter,
+      rowCount: detail.total,
+      dataSource: detail.source,
+      operatorId: 'IT-EXPORT-OP',
+      operatorName: '导出审计测试',
+      clientIp: '127.0.0.1',
+      userAgent: 'jest-integration',
+    })
+
+    const auditRows = await query<Array<{
+      report_type: string
+      filter_json: Record<string, unknown>
+      row_count: number
+      data_source: string
+      operator_name: string
+    }>>(
+      `SELECT report_type, filter_json, row_count, data_source, operator_name
+         FROM artist_report_export_audit
+        WHERE operator_id = ?
+        ORDER BY id DESC
+        LIMIT 1`,
+      ['IT-EXPORT-OP']
+    )
+
+    expect(auditRows).toHaveLength(1)
+    expect(auditRows[0].report_type).toBe('clock-detail')
+    expect(auditRows[0].filter_json).toEqual(filter)
+    expect(auditRows[0].row_count).toBe(2)
+    expect(auditRows[0].data_source).toBe('db')
+    expect(auditRows[0].operator_name).toBe('导出审计测试')
   })
 })

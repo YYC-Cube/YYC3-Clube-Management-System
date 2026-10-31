@@ -205,6 +205,22 @@ CREATE INDEX IF NOT EXISTS idx_settlement_artist_period ON artist_fee_settlement
 CREATE INDEX IF NOT EXISTS idx_settlement_status ON artist_fee_settlement (status);
 CREATE INDEX IF NOT EXISTS idx_settlement_item_settlement ON artist_fee_settlement_item (settlement_id);
 
+-- 导出审计：记录每一次艺人报表导出的操作人、筛选条件、行数与数据来源
+CREATE TABLE IF NOT EXISTS artist_report_export_audit (
+  id              BIGSERIAL PRIMARY KEY,
+  report_type     VARCHAR(32) NOT NULL,
+  filter_json     JSONB NOT NULL DEFAULT '{}'::jsonb,
+  row_count       INTEGER NOT NULL CHECK (row_count >= 0),
+  data_source     VARCHAR(8) NOT NULL CHECK (data_source IN ('db', 'mock')),
+  operator_id     VARCHAR(64),
+  operator_name   VARCHAR(64),
+  client_ip       VARCHAR(64),
+  user_agent      VARCHAR(255),
+  created_at      TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+CREATE INDEX IF NOT EXISTS idx_export_audit_created ON artist_report_export_audit (created_at DESC);
+CREATE INDEX IF NOT EXISTS idx_export_audit_type ON artist_report_export_audit (report_type, created_at DESC);
+
 COMMIT;
 
 -- ============================================================================

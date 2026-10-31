@@ -14,6 +14,7 @@
  */
 
 import { artistReportRepository } from "@/lib/db/repositories/artist-report-repository"
+import { MAX_EXPORT_ROWS, type ArtistReportExportType } from "@/lib/services/artist-report-export"
 import type {
   ArtistClockQuery,
   ArtistDeductionQuery,
@@ -245,4 +246,77 @@ export async function getArtistFeeSummary(
     metrics: payload.metrics,
     source,
   }
+}
+
+export interface ArtistExportData {
+  data: object[]
+  total: number
+  source: ArtistDataSource
+}
+
+/**
+ * 导出用全量数据（上限 MAX_EXPORT_ROWS + 1，用于判断是否超限）。
+ * 与页面报表复用同一数据源编排，保证导出内容与页面口径一致。
+ */
+export async function getArtistExportData(
+  type: ArtistReportExportType,
+  filter: ArtistClockQuery | ArtistDeductionQuery
+): Promise<ArtistExportData> {
+  const pagination: ArtistReportPagination = {
+    page: 1,
+    pageSize: MAX_EXPORT_ROWS + 1,
+    offset: 0,
+  }
+
+  const { payload, source } = await withDataSource(
+    async () => {
+      switch (type) {
+        case "clock-detail": {
+          const result = await artistReportRepository.findClockRecords(
+            filter as ArtistClockQuery,
+            pagination
+          )
+          return { data: result.data as object[], total: result.total }
+        }
+        case "clock-summary": {
+          const result = await artistReportRepository.findClockSummary(
+            filter as ArtistClockQuery,
+            pagination
+          )
+          return { data: result.data as object[], total: result.total }
+        }
+        case "fee-deduction": {
+          const result = await artistReportRepository.findDeductions(
+            filter as ArtistDeductionQuery,
+            pagination
+          )
+          return { data: result.data as object[], total: result.total }
+        }
+        case "fee-summary": {
+          const result = await artistReportRepository.findFeeFlowSummary(
+            filter as ArtistClockQuery,
+            pagination
+          )
+          return { data: result.data as object[], total: result.total }
+        }
+      }
+    },
+    () => {
+      if (type === "fee-deduction") {
+        const records = mockDeductionRecords(filter as ArtistDeductionQuery)
+        return { data: records as object[], total: records.length }
+      }
+
+      const records = mockClockRecords(filter as ArtistClockQuery)
+      const data =
+        type === "clock-detail"
+          ? records
+          : type === "clock-summary"
+            ? buildArtistClockSummary(records)
+            : buildArtistFeeFlowSummary(records)
+      return { data: data as object[], total: data.length }
+    }
+  )
+
+  return { ...payload, source }
 }

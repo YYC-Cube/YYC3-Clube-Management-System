@@ -22,7 +22,7 @@ import {
   type ArtistClockRecord,
   type ClockStatus,
 } from '@/lib/services/artist-report'
-import { exportReportRows } from '@/lib/services/export'
+import { exportArtistReport, toArtistExportDate } from '@/lib/services/artist-report-export-client'
 
 const STATUS_OPTIONS = [
   { label: '全部状态', value: 'all' },
@@ -133,26 +133,17 @@ export default function ArtistClockDetailPage() {
   ]
 
   const handleExport = () => {
-    exportReportRows(
-      records,
-      [
-        { key: 'id', label: '上钟单号' },
-        { key: 'artistCode', label: '艺人编号' },
-        { key: 'artistName', label: '艺人姓名' },
-        { key: 'level', label: '艺人等级' },
-        { key: 'store', label: '门店' },
-        { key: 'room', label: '包厢' },
-        { key: 'guestName', label: '客人' },
-        { key: 'clockIn', label: '上钟时间' },
-        { key: 'clockOut', label: '下钟时间' },
-        { key: 'durationMinutes', label: '时长(分钟)' },
-        { key: 'stageFee', label: '台费' },
-        { key: 'deduction', label: '扣款' },
-        { key: 'netFee', label: '实收台费' },
-        { key: 'status', label: '状态' },
-        { key: 'operator', label: '经办人' },
-      ],
-      `艺人上下钟明细_${new Date().toISOString().slice(0, 10)}.csv`
+    void exportArtistReport(
+      'clock-detail',
+      {
+        from: toArtistExportDate(dateRange?.from),
+        to: toArtistExportDate(dateRange?.to),
+        store: store === 'all' ? undefined : store,
+        artistId: artistId === 'all' ? undefined : artistId,
+        status: status === 'all' ? undefined : status,
+        search: search || undefined,
+      },
+      records
     )
   }
 

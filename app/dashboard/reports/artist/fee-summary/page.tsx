@@ -21,7 +21,7 @@ import {
   formatCurrency,
   type ArtistFeeFlowSummaryRow,
 } from '@/lib/services/artist-report'
-import { exportReportRows } from '@/lib/services/export'
+import { exportArtistReport, toArtistExportDate } from '@/lib/services/artist-report-export-client'
 
 export default function ArtistFeeSummaryPage() {
   const [dateRange, setDateRange] = useState<DateRange | undefined>()
@@ -130,22 +130,16 @@ export default function ArtistFeeSummaryPage() {
   ]
 
   const handleExport = () => {
-    exportReportRows(
-      summary,
-      [
-        { key: 'artistCode', label: '艺人编号' },
-        { key: 'artistName', label: '艺人姓名' },
-        { key: 'level', label: '艺人等级' },
-        { key: 'store', label: '门店' },
-        { key: 'clockCount', label: '上钟次数' },
-        { key: 'stageFeeTotal', label: '台费总额' },
-        { key: 'deductionTotal', label: '扣款总额' },
-        { key: 'netFee', label: '应结台费' },
-        { key: 'settledFee', label: '已结台费' },
-        { key: 'unsettledFee', label: '待结台费' },
-        { key: 'settlementRate', label: '结算进度(%)' },
-      ],
-      `艺人台费流水汇总_${new Date().toISOString().slice(0, 10)}.csv`
+    void exportArtistReport(
+      'fee-summary',
+      {
+        from: toArtistExportDate(dateRange?.from),
+        to: toArtistExportDate(dateRange?.to),
+        store: store === 'all' ? undefined : store,
+        artistId: artistId === 'all' ? undefined : artistId,
+        search: search || undefined,
+      },
+      summary
     )
   }
 

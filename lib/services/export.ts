@@ -78,34 +78,40 @@ export async function exportMembers(_filters?: any) {
 }
 
 // 通用报表导出（CSV，带 UTF-8 BOM 以兼容 Excel 中文）
-export interface ReportExportField<T> {
-  key: keyof T & string
+export interface ReportExportField {
+  key: string
   label: string
 }
 
-function toCsvCell(value: unknown): string {
+export function toCsvCell(value: unknown): string {
   if (value === null || value === undefined) return ""
   const text = String(value)
   return /[",\n]/.test(text) ? `"${text.replace(/"/g, '""')}"` : text
 }
 
-export function exportReportRows<T extends object>(
-  rows: T[],
-  fields: ReportExportField<T>[],
-  filename: string
-) {
-  if (rows.length === 0) return
-
+/** 纯函数：按字段定义生成 CSV 文本（不含 BOM），服务端与客户端共用 */
+export function buildReportCsv(
+  rows: readonly object[],
+  fields: readonly ReportExportField[]
+): string {
   const header = fields.map((field) => field.label).join(",")
   const body = rows.map((row) =>
     fields
       .map((field) => toCsvCell((row as Record<string, unknown>)[field.key]))
       .join(",")
   )
-  const csv = [header, ...body].join("\n")
+  return [header, ...body].join("\n")
+}
+
+export function exportReportRows(
+  rows: readonly object[],
+  fields: readonly ReportExportField[],
+  filename: string
+) {
+  if (rows.length === 0) return
 
   downloadFile(
-    new Blob([`\uFEFF${csv}`], { type: "text/csv;charset=utf-8;" }),
+    new Blob([`\uFEFF${buildReportCsv(rows, fields)}`], { type: "text/csv;charset=utf-8;" }),
     filename
   )
 }

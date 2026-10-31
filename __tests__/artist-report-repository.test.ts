@@ -225,4 +225,52 @@ describe('艺人报表仓储层（单元）', () => {
     expect(sql).toContain('FROM artist_fee_deduction d')
     expect(sql).toContain('ORDER BY d.created_at DESC')
   })
+
+  it('recordExportAudit 写入报表类型、筛选 JSON 与操作人信息', async () => {
+    mockedQuery.mockResolvedValueOnce([])
+
+    await artistReportRepository.recordExportAudit({
+      reportType: 'clock-detail',
+      filter: { from: '2026-10-24', to: '2026-10-31', store: 'KTV旗舰店' },
+      rowCount: 22,
+      dataSource: 'db',
+      operatorId: 'OP1',
+      operatorName: '运营张三',
+      clientIp: '127.0.0.1',
+      userAgent: 'jest-agent',
+    })
+
+    const [sql, params] = mockedQuery.mock.calls[0]
+    expect(sql).toContain('INSERT INTO artist_report_export_audit')
+    expect(sql).toContain('?::jsonb')
+    expect(params[0]).toBe('clock-detail')
+    expect(JSON.parse(params[1])).toEqual({
+      from: '2026-10-24',
+      to: '2026-10-31',
+      store: 'KTV旗舰店',
+    })
+    expect(params.slice(2)).toEqual([
+      22,
+      'db',
+      'OP1',
+      '运营张三',
+      '127.0.0.1',
+      'jest-agent',
+    ])
+  })
+
+  it('recordExportAudit 对缺失的可选字段写入 NULL', async () => {
+    mockedQuery.mockResolvedValueOnce([])
+
+    await artistReportRepository.recordExportAudit({
+      reportType: 'fee-summary',
+      filter: {},
+      rowCount: 0,
+      dataSource: 'mock',
+    })
+
+    const [, params] = mockedQuery.mock.calls[0]
+    expect(params[1]).toBe('{}')
+    expect(params.slice(4)).toEqual([null, null, null, null])
+  })
 })

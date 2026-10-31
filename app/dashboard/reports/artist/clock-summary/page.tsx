@@ -24,7 +24,7 @@ import {
   formatHours,
   type ArtistClockSummaryRow,
 } from '@/lib/services/artist-report'
-import { exportReportRows } from '@/lib/services/export'
+import { exportArtistReport, toArtistExportDate } from '@/lib/services/artist-report-export-client'
 
 export default function ArtistClockSummaryPage() {
   const [dateRange, setDateRange] = useState<DateRange | undefined>()
@@ -115,21 +115,16 @@ export default function ArtistClockSummaryPage() {
   ]
 
   const handleExport = () => {
-    exportReportRows(
-      summary,
-      [
-        { key: 'artistCode', label: '艺人编号' },
-        { key: 'artistName', label: '艺人姓名' },
-        { key: 'level', label: '艺人等级' },
-        { key: 'store', label: '门店' },
-        { key: 'clockCount', label: '上钟次数' },
-        { key: 'totalMinutes', label: '累计时长(分钟)' },
-        { key: 'averageMinutes', label: '平均时长(分钟)' },
-        { key: 'totalStageFee', label: '台费收入' },
-        { key: 'totalDeduction', label: '扣款金额' },
-        { key: 'netFee', label: '实收台费' },
-      ],
-      `艺人上下钟汇总_${new Date().toISOString().slice(0, 10)}.csv`
+    void exportArtistReport(
+      'clock-summary',
+      {
+        from: toArtistExportDate(dateRange?.from),
+        to: toArtistExportDate(dateRange?.to),
+        store: store === 'all' ? undefined : store,
+        artistId: artistId === 'all' ? undefined : artistId,
+        search: search || undefined,
+      },
+      summary
     )
   }
 
