@@ -214,7 +214,7 @@ export default function ArtistClockDetailPage() {
           <CardDescription>当前筛选条件下共 {records.length} 条上钟记录</CardDescription>
         </CardHeader>
         <CardContent>
-          <DataTable columns={columns} data={records} />
+          <DataTable columns={columns} data={records} pageSize={20} />
         </CardContent>
       </Card>
     </div>

@@ -226,7 +226,7 @@ export default function ArtistFeeDeductionPage() {
           <CardDescription>当前筛选条件下共 {records.length} 条扣款记录</CardDescription>
         </CardHeader>
         <CardContent>
-          <DataTable columns={columns} data={records} />
+          <DataTable columns={columns} data={records} pageSize={20} />
         </CardContent>
       </Card>
     </div>

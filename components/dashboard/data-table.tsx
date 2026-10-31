@@ -11,6 +11,8 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table'
+import { Button } from '@/components/ui/button'
+import { paginateRows } from '@/lib/utils/pagination'
 
 interface Column {
   key: string
@@ -24,9 +26,24 @@ interface DataTableProps {
   loading?: boolean
   actions?: (row: any) => React.ReactNode
   onRowClick?: (row: any) => void
+  /** 前端分页每页行数；不传则一次性渲染全部（保持既有页面行为） */
+  pageSize?: number
 }
 
-export function DataTable({ columns, data, loading = false, actions, onRowClick }: DataTableProps) {
+export function DataTable({ columns, data, loading = false, actions, onRowClick, pageSize = 0 }: DataTableProps) {
+  const [page, setPage] = React.useState(1)
+  const paginated = pageSize > 0
+  const slice = React.useMemo(
+    () => (paginated ? paginateRows(data, page, pageSize) : null),
+    [paginated, data, page, pageSize]
+  )
+  const rows = slice ? slice.rows : data
+
+  // 筛选结果变化时回到第 1 页，避免停留在空白页
+  React.useEffect(() => {
+    if (paginated) setPage(1)
+  }, [paginated, data.length])
+
   return (
     <div className="rounded-lg border bg-card">
       <Table>
@@ -48,7 +65,7 @@ export function DataTable({ columns, data, loading = false, actions, onRowClick 
                 加载中...
               </TableCell>
             </TableRow>
-          ) : data.length === 0 ? (
+          ) : rows.length === 0 ? (
             <TableRow>
               <TableCell
                 colSpan={columns.length + (actions ? 1 : 0)}
@@ -58,7 +75,7 @@ export function DataTable({ columns, data, loading = false, actions, onRowClick 
               </TableCell>
             </TableRow>
           ) : (
-            data.map((row, index) => (
+            rows.map((row, index) => (
               <motion.tr
                 key={row.id || index}
                 initial={{ opacity: 0, x: -20 }}
@@ -80,6 +97,47 @@ export function DataTable({ columns, data, loading = false, actions, onRowClick 
           )}
         </TableBody>
       </Table>
+      {slice && slice.totalPages > 1 && (
+        <div className="flex flex-col gap-3 border-t px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-sm text-muted-foreground">
+            共 {slice.total} 条 · 第 {slice.page} / {slice.totalPages} 页
+          </p>
+          <div className="flex items-center gap-2">
+            <Button
+              variant="outline"
+              size="sm"
+              disabled={slice.page <= 1}
+              onClick={() => setPage(1)}
+            >
+              首页
+            </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              disabled={slice.page <= 1}
+              onClick={() => setPage(slice.page - 1)}
+            >
+              上一页
+            </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              disabled={slice.page >= slice.totalPages}
+              onClick={() => setPage(slice.page + 1)}
+            >
+              下一页
+            </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              disabled={slice.page >= slice.totalPages}
+              onClick={() => setPage(slice.totalPages)}
+            >
+              末页
+            </Button>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

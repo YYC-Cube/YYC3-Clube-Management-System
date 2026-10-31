@@ -217,7 +217,7 @@ export default function ArtistClockSummaryPage() {
           <CardDescription>共 {summary.length} 位艺人，按实收台费从高到低排序</CardDescription>
         </CardHeader>
         <CardContent>
-          <DataTable columns={columns} data={summary} />
+          <DataTable columns={columns} data={summary} pageSize={20} />
         </CardContent>
       </Card>
     </div>
