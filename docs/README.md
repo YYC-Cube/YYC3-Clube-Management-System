@@ -1,11 +1,12 @@
 # YYC³ 文档中心
 
-> **文档版本**: v3.5  
+> **文档版本**: v3.6  
 > **最后更新**: 2026-10-31  
 > **维护者**: YYC³ DevOps Team  
 > **规范**: 遵循 [YYC³-团队通用-标规文档/](./YYC3-团队通用-标规文档/) 与 [YYC³-团队通用-开发文档.md](./YYC³-团队通用-开发文档.md)
 >
-> **v3.5 变更**: 4 张艺人报表页上线前端分页（20 条/页，`DataTable.pageSize` + `paginateRows`），Playwright 实测翻页与禁用态；全量单测 55 suites / 503 tests。
+> **v3.6 变更**: 导出操作人生产严格模式（`trust!=jwt` → HTTP 403，`ARTIST_EXPORT_REQUIRE_JWT` 可覆盖），客户端 401/403 不回退本地 CSV；新增路由级 5 例 + 客户端 4 例测试；全量单测 57 suites / 517 tests。  
+> **v3.5 变更**: 4 张艺人报表页上线前端分页（20 条/页，`DataTable.pageSize` + `paginateRows`），Playwright 实测翻页与禁用态。
 
 ---
 

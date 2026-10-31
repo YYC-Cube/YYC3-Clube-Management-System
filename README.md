@@ -665,8 +665,9 @@ YYC3-Clube-Management-System/
 | Web 类型检查 | ✅ `pnpm type-check` 0 错误 |
 | Web 生产构建 | ✅ Next 16 + Turbopack，154/154 页面，0 warning |
 | 生产运行 | ✅ `node .next/standalone/server.js`，页面/JS/CSS/API 均 200 |
-| 艺人报表单测 | ✅ 50/50（7 suites：艺人域 39、分页 6、DataTable 组件 5）+ 6/6 临时 PostgreSQL 集成；全项目 55 suites / 503 tests |
+| 艺人报表单测 | ✅ 64/64（艺人域 39、分页 6、DataTable 组件 5、导出操作人/严格模式 10、导出客户端 4）+ 6/6 临时 PostgreSQL 集成；全项目 **57 suites / 517 tests** |
 | 报表前端分页 | ✅ 4 张报表页 20 条/页；Playwright 实测 22 条 → 2 页切换与禁用态正确，0 error |
+| 导出严格模式 | ✅ 生产默认要求 `trust=jwt`，`header/none` 返回 403（`ARTIST_EXPORT_REQUIRE_JWT` 可灰度覆盖） |
 | 万级压测 | ✅ 10000 上下钟 + 5000 扣款：6 端点 P95 12.8–73.5ms（阈值 500ms），0 错误 |
 | 移动端类型检查 | ✅ Expo 58 + TS 6，0 错误 |
 | 移动端 Bundle | ✅ `expo export --platform all`（Web / Android / iOS） |
@@ -685,11 +686,12 @@ YYC3-Clube-Management-System/
 | GET | `/api/reports/artist/clock-summary` | 上下钟汇总（按艺人聚合） |
 | GET | `/api/reports/artist/fee-deduction` | 台费扣款明细（分页 + 指标） |
 | GET | `/api/reports/artist/fee-summary` | 台费流水汇总（已结/待结/进度） |
-| POST | `/api/reports/artist/export` | 服务端 CSV 导出（4 类报表、5 万行上限、审计落库、操作人可信标记） |
+| POST | `/api/reports/artist/export` | 服务端 CSV 导出（4 类报表、5 万行上限、审计落库、操作人可信标记；生产禁用 header 回退） |
 
 - 通用参数：`from`、`to`（`YYYY-MM-DD`，`Asia/Shanghai`）、`store`、`artistId`、`status`、`type`、`search`、`page`、`pageSize`（≤200）。
 - 响应：`{ success, data: { data, pagination, metrics, source } }`，响应头 `X-Artist-Data-Source: db | mock`。
 - 导出：`POST` 请求体 `{ reportType, filter }`，返回 `text/csv`（UTF-8 BOM），响应头 `X-Export-Row-Count` / `X-Operator-Trust`（`jwt | header | none`）；超过 50000 行返回 400；成功/失败均可在 `artist_report_export_audit` 追溯。登录后导出自动携带 `Authorization: Bearer`，审计标记 `trust=jwt`。
+- 导出鉴权：`NODE_ENV=production` 默认要求 `trust=jwt`，仅请求头身份直接 403（不取数、不写审计）；客户端收到 401/403 返回 `forbidden` 并提示登录，不再回退本地 CSV（避免绕过审计）。可用 `ARTIST_EXPORT_REQUIRE_JWT=true|false|1|0` 显式覆盖，便于过渡期灰度。
 - 数据源：`ARTIST_REPORT_DATA_SOURCE=auto`（默认，异常回退 Mock）/ `db`（强制真实库）/ `mock`（纯演示）。
 - 压测：`scripts/seeds/artist-report-bench.sql` 生成万级数据，`scripts/loadtest/artist-report-bench.mjs` 输出 P50/P95/P99。
 - 仓储层：[`lib/db/repositories/artist-report-repository.ts`](./lib/db/repositories/artist-report-repository.ts)；接口契约见 [`05-艺人报表数据模型与接口建议.md`](./docs/yyc3-clube-system-trae-20261031/05-艺人报表数据模型与接口建议.md)。
