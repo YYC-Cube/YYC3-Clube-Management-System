@@ -1,18 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',
+  // 使用 standalone 产物以支持 API Route、proxy 与按需服务端渲染；
+  // 静态导出（output: 'export'）会与 app/api/** 和 proxy.ts 冲突。
+  output: 'standalone',
+  outputFileTracingRoot: process.cwd(),
   pageExtensions: ['tsx', 'ts', 'jsx', 'js'],
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
-  typescript: {
-    ignoreBuildErrors: true,
-  },
   images: {
     unoptimized: true,
-  },
-  webpack: config => {
-    return config
   },
 }
 

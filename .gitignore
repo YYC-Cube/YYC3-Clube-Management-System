@@ -1,5 +1,9 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+# macOS metadata
+.DS_Store
+**/.DS_Store
+
 # dependencies
 /node_modules
 **/node_modules
@@ -40,3 +44,8 @@ kanban-schema-gate.json
 
 # sub-projects (independent repos)
 /club-ops/
+
+# mobile build artifacts
+/mobile-app/dist/
+/mobile-app/.expo/
+/mobile-app/node_modules/
