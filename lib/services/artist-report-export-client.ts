@@ -8,14 +8,16 @@
  *
  * 策略：
  * 1. 调用 POST /api/reports/artist/export，由服务端生成 CSV 并写入审计；
- * 2. 服务端不可用（断库/离线/参数拒绝）时，回退到浏览器本地导出，保证演示可用；
- * 3. 本地导出不写审计，仅用于 Mock/离线场景，生产环境应保持服务端导出可用。
+ * 2. 鉴权被拒（HTTP 401/403，生产严格模式禁用请求头回退）时**不回退**本地导出，提示用户登录；
+ * 3. 服务端其它不可用（断库/离线/参数拒绝）时回退浏览器本地导出，保证演示可用；
+ * 4. 本地导出不写审计，仅用于 Mock/离线场景，生产环境应保持服务端导出可用。
  */
 
 import { ARTIST_EXPORT_FIELDS, buildArtistExportFilename, type ArtistExportFilter, type ArtistReportExportType } from "@/lib/services/artist-report-export"
 import { exportReportRows } from "@/lib/services/export"
+import { toast } from "@/hooks/use-toast"
 
-export type ArtistExportOutcome = "server" | "fallback" | "skipped"
+export type ArtistExportOutcome = "server" | "fallback" | "skipped" | "forbidden"
 
 /** 本地时区 YYYY-MM-DD，避免 toISOString 的 UTC 偏移 */
 export function toArtistExportDate(date?: Date): string | undefined {
@@ -89,6 +91,18 @@ export async function exportArtistReport(
       payload && typeof payload === "object" && "message" in payload
         ? String((payload as { message?: unknown }).message)
         : `HTTP ${response.status}`
+
+    if (response.status === 401 || response.status === 403) {
+      // 鉴权被拒：本地导出会绕过审计，明确拒绝并提示登录
+      console.warn(`[artist-report] 服务端拒绝导出：${message}`)
+      toast({
+        title: "导出被拒绝",
+        description: message,
+        variant: "destructive",
+      })
+      return "forbidden"
+    }
+
     console.warn(`[artist-report] 服务端导出失败，回退本地导出：${message}`)
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error)

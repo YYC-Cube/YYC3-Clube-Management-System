@@ -10,6 +10,9 @@
  * - jwt：来自 `Authorization: Bearer <HS256 JWT>`，签名与过期时间已校验，不可伪造；
  * - header：来自 `x-operator-id` / `x-operator-name` 请求头，客户端可伪造，仅用于过渡期；
  * - none：未提供任何身份信息，审计仍记录行数与筛选，操作人留空。
+ *
+ * 生产环境默认要求 `trust=jwt`（`requireTrustedOperator()`），
+ * 可用 `ARTIST_EXPORT_REQUIRE_JWT=true|false|1|0` 覆盖，便于过渡期灰度。
  */
 
 import { verifyToken } from "@/lib/security/jwt"
@@ -60,4 +63,15 @@ export async function resolveExportOperator(headers: Headers): Promise<ExportOpe
   }
 
   return { trust: "none" }
+}
+
+/**
+ * 是否要求操作人必须通过令牌校验（生产环境默认开启）。
+ * 显式设置 `ARTIST_EXPORT_REQUIRE_JWT=true|false` 可覆盖默认值，便于分环境灰度。
+ */
+export function requireTrustedOperator(env: NodeJS.ProcessEnv = process.env): boolean {
+  const flag = env.ARTIST_EXPORT_REQUIRE_JWT?.trim().toLowerCase()
+  if (flag === "true" || flag === "1") return true
+  if (flag === "false" || flag === "0") return false
+  return env.NODE_ENV === "production"
 }

@@ -4,7 +4,7 @@ jest.mock('@/lib/security/jwt', () => ({
 }))
 
 import { verifyToken } from '@/lib/security/jwt'
-import { resolveExportOperator } from '@/lib/services/export-operator'
+import { requireTrustedOperator, resolveExportOperator } from '@/lib/services/export-operator'
 
 const mockedVerify = verifyToken as jest.Mock
 
@@ -112,5 +112,68 @@ describe('导出操作人解析（可信级别）', () => {
     const operator = await resolveExportOperator(headers({ authorization: 'bearer signed.jwt' }))
     expect(operator.trust).toBe('jwt')
     expect(operator.operatorId).toBe('U-3')
+  })
+})
+
+describe('导出严格模式（requireTrustedOperator）', () => {
+  it('生产环境未显式配置时默认要求令牌校验', () => {
+    expect(requireTrustedOperator({ NODE_ENV: 'production' } as NodeJS.ProcessEnv)).toBe(true)
+  })
+
+  it('非生产环境未显式配置时允许请求头回退，便于本地联调', () => {
+    expect(requireTrustedOperator({ NODE_ENV: 'development' } as NodeJS.ProcessEnv)).toBe(false)
+    expect(requireTrustedOperator({ NODE_ENV: 'test' } as NodeJS.ProcessEnv)).toBe(false)
+    expect(requireTrustedOperator({} as NodeJS.ProcessEnv)).toBe(false)
+  })
+
+  it('ARTIST_EXPORT_REQUIRE_JWT=true / 1 显式开启严格模式（含前后空白与大小写）', () => {
+    expect(
+      requireTrustedOperator({
+        NODE_ENV: 'development',
+        ARTIST_EXPORT_REQUIRE_JWT: 'true',
+      } as NodeJS.ProcessEnv)
+    ).toBe(true)
+    expect(
+      requireTrustedOperator({
+        NODE_ENV: 'development',
+        ARTIST_EXPORT_REQUIRE_JWT: ' TRUE ',
+      } as NodeJS.ProcessEnv)
+    ).toBe(true)
+    expect(
+      requireTrustedOperator({
+        NODE_ENV: 'production',
+        ARTIST_EXPORT_REQUIRE_JWT: '1',
+      } as NodeJS.ProcessEnv)
+    ).toBe(true)
+  })
+
+  it('ARTIST_EXPORT_REQUIRE_JWT=false / 0 显式关闭严格模式（覆盖生产默认）', () => {
+    expect(
+      requireTrustedOperator({
+        NODE_ENV: 'production',
+        ARTIST_EXPORT_REQUIRE_JWT: 'false',
+      } as NodeJS.ProcessEnv)
+    ).toBe(false)
+    expect(
+      requireTrustedOperator({
+        NODE_ENV: 'production',
+        ARTIST_EXPORT_REQUIRE_JWT: ' 0 ',
+      } as NodeJS.ProcessEnv)
+    ).toBe(false)
+  })
+
+  it('无法识别的取值回落到 NODE_ENV 判定', () => {
+    expect(
+      requireTrustedOperator({
+        NODE_ENV: 'production',
+        ARTIST_EXPORT_REQUIRE_JWT: 'yes',
+      } as NodeJS.ProcessEnv)
+    ).toBe(true)
+    expect(
+      requireTrustedOperator({
+        NODE_ENV: 'development',
+        ARTIST_EXPORT_REQUIRE_JWT: '   ',
+      } as NodeJS.ProcessEnv)
+    ).toBe(false)
   })
 })

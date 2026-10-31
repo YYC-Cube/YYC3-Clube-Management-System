@@ -22,13 +22,15 @@
  * - 仅接受白名单筛选字段，SQL 全参数化；
  * - 操作人优先取 `Authorization: Bearer <JWT>` 校验结果（trust=jwt，不可伪造）；
  *   无有效令牌时回退 `x-operator-*` 请求头并标记 trust=header（过渡期，可伪造）；
+ * - 生产环境（NODE_ENV=production）默认要求 trust=jwt，否则返回 403；
+ *   可用 `ARTIST_EXPORT_REQUIRE_JWT=true|false` 显式覆盖。
  * - 审计写入失败不阻断导出，仅记录 warn，避免合规日志影响业务可用性。
  */
 
 import { NextRequest, NextResponse } from "next/server"
 import { artistReportRepository } from "@/lib/db/repositories/artist-report-repository"
 import { getArtistExportData } from "@/lib/services/artist-report-data"
-import { resolveExportOperator } from "@/lib/services/export-operator"
+import { requireTrustedOperator, resolveExportOperator } from "@/lib/services/export-operator"
 import {
   ARTIST_EXPORT_FIELDS,
   MAX_EXPORT_ROWS,
@@ -115,6 +117,18 @@ export async function POST(request: NextRequest) {
   }
 
   try {
+    const operator = await resolveExportOperator(request.headers)
+    if (requireTrustedOperator() && operator.trust !== "jwt") {
+      return NextResponse.json(
+        {
+          success: false,
+          data: null,
+          message: "导出需登录且持有有效令牌（生产环境已禁用请求头回退）",
+        },
+        { status: 403 }
+      )
+    }
+
     const { data, total, source } = await getArtistExportData(reportType, parsed.filter)
 
     if (total > MAX_EXPORT_ROWS) {
@@ -131,7 +145,6 @@ export async function POST(request: NextRequest) {
     const csv = `\uFEFF${buildReportCsv(data, ARTIST_EXPORT_FIELDS[reportType])}`
     const filename = buildArtistExportFilename(reportType)
 
-    const operator = await resolveExportOperator(request.headers)
     if (operator.trust !== "jwt") {
       console.warn(
         `[artist-report] 导出操作人未通过令牌校验（trust=${operator.trust}），审计记录可能不可信`
