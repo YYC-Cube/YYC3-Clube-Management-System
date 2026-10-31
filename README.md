@@ -665,12 +665,14 @@ YYC3-Clube-Management-System/
 | Web 类型检查 | ✅ `pnpm type-check` 0 错误 |
 | Web 生产构建 | ✅ Next 16 + Turbopack，154/154 页面，0 warning |
 | 生产运行 | ✅ `node .next/standalone/server.js`，页面/JS/CSS/API 均 200 |
-| 艺人报表单测 | ✅ 22/22 单测 + 5/5 临时 PostgreSQL 集成 |
+| 艺人报表单测 | ✅ 32/32 单测（4 suites）+ 6/6 临时 PostgreSQL 集成 |
+| 万级压测 | ✅ 10000 上下钟 + 5000 扣款：6 端点 P95 12.8–73.5ms（阈值 500ms），0 错误 |
 | 移动端类型检查 | ✅ Expo 58 + TS 6，0 错误 |
 | 移动端 Bundle | ✅ `expo export --platform all`（Web / Android / iOS） |
 | 依赖安全 | ✅ 0 critical；1 high（`ip`，React Native CLI 开发工具，暂无上游补丁） |
-| 数据库 | ✅ 艺人域 PG 建表脚本在临时 PostgreSQL 集群执行 2 次通过 |
+| 数据库 | ✅ 艺人域 PG 建表脚本（6 表）在临时 PostgreSQL 集群执行 2 次通过 |
 | 艺人报表 API | ✅ 4 个接口实测 200（`source=db`）；断库自动回退 `mock`；非法参数 400 |
+| 报表导出 | ✅ 服务端 CSV 导出 10000 行 200（BOM + `X-Export-Row-Count`）；超 5 万行 400；审计落库 |
 
 > 完整证据链：[`docs/yyc3-clube-system-trae-20261031/04-测试验证方案与报告.md`](./docs/yyc3-clube-system-trae-20261031/04-测试验证方案与报告.md)
 
@@ -682,10 +684,13 @@ YYC3-Clube-Management-System/
 | GET | `/api/reports/artist/clock-summary` | 上下钟汇总（按艺人聚合） |
 | GET | `/api/reports/artist/fee-deduction` | 台费扣款明细（分页 + 指标） |
 | GET | `/api/reports/artist/fee-summary` | 台费流水汇总（已结/待结/进度） |
+| POST | `/api/reports/artist/export` | 服务端 CSV 导出（4 类报表、5 万行上限、审计落库） |
 
 - 通用参数：`from`、`to`（`YYYY-MM-DD`，`Asia/Shanghai`）、`store`、`artistId`、`status`、`type`、`search`、`page`、`pageSize`（≤200）。
 - 响应：`{ success, data: { data, pagination, metrics, source } }`，响应头 `X-Artist-Data-Source: db | mock`。
+- 导出：`POST` 请求体 `{ reportType, filter }`，返回 `text/csv`（UTF-8 BOM），响应头 `X-Export-Row-Count`；超过 50000 行返回 400；成功/失败均可在 `artist_report_export_audit` 追溯。
 - 数据源：`ARTIST_REPORT_DATA_SOURCE=auto`（默认，异常回退 Mock）/ `db`（强制真实库）/ `mock`（纯演示）。
+- 压测：`scripts/seeds/artist-report-bench.sql` 生成万级数据，`scripts/loadtest/artist-report-bench.mjs` 输出 P50/P95/P99。
 - 仓储层：[`lib/db/repositories/artist-report-repository.ts`](./lib/db/repositories/artist-report-repository.ts)；接口契约见 [`05-艺人报表数据模型与接口建议.md`](./docs/yyc3-clube-system-trae-20261031/05-艺人报表数据模型与接口建议.md)。
 
 ---
