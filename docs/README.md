@@ -1,11 +1,11 @@
 # YYC³ 文档中心
 
-> **文档版本**: v3.4  
+> **文档版本**: v3.5  
 > **最后更新**: 2026-10-31  
 > **维护者**: YYC³ DevOps Team  
 > **规范**: 遵循 [YYC³-团队通用-标规文档/](./YYC3-团队通用-标规文档/) 与 [YYC³-团队通用-开发文档.md](./YYC³-团队通用-开发文档.md)
 >
-> **v3.4 变更**: 导出操作人可信化（登录签发 HS256 JWT → 审计 `operator_trust=jwt`，过渡期 header 回退标记告警）；导出契约新增 `X-Operator-Trust`；全量单测 54 suites / 497 tests。
+> **v3.5 变更**: 4 张艺人报表页上线前端分页（20 条/页，`DataTable.pageSize` + `paginateRows`），Playwright 实测翻页与禁用态；全量单测 55 suites / 503 tests。
 
 ---
 

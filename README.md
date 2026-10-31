@@ -665,7 +665,8 @@ YYC3-Clube-Management-System/
 | Web 类型检查 | ✅ `pnpm type-check` 0 错误 |
 | Web 生产构建 | ✅ Next 16 + Turbopack，154/154 页面，0 warning |
 | 生产运行 | ✅ `node .next/standalone/server.js`，页面/JS/CSS/API 均 200 |
-| 艺人报表单测 | ✅ 39/39 单测（5 suites，含导出操作人 7 条）+ 6/6 临时 PostgreSQL 集成；全项目 54 suites / 497 tests |
+| 艺人报表单测 | ✅ 50/50（7 suites：艺人域 39、分页 6、DataTable 组件 5）+ 6/6 临时 PostgreSQL 集成；全项目 55 suites / 503 tests |
+| 报表前端分页 | ✅ 4 张报表页 20 条/页；Playwright 实测 22 条 → 2 页切换与禁用态正确，0 error |
 | 万级压测 | ✅ 10000 上下钟 + 5000 扣款：6 端点 P95 12.8–73.5ms（阈值 500ms），0 错误 |
 | 移动端类型检查 | ✅ Expo 58 + TS 6，0 错误 |
 | 移动端 Bundle | ✅ `expo export --platform all`（Web / Android / iOS） |
