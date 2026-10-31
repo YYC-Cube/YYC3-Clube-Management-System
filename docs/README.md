@@ -1,9 +1,9 @@
 # YYC³ 文档中心
 
-> **文档版本**: v3.0  
-> **最后更新**: 2026-05-23  
+> **文档版本**: v3.2  
+> **最后更新**: 2026-10-31  
 > **维护者**: YYC³ DevOps Team  
-> **规范**: 遵循 [YYC³-团队通用-开发文档.md](./YYC3-团队通用-开发文档.md)
+> **规范**: 遵循 [YYC³-团队通用-标规文档/](./YYC3-团队通用-标规文档/) 与 [YYC³-团队通用-开发文档.md](./YYC3-团队通用-开发文档.md)
 
 ---
 
@@ -21,6 +21,9 @@ docs/
 ├── ADVANCED_EXTENSIONS.md              ← 高级扩展
 ├── ADVANCED_FEATURES.md                ← 高级特性
 ├── README.modules.md                   ← 模块文档索引
+│
+├── design/                             ← 可视化交互体系
+│   └── YYC3-VISUAL-INTERACTION-SYSTEM.md ← 设计令牌/组件/动效/报表/多端
 │
 ├── guides/                             ← 操作指南
 │   ├── DEPLOYMENT_GUIDE.md             ← 部署指南
@@ -45,11 +48,19 @@ docs/
 │   ├── edge/                          ← 边缘计算 (3 文档)
 │   └── hr/                            ← 人力资源 (1 文档)
 │
-├── yyc3-admin-audit-20260523/          ← 最新审计报告 (2026-05)
+├── YYC3-团队通用-标规文档/             ← 团队五高五标五化五维 SSOT
+│
+├── YYC3-艺人管理-开发文档/              ← 艺人域开发文档与架构图
+│
+├── yyc3-clube-system-trae-20261031/    ← 最新全维度审核（2026-10）
 │   ├── 00-项目现状审核报告.md
-│   ├── 01-任务规划与升级方案.md
+│   ├── 01-任务规划与节点目标.md
 │   ├── 02-执行日志与进度跟踪.md
-│   └── 03-总结文档与状态同步.md
+│   ├── 03-总结文档与状态同步.md
+│   ├── 04-测试验证方案与报告.md
+│   └── 05-艺人报表数据模型与接口建议.md
+│
+├── yyc3-admin-audit-20260523/          ← 历史审计报告 (2026-05)
 │
 └── archived/                           ← 历史归档
     ├── phase-reports/                  ← 阶段报告
@@ -67,6 +78,10 @@ docs/
 | [FEATURE_LIST.md](./FEATURE_LIST.md) | 完整功能清单 |
 | [MODULE_OVERVIEW.md](./MODULE_OVERVIEW.md) | 模块架构概览 |
 | [DATABASE_INTEGRATION.md](./DATABASE_INTEGRATION.md) | PostgreSQL 集成 |
+| [design/YYC3-VISUAL-INTERACTION-SYSTEM.md](./design/YYC3-VISUAL-INTERACTION-SYSTEM.md) | 可视化交互体系设计 |
+| [YYC3-团队通用-标规文档/](./YYC3-团队通用-标规文档/) | 团队标准 SSOT |
+| [YYC3-艺人管理-开发文档/](./YYC3-艺人管理-开发文档/) | 艺人域开发文档 |
 | [guides/DEPLOYMENT_GUIDE.md](./guides/DEPLOYMENT_GUIDE.md) | 部署指南 |
 | [guides/SECURITY_GUIDE.md](./guides/SECURITY_GUIDE.md) | 安全指南 |
-| [yyc3-admin-audit-20260523/](./yyc3-admin-audit-20260523/) | 最新升级审计 |
+| [05-艺人报表数据模型与接口建议.md](./yyc3-clube-system-trae-20261031/05-艺人报表数据模型与接口建议.md) | 艺人报表数据模型、API 契约与验收 |
+| [yyc3-clube-system-trae-20261031/](./yyc3-clube-system-trae-20261031/) | 最新全维度审核与交接 |

@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="public/yyc3-article-cover-02.png" alt="YYC³ Cover" width="100%" />
+  <img src="public/yyc3-family.png" alt="YYC³ Cover" width="100%" />
 </div>
 
 <h1 align="center">YYC³ Clube System</h1>
@@ -11,37 +11,63 @@
 </p>
 
 <p align="center">
-  <a href="https://nextjs.org/"><img src="https://img.shields.io/badge/Next.js-15.5.4-black?style=for-the-badge&logo=next.js" alt="Next.js" /></a>
-  <a href="https://react.dev/"><img src="https://img.shields.io/badge/React-19.1.0-61dafb?style=for-the-badge&logo=react" alt="React" /></a>
-  <a href="https://www.typescriptlang.org/"><img src="https://img.shields.io/badge/TypeScript-5.7-3178c6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" /></a>
-  <a href="https://tailwindcss.com/"><img src="https://img.shields.io/badge/Tailwind_CSS-v4-38bdf8?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind CSS" /></a>
+  <a href="https://nextjs.org/"><img src="https://img.shields.io/badge/Next.js-16.4.3-000000?style=for-the-badge&logo=next.js" alt="Next.js 16" /></a>
+  <a href="https://react.dev/"><img src="https://img.shields.io/badge/React-19.3.1-61dafb?style=for-the-badge&logo=react" alt="React 19" /></a>
+  <a href="https://www.typescriptlang.org/"><img src="https://img.shields.io/badge/TypeScript-5.9-3178c6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" /></a>
+  <a href="https://tailwindcss.com/"><img src="https://img.shields.io/badge/Tailwind_CSS-4.3-38bdf8?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind CSS" /></a>
+  <a href="https://turbo.build/"><img src="https://img.shields.io/badge/Turbopack-Ready-ff1e56?style=for-the-badge&logo=turborepo&logoColor=white" alt="Turbopack" /></a>
 </p>
 
 <p align="center">
-  <a href="https://nodejs.org/"><img src="https://img.shields.io/badge/Node.js-18+-339933?style=flat-square&logo=node.js&logoColor=white" alt="Node.js" /></a>
-  <a href="https://www.mysql.com/"><img src="https://img.shields.io/badge/MySQL-8.0-4479a1?style=flat-square&logo=mysql&logoColor=white" alt="MySQL" /></a>
+  <a href="https://nodejs.org/"><img src="https://img.shields.io/badge/Node.js-22_LTS-339933?style=flat-square&logo=node.js&logoColor=white" alt="Node.js 22" /></a>
+  <a href="https://pnpm.io/"><img src="https://img.shields.io/badge/pnpm-12-F69220?style=flat-square&logo=pnpm&logoColor=white" alt="pnpm" /></a>
+  <a href="https://www.postgresql.org/"><img src="https://img.shields.io/badge/PostgreSQL-14%2B-4169E1?style=flat-square&logo=postgresql&logoColor=white" alt="PostgreSQL" /></a>
   <a href="https://redis.io/"><img src="https://img.shields.io/badge/Redis-Cache-dc382d?style=flat-square&logo=redis&logoColor=white" alt="Redis" /></a>
-  <a href="https://www.framer.com/motion/"><img src="https://img.shields.io/badge/Framer_Motion-12-0055ff?style=flat-square&logo=framer&logoColor=white" alt="Framer Motion" /></a>
-  <a href="https://vercel.com/"><img src="https://img.shields.io/badge/Deploy-Vercel-black?style=flat-square&logo=vercel" alt="Vercel" /></a>
-  <img src="https://img.shields.io/badge/License-MIT-green?style=flat-square" alt="License" />
+  <a href="https://expo.dev/"><img src="https://img.shields.io/badge/Expo-58-000020?style=flat-square&logo=expo" alt="Expo 58" /></a>
+  <a href="https://reactnative.dev/"><img src="https://img.shields.io/badge/React_Native-0.88-61dafb?style=flat-square&logo=react" alt="React Native 0.88" /></a>
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/AI-GPT--4_Integration-412991?style=flat-square&logo=openai&logoColor=white" alt="AI" />
-  <img src="https://img.shields.io/badge/Blockchain-Ethers.js-3c3c3d?style=flat-square&logo=ethereum&logoColor=white" alt="Blockchain" />
-  <img src="https://img.shields.io/badge/IoT-MQTT_Protocol-660066?style=flat-square&logo=mqtt&logoColor=white" alt="IoT" />
-  <img src="https://img.shields.io/badge/5G-Edge_Computing-ff6600?style=flat-square" alt="5G" />
-  <img src="https://img.shields.io/badge/BigData-ClickHouse-ffcc01?style=flat-square&logo=clickhouse&logoColor=black" alt="BigData" />
+  <img src="https://img.shields.io/badge/Build-Passing-success?style=flat-square&logo=github" alt="Build" />
+  <img src="https://img.shields.io/badge/TypeScript-0_Errors-3178c6?style=flat-square&logo=typescript&logoColor=white" alt="TypeScript 0 errors" />
+  <img src="https://img.shields.io/badge/Security-0_Critical-success?style=flat-square&logo=shield" alt="Security" />
+  <img src="https://img.shields.io/badge/Artist_Reports-Closed_Loop-8b5cf6?style=flat-square" alt="Artist Reports" />
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Test_Coverage-85%25+-success?style=flat-square&logo=jest" alt="Coverage" />
-  <img src="https://img.shields.io/badge/E2E_Tests-Playwright-45ba4b?style=flat-square&logo=playwright&logoColor=white" alt="Playwright" />
-  <img src="https://img.shields.io/badge/Code_Quality-A+-blue?style=flat-square" alt="Quality" />
-  <img src="https://img.shields.io/badge/Performance-95%2B-success?style=flat-square" alt="Performance" />
+  <a href="./LICENSE"><img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="MIT License" /></a>
+  <a href="./CONTRIBUTING.md"><img src="https://img.shields.io/badge/PRs-Welcome-ff69b4?style=for-the-badge" alt="PRs Welcome" /></a>
+  <a href="./SECURITY.md"><img src="https://img.shields.io/badge/Security-Policy-005571?style=for-the-badge&logo=shieldsdotio" alt="Security Policy" /></a>
+  <a href="./CODE_OF_CONDUCT.md"><img src="https://img.shields.io/badge/Code_of_Conduct-Contributor_Covenant-4c1?style=for-the-badge" alt="Code of Conduct" /></a>
 </p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/AI-Agent_Ready-412991?style=flat-square&logo=openai&logoColor=white" alt="AI" />
+  <img src="https://img.shields.io/badge/IoT-MQTT-660066?style=flat-square&logo=mqtt" alt="IoT" />
+  <img src="https://img.shields.io/badge/Edge-Node_Runtime-ff6600?style=flat-square" alt="Edge" />
+  <img src="https://img.shields.io/badge/BigData-Analytics-ffcc01?style=flat-square" alt="BigData" />
+  <img src="https://img.shields.io/badge/Mobile-Expo_58-4630EB?style=flat-square&logo=expo" alt="Mobile" />
+</p>
+
+> **项目状态**：`main` 分支已通过 Next 16 构建、TypeScript 0 错误、standalone 生产运行、艺人报表闭环验收，移动端完成 Expo 58 / RN 0.88 三端构建回归，开源文档套件齐备。
+> 验收证据见 [`docs/yyc3-clube-system-trae-20261031/`](./docs/yyc3-clube-system-trae-20261031/)。
 
 ---
+
+## 📖 目录
+
+| 章节 | 章节 |
+| --- | --- |
+| [项目概述](#overview) | [项目结构与工程布局](#structure) |
+| [核心技术架构](#architecture) | [项目状态与验证](#status) |
+| [技术栈](#tech-stack) | [移动端说明](#mobile) |
+| [核心功能模块](#modules) | [开发者文档矩阵](#docs) |
+| [快速开始](#quick-start) | [仓库标签与关键词](#keywords) |
+| [License](#license) | [联系方式](#contact) |
+
+---
+
+<a id="overview"></a>
 
 ## 🎯 项目概述
 
@@ -66,6 +92,8 @@
 | **数据安全**      | ISO 27001 | 企业级安全认证      |
 
 ---
+
+<a id="architecture"></a>
 
 ## 🏗️ 核心技术架构
 
@@ -336,55 +364,58 @@ AR/VR体验: 虚拟包厢预览
 
 ---
 
+<a id="tech-stack"></a>
+
 ## ⚙️ 技术栈
 
 ### 🎨 前端技术
 
 ```mermaid
 graph LR
-    A[Next.js 15] --> B[React 19]
-    A --> C[TypeScript 5]
-    B --> D[Tailwind CSS v4]
-    B --> E[Framer Motion 12]
+    A[Next.js 16 Turbopack] --> B[React 19.3]
+    A --> C[TypeScript 5.9]
+    B --> D[Tailwind CSS 4.3]
+    B --> E[Framer Motion]
     C --> F[shadcn/ui]
     F --> G[Radix UI]
-    D --> H[Responsive Design]
+    D --> H[Responsive + Mobile]
+    A --> I[proxy.ts]
 ```
 
-| 技术                | 版本   | 用途                   |
-| ------------------- | ------ | ---------------------- |
-| **Next.js**         | 15.5.4 | App Router, SSR, ISR   |
-| **React**           | 19.1.0 | 组件化开发, Hooks      |
-| **TypeScript**      | 5.7    | 类型安全, 代码提示     |
-| **Tailwind CSS**    | v4     | 原子化 CSS, 响应式设计 |
-| **Framer Motion**   | 12     | 动画, 交互效果         |
-| **shadcn/ui**       | Latest | 高质量组件库           |
-| **Radix UI**        | Latest | 无障碍访问组件         |
-| **Lucide React**    | Latest | 图标系统               |
-| **Zustand**         | Latest | 轻量级状态管理         |
-| **React Hook Form** | Latest | 表单处理 + Zod 验证    |
+| 技术                | 版本          | 用途                          |
+| ------------------- | ------------- | ----------------------------- |
+| **Next.js**         | 16.4.3        | App Router、Turbopack、RSC    |
+| **React**           | 19.3.1        | 组件化开发、Hooks             |
+| **TypeScript**      | 5.9           | 严格模式、类型安全            |
+| **Tailwind CSS**    | 4.3           | 原子化 CSS、响应式设计        |
+| **Framer Motion**   | Latest        | 页面动效与交互转场            |
+| **shadcn/ui**       | Latest        | 高质量组件库（new-york）      |
+| **Radix UI**        | Latest        | 无障碍基础组件                |
+| **Lucide React**    | 0.562         | 图标系统                      |
+| **Zustand**         | 5.x           | 轻量级状态管理                |
+| **React Hook Form** | Latest + Zod 4 | 表单处理与 Schema 校验        |
 
 ### 🔧 后端技术
 
 ```mermaid
 graph TD
-    A[Node.js 18+] --> B[Next.js API Routes]
-    B --> C[MySQL 8.0]
+    A[Node.js 22 LTS] --> B[Next.js Route Handlers]
+    B --> C[PostgreSQL 14+]
     B --> D[Redis Cache]
     B --> E[MQTT Message Queue]
-    C --> F[Prisma ORM]
-    D --> G[Vercel KV]
+    C --> F[lib/db/pg.ts 连接池]
+    D --> G[缓存与会话]
 ```
 
-| 技术          | 版本   | 用途           |
-| ------------- | ------ | -------------- |
-| **Node.js**   | 18+    | 服务端运行时   |
-| **MySQL**     | 8.0    | 关系型数据库   |
-| **Redis**     | Latest | 缓存, 会话管理 |
-| **Vercel KV** | Latest | 边缘缓存       |
-| **MQTT**      | Latest | IoT 设备通信   |
-| **Sharp**     | Latest | 图片处理       |
-| **Ethers.js** | Latest | 区块链集成     |
+| 技术          | 版本          | 用途                         |
+| ------------- | ------------- | ---------------------------- |
+| **Node.js**   | 22 LTS        | 服务端运行时（最低 20.9）    |
+| **PostgreSQL** | 14+          | 主数据库（`lib/db/pg.ts`）   |
+| **Redis**     | Latest        | 缓存、会话与限流             |
+| **MQTT**      | Latest        | IoT 设备通信                 |
+| **Sharp**     | 0.35          | 图片处理                     |
+| **Ethers.js** | 6.x           | 区块链扩展                   |
+| **Expo / RN** | 58 / 0.88     | 移动端（React Native）       |
 
 ### 🤖 AI 与大数据
 
@@ -400,32 +431,33 @@ graph TD
 ### 🧪 测试与质量
 
 ```bash
-# 单元测试
-npm run test              # Jest + Testing Library
-npm run test:coverage     # 代码覆盖率 85%+
+# 单元测试（Jest + Testing Library）
+pnpm test:unit
+pnpm test:ci
+pnpm test:coverage
 
-# E2E 测试
-npm run test:e2e          # Playwright 自动化测试
+# E2E 测试（Playwright）
+pnpm test:e2e
 
-# 性能测试
-npm run test:perf         # K6 负载测试
-
-# 代码质量
-npm run lint              # ESLint + TypeScript
-npm run type-check        # 类型检查
+# 代码质量（提交前必过）
+pnpm type-check           # TypeScript 0 错误
+pnpm lint                 # ESLint 0 error
+pnpm build                # Next 16 + Turbopack，0 warning
 ```
 
 ### 🚀 部署与监控
 
-| 平台/工具            | 用途                          |
-| -------------------- | ----------------------------- |
-| **Vercel**           | 全球 CDN 部署, Edge Functions |
-| **Vercel Analytics** | 实时性能监控, 用户分析        |
-| **GitHub Actions**   | CI/CD 自动化部署              |
-| **Sentry**           | 错误追踪, 性能监控            |
-| **Lighthouse**       | 性能评分 95+                  |
+| 平台/工具            | 用途                                      |
+| -------------------- | ----------------------------------------- |
+| **Standalone**       | `node .next/standalone/server.js`         |
+| **Vercel Analytics** | 性能监控与访问分析                        |
+| **GitHub Actions**   | CI/CD（类型、Lint、构建、测试）           |
+| **Lighthouse**       | 性能与无障碍回归（目标 ≥ 90）             |
+| **pnpm audit**       | 依赖安全门禁（当前 0 critical / 1 high）  |
 
 ---
+
+<a id="modules"></a>
 
 ## 📦 核心功能模块
 
@@ -504,16 +536,18 @@ npm run type-check        # 类型检查
 
 ---
 
+<a id="quick-start"></a>
+
 ## 🚀 快速开始
 
 ### 📋 环境要求
 
 ```bash
-Node.js  ≥ 18.17.0
-npm      ≥ 9.0.0
-pnpm     ≥ 8.0.0 (推荐)
-MySQL    ≥ 8.0
-Redis    ≥ 6.0
+Node.js     ≥ 20.9（推荐 22 LTS）
+pnpm        ≥ 10（推荐 12）
+PostgreSQL  ≥ 14
+Redis       ≥ 6（可选，用于缓存/会话）
+Expo        SDK 58（移动端，可选）
 ```
 
 ### 📥 安装步骤
@@ -521,92 +555,227 @@ Redis    ≥ 6.0
 ```bash
 # 1. 克隆项目
 git clone https://github.com/YYC-Cube/YYC3-Clube-Management-System.git
-cd yyc3-clube-system
+cd YYC3-Clube-Management-System
 
-# 2. 安装依赖
+# 2. 安装依赖（单一 pnpm-lock.yaml）
 pnpm install
 
 # 3. 配置环境变量
 cp .env.example .env.local
-# 编辑 .env.local 配置数据库等信息
+# 编辑 .env.local：DATABASE_URL / PG_* / JWT_SECRET 等
 
-# 4. 初始化数据库
-pnpm run db:migrate
-pnpm run db:seed
+# 4. 初始化数据库（艺人域）
+psql "$DATABASE_URL" -f scripts/migrations/20261031_artist_domain.pg.sql
 
-# 5. 启动开发服务器
+# 5. 启动开发服务器（端口 3030）
 pnpm dev
 ```
+
+### 🏗️ 生产构建
+
+```bash
+pnpm build          # Next 16 + Turbopack + standalone 静态资源准备
+PORT=3030 pnpm start  # node .next/standalone/server.js
+```
+
+### 📱 移动端（Expo SDK 58）
+
+```bash
+pnpm --filter ktv-admin-mobile start
+pnpm --filter ktv-admin-mobile exec expo export --platform all
+```
+
+移动端通过 `EXPO_PUBLIC_API_BASE_URL` 指向 Web API，默认 `http://localhost:3030`。
 
 ### 🌐 访问应用
 
 ```
-开发环境: http://localhost:5001
+开发环境: http://localhost:3030
 生产环境: https://clube.yyc3.top
 ```
 
 ### 🧪 运行测试
 
 ```bash
-# 单元测试
-pnpm test
-
-# E2E 测试
-pnpm test:e2e
-
-# 测试覆盖率
-pnpm test:coverage
+pnpm test:unit          # 单元测试
+pnpm test:ci            # CI 模式
+pnpm test:e2e           # Playwright E2E
+pnpm test:coverage      # 覆盖率报告
+pnpm --filter ktv-admin-mobile exec tsc --noEmit  # 移动端类型检查
 ```
 
 ---
+
+<a id="structure"></a>
 
 ## 📂 项目结构
 
 ```
-yyc3-clube-system/
-├── app/                      # Next.js 15 App Router
-│   ├── api/                  # API 路由
-│   ├── dashboard/            # 仪表板页面
-│   │   ├── ai-ops/           # AI 运营系统
-│   │   ├── bigdata/          # 大数据分析
-│   │   ├── iot/              # 物联网控制
-│   │   ├── edge/             # 边缘计算
-│   │   ├── 5g/               # 5G 应用
-│   │   └── ai/               # AI 深度学习
-│   └── layout.tsx            # 根布局
-├── components/               # React 组件
-│   ├── ui/                   # 基础 UI 组件
-│   ├── layout/               # 布局组件
-│   ├── forms/                # 表单组件
-│   ├── ai-ops/               # AI 运营组件
-│   ├── bigdata/              # 大数据组件
-│   ├── iot/                  # IoT 组件
-│   ├── edge/                 # 边缘计算组件
-│   ├── 5g/                   # 5G 组件
-│   └── ai/                   # AI 组件
-├── lib/                      # 工具库
-│   ├── utils.ts              # 通用工具函数
-│   ├── ai/                   # AI 服务
-│   ├── blockchain/           # 区块链服务
-│   └── iot/                  # IoT 服务
-├── hooks/                    # 自定义 Hooks
-├── services/                 # API 服务层
-├── contracts/                # 智能合约
-│   ├── FinancialAuditChain.sol
-│   └── LoyaltyPoints.sol
-├── docs/                     # 项目文档
-├── __tests__/                # 测试文件
-├── public/                   # 静态资源
-└── styles/                   # 全局样式
+YYC3-Clube-Management-System/
+├── app/                          # Next.js 16 App Router
+│   ├── api/                      # Route Handlers（动态 params 异步化）
+│   ├── dashboard/                # 管理后台页面
+│   │   ├── reports/              # 报表中心（含 artist 艺人报表）
+│   │   ├── ai-ops/               # AI 运营系统
+│   │   ├── bigdata/              # 大数据分析
+│   │   ├── iot/                  # 物联网控制
+│   │   ├── edge/                 # 边缘计算
+│   │   ├── 5g/                   # 5G 应用
+│   │   └── ai/                   # AI 应用
+│   └── layout.tsx                # 根布局（metadata + viewport）
+├── proxy.ts                      # Next 16 请求代理（原 middleware）
+├── components/                   # React 组件
+│   ├── ui/                       # shadcn/ui 基础组件
+│   ├── dashboard/                # DataTable / FilterBar / StatCard
+│   ├── reports/artist/           # 艺人报表导航与页头
+│   ├── layout/                   # Sidebar / Header
+│   ├── forms/                    # 会员 / 商品表单
+│   └── ai-ops/ bigdata/ iot/ edge/ 5g/ ai/
+├── lib/                          # 领域服务与工具
+│   ├── db/                       # PostgreSQL 连接池与仓储
+│   ├── services/                 # 报表、导出、支付等服务
+│   ├── validations/              # Zod Schema
+│   └── types/                    # 领域类型
+├── hooks/                        # 自定义 Hooks
+├── mobile-app/                   # Expo 58 + React Native 0.88
+│   ├── index.js                  # registerRootComponent 入口
+│   ├── app.json                  # Expo 配置
+│   └── src/screens + services
+├── scripts/
+│   ├── migrations/               # 艺人域 SQL 迁移
+│   └── prepare-standalone.mjs    # standalone 资源复制
+├── docs/
+│   ├── design/                   # 可视化交互体系设计
+│   ├── YYC3-团队通用-标规文档/    # 团队标准（SSOT）
+│   └── yyc3-clube-system-trae-20261031/  # 审计与交接
+├── contracts/                    # 智能合约扩展
+├── __tests__/                    # Jest 测试
+├── public/                       # 静态资源（含 yyc3-family.png）
+└── .env.example                  # 环境变量模板
 ```
 
 ---
 
-## 📄 License
+<a id="status"></a>
 
-本项目采用 **MIT License** 开源协议。
+## 📊 项目状态与验证
+
+| 验证项 | 结果 |
+| --- | --- |
+| Web 类型检查 | ✅ `pnpm type-check` 0 错误 |
+| Web 生产构建 | ✅ Next 16 + Turbopack，154/154 页面，0 warning |
+| 生产运行 | ✅ `node .next/standalone/server.js`，页面/JS/CSS/API 均 200 |
+| 艺人报表单测 | ✅ 22/22 单测 + 5/5 临时 PostgreSQL 集成 |
+| 移动端类型检查 | ✅ Expo 58 + TS 6，0 错误 |
+| 移动端 Bundle | ✅ `expo export --platform all`（Web / Android / iOS） |
+| 依赖安全 | ✅ 0 critical；1 high（`ip`，React Native CLI 开发工具，暂无上游补丁） |
+| 数据库 | ✅ 艺人域 PG 建表脚本在临时 PostgreSQL 集群执行 2 次通过 |
+| 艺人报表 API | ✅ 4 个接口实测 200（`source=db`）；断库自动回退 `mock`；非法参数 400 |
+
+> 完整证据链：[`docs/yyc3-clube-system-trae-20261031/04-测试验证方案与报告.md`](./docs/yyc3-clube-system-trae-20261031/04-测试验证方案与报告.md)
+
+### 艺人域数据接口
+
+| 方法 | 路径 | 说明 |
+| --- | --- | --- |
+| GET | `/api/reports/artist/clock-detail` | 上下钟明细（分页 + 指标） |
+| GET | `/api/reports/artist/clock-summary` | 上下钟汇总（按艺人聚合） |
+| GET | `/api/reports/artist/fee-deduction` | 台费扣款明细（分页 + 指标） |
+| GET | `/api/reports/artist/fee-summary` | 台费流水汇总（已结/待结/进度） |
+
+- 通用参数：`from`、`to`（`YYYY-MM-DD`，`Asia/Shanghai`）、`store`、`artistId`、`status`、`type`、`search`、`page`、`pageSize`（≤200）。
+- 响应：`{ success, data: { data, pagination, metrics, source } }`，响应头 `X-Artist-Data-Source: db | mock`。
+- 数据源：`ARTIST_REPORT_DATA_SOURCE=auto`（默认，异常回退 Mock）/ `db`（强制真实库）/ `mock`（纯演示）。
+- 仓储层：[`lib/db/repositories/artist-report-repository.ts`](./lib/db/repositories/artist-report-repository.ts)；接口契约见 [`05-艺人报表数据模型与接口建议.md`](./docs/yyc3-clube-system-trae-20261031/05-艺人报表数据模型与接口建议.md)。
 
 ---
+
+<a id="mobile"></a>
+
+## 📱 移动端说明
+
+- 技术栈：**Expo SDK 58 / React Native 0.88 / React 19.3 / TypeScript 6**。
+- 入口：`mobile-app/index.js` → `src/App.tsx`，React Navigation 7 管理登录、仪表盘与订单页。
+- API：通过 `EXPO_PUBLIC_API_BASE_URL` 连接 Web 端 Route Handlers，默认 `http://localhost:3030`。
+- 回归：`pnpm --filter ktv-admin-mobile exec tsc --noEmit` 与 `expo export --platform all` 均通过。
+- 说明：原生 IPA/APK 构建需要 Xcode / Android SDK；本仓库验证的是三端 JS Bundle 与类型完整性。
+
+---
+
+<a id="docs"></a>
+
+## 📚 开发者文档矩阵
+
+| 文档 | 说明 |
+| --- | --- |
+| [README.md](./README.md) | 项目自述、架构、快速开始与状态 |
+| [LICENSE](./LICENSE) | MIT 开源许可证 |
+| [CODE_OF_CONDUCT.md](./CODE_OF_CONDUCT.md) | Contributor Covenant v2.1 行为准则 |
+| [CONTRIBUTING.md](./CONTRIBUTING.md) | 分支、提交、质量门禁与 PR 流程 |
+| [SECURITY.md](./SECURITY.md) | 漏洞报告、支持版本、安全基线与历史修复 |
+| [docs/README.md](./docs/README.md) | 文档中心与模块导航 |
+| [docs/design/YYC3-VISUAL-INTERACTION-SYSTEM.md](./docs/design/YYC3-VISUAL-INTERACTION-SYSTEM.md) | 可视化交互体系设计（令牌/组件/动效/报表/多端） |
+| [docs/YYC3-团队通用-标规文档/](./docs/YYC3-团队通用-标规文档/) | 团队五高五标五化五维 SSOT |
+| [docs/yyc3-clube-system-trae-20261031/](./docs/yyc3-clube-system-trae-20261031/) | 首次全维度审核、测试、交接与艺人域数据模型 |
+
+### 视觉与交互
+
+- 视觉资产：`public/yyc3-family.png`（YYC³ Family 品牌顶图）。
+- 设计令牌：`app/globals.css`（OKLCH 主题色、暗色模式、图表色、圆角）。
+- 组件体系：shadcn/ui（new-york） + Radix UI，统一 `DataTable`、`FilterBar`、`StatCard`、`ChartContainer`。
+- 设计原则：五维驱动 · 五高架构 · 五标体系 · 五化转型。
+
+---
+
+<a id="keywords"></a>
+
+## 🏷️ 仓库标签与关键词
+
+**GitHub Topics（建议在仓库 Settings → Topics 配置）**
+
+`ktv` · `club-management` · `ktv-management` · `nextjs` · `nextjs16` · `react` · `react19` · `typescript` · `tailwindcss` · `shadcn-ui` · `radix-ui` · `ai-operations` · `artist-management` · `reporting` · `data-visualization` · `iot` · `mqtt` · `edge-computing` · `bigdata` · `postgresql` · `expo` · `react-native` · `open-source`
+
+**package.json keywords（npm / 包发现）**
+
+```json
+["yyc3", "ktv", "club-management", "nextjs", "react", "typescript", "tailwindcss", "shadcn-ui", "radix-ui", "ai-operations", "artist-management", "reports", "iot", "open-source"]
+```
+
+**仓库简介（GitHub About，建议 ≤ 350 字符）**
+
+> YYC³ Clube System —— KTV / 夜场全栈智能运营平台。Next.js 16 + React 19 + shadcn/ui + PostgreSQL + Redis + MQTT，内置 9 大 AI 运营系统与艺人上下钟 / 台费报表闭环。言启象限，语枢未来。
+
+**检索关键词（中文）**
+
+KTV 管理系统 · 夜场管理系统 · 艺人管理 · 上下钟报表 · 台费结算 · 智能运营 · AI 运营 · 边缘计算 · 物联网 · 5G 应用 · 大数据分析 · 区块链溯源 · 开源管理系统
+
+**标签规范**
+
+| 标签形态 | 示例 | 用途 |
+| --- | --- | --- |
+| `v{major}.{minor}.{patch}` | `v0.1.0` | 正式发布 |
+| `v{major}.{minor}.{patch}-rc.{n}` | `v0.2.0-rc.1` | 候选发布 |
+| `docs/{scope}` | `docs/artist-reports` | 文档里程碑 |
+| `audit/{yyyy-mm}` | `audit/2026-10` | 审核基线 |
+
+> 标签与关键词须与 `package.json#keywords`、[`docs/README.md`](./docs/README.md) 索引保持一致，新增模块时同步更新本节。
+
+---
+
+<a id="license"></a>
+
+## 📄 License
+
+本项目采用 **MIT License** 开源协议，详见 [LICENSE](./LICENSE)。
+
+- 安全策略：[SECURITY.md](./SECURITY.md)
+- 贡献指南：[CONTRIBUTING.md](./CONTRIBUTING.md)
+- 行为准则：[CODE_OF_CONDUCT.md](./CODE_OF_CONDUCT.md)
+- 安全联系：`admin@0379.email`
+
+---
+
+<a id="contact"></a>
 
 ## 👨‍💻 联系方式
 

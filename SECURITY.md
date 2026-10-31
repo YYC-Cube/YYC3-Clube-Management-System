@@ -2,12 +2,27 @@
 
 ## Supported Versions
 
-The following versions of YYC³ Clube System are currently being supported with security updates:
+The following versions of YYC³ Clube System are currently supported with security updates:
 
-| Version | Supported          |
-| ------- | ------------------ |
-| 0.1.x   | :white_check_mark: |
-| < 0.1   | :x:                |
+| Version / Stack | Supported | Notes |
+| --- | --- | --- |
+| `0.1.x`（main） | ✅ | Next.js 16.4.3 / React 19.3.1 / Node 22 |
+| `< 0.1` | ❌ | 历史版本不再维护 |
+| Mobile（Expo 58 / RN 0.88） | ✅ | 三端 JS Bundle 已验证 |
+| PostgreSQL 14+ | ✅ | `lib/db/pg.ts` |
+
+## Security Baseline（2026-10）
+
+| 控制项 | 当前状态 |
+| --- | --- |
+| 密钥管理 | 仅 `.env.local` / 环境变量；`.env*` 已加入 `.gitignore`；禁止硬编码 |
+| 输入校验 | Zod 4 Schema（会员、商品、表单）；API 侧持续补齐 |
+| 请求入口 | `proxy.ts` 预留鉴权/限流入口；当前为透传，生产部署必须启用认证与限流 |
+| 依赖治理 | 单一 pnpm-lock；12+ 项安全 overrides；`pnpm audit --prod` 当前 **0 critical / 1 high** |
+| 剩余 high | `ip`（React Native CLI 开发工具，暂无上游补丁，不进入 Web 产物） |
+| 构建产物 | Next 16 standalone；构建阶段强制 TypeScript 检查 |
+| 数据保护 | 金额 `NUMERIC(10,2)`；敏感字段按角色脱敏；导出需审计与行数限制 |
+| 漏洞披露 | 私密报告（邮箱 / GitHub Security Advisory），修复后公开 |
 
 ## Known Vulnerabilities and Mitigations
 
@@ -252,34 +267,53 @@ If cryptographic or ASN.1 functionality is needed, consider:
 
 We take security vulnerabilities seriously. If you discover a security issue, please follow these steps:
 
-1. **Do not** open a public issue
-2. Email security details to: admin@0379.email
-3. Include:
+1. **Do not** open a public issue or disclose details publicly.
+2. Email security details to: **admin@0379.email**（主题：`[SECURITY] YYC3-Clube-System + 简述`）。
+3. 或通过 GitHub 仓库的 **Security → Advisories → Report a vulnerability** 私密提交。
+4. Include:
    - Description of the vulnerability
-   - Steps to reproduce
-   - Potential impact
+   - Steps to reproduce / PoC（如可提供）
+   - Potential impact and affected components
    - Suggested fix (if any)
+   - Your contact and credit preference
+
+**Scope**：
+
+- Web 应用（`app/`、`components/`、`lib/`）
+- API Route Handlers、`proxy.ts`
+- 移动端（`mobile-app/`）
+- 数据库迁移、导出、认证与权限逻辑
+- 依赖供应链（`pnpm-lock.yaml`、overrides）
+
+**Out of Scope**：
+
+- 未修复漏洞的公开 Issue 讨论
+- 仅影响开发工具且无实际利用路径的理论问题（请仍可告知，我们会评估）
+- 社会工程、物理访问、拒绝服务压测（未经授权）
 
 **Response Timeline**:
 
 - **Initial Response**: Within 48 hours
 - **Status Update**: Weekly updates on investigation progress
-- **Fix Timeline**: Critical issues within 7 days, High within 14 days, Medium within 30 days
+- **Fix Timeline**: Critical ≤ 7 days, High ≤ 14 days, Medium ≤ 30 days
+- **Public Disclosure**: 修复发布后 30 天，或经双方约定
 
 **What to Expect**:
 
-- **Accepted**: We will work on a fix and credit you in the security advisory
-- **Declined**: We will provide reasoning if the issue is not considered a vulnerability
+- **Accepted**: We will work on a fix, credit you in the advisory, and coordinate disclosure.
+- **Declined**: We will provide reasoning and, where useful, mitigation guidance.
+- **Safe Harbor**: 善意研究、遵守本政策且不损害用户数据/服务可用性的行为，我们不会采取法律行动。
 
 ## Security Best Practices
 
 ### For Developers
 
-1. Run `npm audit` before committing changes
-2. Keep dependencies updated regularly
+1. Run `pnpm audit --prod` before committing changes
+2. Keep dependencies updated; use `pnpm-workspace.yaml#overrides` for patched transitive versions
 3. Review security scan results in CI/CD pipeline
-4. Use environment variables for sensitive data
-5. Follow secure coding practices outlined in CONTRIBUTING.md
+4. Use environment variables for sensitive data; never commit `.env.local`
+5. Follow secure coding practices outlined in [CONTRIBUTING.md](./CONTRIBUTING.md)
+6. Run `pnpm type-check`, `pnpm lint`, `pnpm build` before opening a PR
 
 ### For Deployments
 
@@ -300,3 +334,25 @@ This project uses multiple security scanning tools:
 - **Trivy**: Container scanning (when applicable)
 
 See `.github/workflows/security-scan.yml` for details.
+
+## Disclosure Policy
+
+1. 报告人私密提交 → 维护者 48 小时内确认。
+2. 评估影响、修复范围与发布时间。
+3. 在私密分支/Advisory 中修复并回归。
+4. 发布补丁版本与安全公告，必要时申请 CVE。
+5. 修复公开后更新本文件「Recently Fixed Vulnerabilities」。
+
+## Security Contacts
+
+- Security email: **admin@0379.email**
+- Repository: https://github.com/YYC-Cube/YYC3-Clube-Management-System
+- Security advisories: GitHub → Security → Advisories
+
+---
+
+> ***YanYuCloudCube***
+> *言启象限 | 语枢未来*
+> *万象归元于云枢 | 深栈智启新纪元*
+>
+> **© 2025-2026 YanYuCloudCube™. All Rights Reserved.**
