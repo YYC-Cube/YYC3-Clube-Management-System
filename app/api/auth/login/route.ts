@@ -17,6 +17,7 @@
 import { NextRequest, NextResponse } from "next/server"
 import type { User, ApiResponse } from "@/lib/types"
 import { UserRole, Permission } from "@/lib/types"
+import { generateToken } from "@/lib/security/jwt"
 
 // ⚠️ 模拟用户数据（仅用于测试，生产环境应该从数据库查询并验证密码哈希）
 const MOCK_USERS: Array<{ phone: string; password: string; user: User }> = [
@@ -50,16 +51,8 @@ const MOCK_USERS: Array<{ phone: string; password: string; user: User }> = [
   },
 ]
 
-// ⚠️ 生成JWT Token（简化版，生产环境必须使用 jsonwebtoken 库）
-const generateToken = (userId: string): string => {
-  // 简化的Token生成逻辑，生产环境必须使用真实的JWT签名
-  const payload = {
-    userId,
-    exp: Math.floor(Date.now() / 1000) + 3600, // 1小时过期
-    iat: Math.floor(Date.now() / 1000),
-  }
-  return Buffer.from(JSON.stringify(payload)).toString('base64')
-}
+// ⚠️ Token 使用 lib/security/jwt.ts 的 HS256 签名实现（与 /api/auth 校验一致）
+// 生产环境仍需接入真实用户表、密码哈希与账户锁定策略。
 
 // Next.js 16：使用路由段配置，替代已废弃的 config 对象
 export const runtime = "nodejs"
@@ -124,8 +117,14 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // 生成Token
-    const token = generateToken(userData.user.id)
+    // 生成签名 Token（包含 role/storeId/permissions，供审计与授权使用）
+    const token = await generateToken({
+      userId: userData.user.id,
+      role: userData.user.role,
+      storeId: userData.user.storeId,
+      permissions: userData.user.permissions,
+      name: userData.user.name,
+    })
 
     return NextResponse.json<ApiResponse<{ user: User; token: string }>>(
       {

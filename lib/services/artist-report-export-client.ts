@@ -51,6 +51,12 @@ function downloadBlob(blob: Blob, filename: string) {
   URL.revokeObjectURL(url)
 }
 
+function authHeaders(): Record<string, string> {
+  if (typeof window === "undefined") return {}
+  const token = window.localStorage.getItem("auth_token")
+  return token ? { Authorization: `Bearer ${token}` } : {}
+}
+
 /**
  * 导出艺人报表。
  * @param reportType 报表类型
@@ -65,7 +71,7 @@ export async function exportArtistReport(
   try {
     const response = await fetch("/api/reports/artist/export", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json", ...authHeaders() },
       body: JSON.stringify({ reportType, filter }),
     })
 

@@ -431,6 +431,8 @@ export interface ArtistExportAuditEntry {
   filter: Record<string, unknown>
   rowCount: number
   dataSource: string
+  /** 操作人可信级别：jwt（签名令牌）/ header（请求头，可伪造）/ none（未提供） */
+  operatorTrust?: "jwt" | "header" | "none"
   operatorId?: string
   operatorName?: string
   clientIp?: string
@@ -633,13 +635,14 @@ export class ArtistReportRepository {
   async recordExportAudit(entry: ArtistExportAuditEntry): Promise<void> {
     await query(
       `INSERT INTO artist_report_export_audit
-         (report_type, filter_json, row_count, data_source, operator_id, operator_name, client_ip, user_agent)
-       VALUES (?, ?::jsonb, ?, ?, ?, ?, ?, ?)`,
+         (report_type, filter_json, row_count, data_source, operator_trust, operator_id, operator_name, client_ip, user_agent)
+       VALUES (?, ?::jsonb, ?, ?, ?, ?, ?, ?, ?)`,
       [
         entry.reportType,
         JSON.stringify(entry.filter ?? {}),
         entry.rowCount,
         entry.dataSource,
+        entry.operatorTrust ?? "none",
         entry.operatorId ?? null,
         entry.operatorName ?? null,
         entry.clientIp ?? null,

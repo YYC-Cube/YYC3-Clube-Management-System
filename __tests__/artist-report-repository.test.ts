@@ -234,6 +234,7 @@ describe('艺人报表仓储层（单元）', () => {
       filter: { from: '2026-10-24', to: '2026-10-31', store: 'KTV旗舰店' },
       rowCount: 22,
       dataSource: 'db',
+      operatorTrust: 'jwt',
       operatorId: 'OP1',
       operatorName: '运营张三',
       clientIp: '127.0.0.1',
@@ -243,6 +244,7 @@ describe('艺人报表仓储层（单元）', () => {
     const [sql, params] = mockedQuery.mock.calls[0]
     expect(sql).toContain('INSERT INTO artist_report_export_audit')
     expect(sql).toContain('?::jsonb')
+    expect(sql).toContain('operator_trust')
     expect(params[0]).toBe('clock-detail')
     expect(JSON.parse(params[1])).toEqual({
       from: '2026-10-24',
@@ -252,6 +254,7 @@ describe('艺人报表仓储层（单元）', () => {
     expect(params.slice(2)).toEqual([
       22,
       'db',
+      'jwt',
       'OP1',
       '运营张三',
       '127.0.0.1',
@@ -271,6 +274,7 @@ describe('艺人报表仓储层（单元）', () => {
 
     const [, params] = mockedQuery.mock.calls[0]
     expect(params[1]).toBe('{}')
-    expect(params.slice(4)).toEqual([null, null, null, null])
+    // 未提供可信级别时降级为 none，其余可选字段写 NULL
+    expect(params.slice(4)).toEqual(['none', null, null, null, null])
   })
 })

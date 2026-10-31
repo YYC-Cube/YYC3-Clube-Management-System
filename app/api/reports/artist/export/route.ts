@@ -20,13 +20,15 @@
  *
  * 安全说明：
  * - 仅接受白名单筛选字段，SQL 全参数化；
- * - 当前尚无统一鉴权，操作人取自 x-operator-* 请求头（接入认证后改为会话信息）；
+ * - 操作人优先取 `Authorization: Bearer <JWT>` 校验结果（trust=jwt，不可伪造）；
+ *   无有效令牌时回退 `x-operator-*` 请求头并标记 trust=header（过渡期，可伪造）；
  * - 审计写入失败不阻断导出，仅记录 warn，避免合规日志影响业务可用性。
  */
 
 import { NextRequest, NextResponse } from "next/server"
 import { artistReportRepository } from "@/lib/db/repositories/artist-report-repository"
 import { getArtistExportData } from "@/lib/services/artist-report-data"
+import { resolveExportOperator } from "@/lib/services/export-operator"
 import {
   ARTIST_EXPORT_FIELDS,
   MAX_EXPORT_ROWS,
@@ -129,14 +131,22 @@ export async function POST(request: NextRequest) {
     const csv = `\uFEFF${buildReportCsv(data, ARTIST_EXPORT_FIELDS[reportType])}`
     const filename = buildArtistExportFilename(reportType)
 
+    const operator = await resolveExportOperator(request.headers)
+    if (operator.trust !== "jwt") {
+      console.warn(
+        `[artist-report] 导出操作人未通过令牌校验（trust=${operator.trust}），审计记录可能不可信`
+      )
+    }
+
     try {
       await artistReportRepository.recordExportAudit({
         reportType,
         filter: { ...filter },
         rowCount: total,
         dataSource: source,
-        operatorId: request.headers.get("x-operator-id") ?? undefined,
-        operatorName: request.headers.get("x-operator-name") ?? undefined,
+        operatorTrust: operator.trust,
+        operatorId: operator.operatorId,
+        operatorName: operator.operatorName,
         clientIp: clientIp(request),
         userAgent: request.headers.get("user-agent") ?? undefined,
       })
@@ -153,6 +163,7 @@ export async function POST(request: NextRequest) {
         "Cache-Control": "no-store",
         "X-Export-Row-Count": String(total),
         "X-Artist-Data-Source": source,
+        "X-Operator-Trust": operator.trust,
       },
     })
   } catch (error) {

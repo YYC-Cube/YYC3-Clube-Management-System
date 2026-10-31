@@ -212,12 +212,19 @@ CREATE TABLE IF NOT EXISTS artist_report_export_audit (
   filter_json     JSONB NOT NULL DEFAULT '{}'::jsonb,
   row_count       INTEGER NOT NULL CHECK (row_count >= 0),
   data_source     VARCHAR(8) NOT NULL CHECK (data_source IN ('db', 'mock')),
+  operator_trust  VARCHAR(8) NOT NULL DEFAULT 'none' CHECK (operator_trust IN ('jwt', 'header', 'none')),
   operator_id     VARCHAR(64),
   operator_name   VARCHAR(64),
   client_ip       VARCHAR(64),
   user_agent      VARCHAR(255),
   created_at      TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
+
+-- 兼容已建表环境（幂等）
+ALTER TABLE artist_report_export_audit
+  ADD COLUMN IF NOT EXISTS operator_trust VARCHAR(8) NOT NULL DEFAULT 'none';
+
+COMMENT ON COLUMN artist_report_export_audit.operator_trust IS '操作人可信级别：jwt 签名令牌 / header 请求头（可伪造）/ none 未提供';
 CREATE INDEX IF NOT EXISTS idx_export_audit_created ON artist_report_export_audit (created_at DESC);
 CREATE INDEX IF NOT EXISTS idx_export_audit_type ON artist_report_export_audit (report_type, created_at DESC);
 

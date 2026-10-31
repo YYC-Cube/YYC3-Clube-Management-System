@@ -22,6 +22,8 @@ export interface TokenPayload {
   role: string
   storeId: string
   permissions: string[]
+  /** 显示名（可选，用于审计可读性；不参与授权判断） */
+  name?: string
 }
 
 export interface VerifiedToken extends TokenPayload {
@@ -35,6 +37,7 @@ export async function generateToken(payload: TokenPayload, expiresIn = "8h"): Pr
     role: payload.role,
     storeId: payload.storeId,
     permissions: payload.permissions,
+    ...(payload.name ? { name: payload.name } : {}),
   })
     .setProtectedHeader({ alg: "HS256" })
     .setIssuer(ISSUER)
@@ -59,6 +62,7 @@ export async function verifyToken(token: string): Promise<VerifiedToken | null> 
       role: payload.role as string,
       storeId: payload.storeId as string,
       permissions: payload.permissions as string[],
+      ...(typeof payload.name === "string" ? { name: payload.name } : {}),
       iat: payload.iat as number,
       exp: payload.exp as number,
     }

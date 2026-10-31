@@ -233,6 +233,7 @@ describeIf('艺人报表仓储层（PostgreSQL 集成）', () => {
       filter,
       rowCount: detail.total,
       dataSource: detail.source,
+      operatorTrust: 'header',
       operatorId: 'IT-EXPORT-OP',
       operatorName: '导出审计测试',
       clientIp: '127.0.0.1',
@@ -244,9 +245,10 @@ describeIf('艺人报表仓储层（PostgreSQL 集成）', () => {
       filter_json: Record<string, unknown>
       row_count: number
       data_source: string
+      operator_trust: string
       operator_name: string
     }>>(
-      `SELECT report_type, filter_json, row_count, data_source, operator_name
+      `SELECT report_type, filter_json, row_count, data_source, operator_trust, operator_name
          FROM artist_report_export_audit
         WHERE operator_id = ?
         ORDER BY id DESC
@@ -259,6 +261,7 @@ describeIf('艺人报表仓储层（PostgreSQL 集成）', () => {
     expect(auditRows[0].filter_json).toEqual(filter)
     expect(auditRows[0].row_count).toBe(2)
     expect(auditRows[0].data_source).toBe('db')
+    expect(auditRows[0].operator_trust).toBe('header')
     expect(auditRows[0].operator_name).toBe('导出审计测试')
   })
 })
