@@ -28,7 +28,15 @@ export async function GET(request: NextRequest) {
 
     return NextResponse.json({
       success: true,
-      data: result,
+      data: {
+        data: result.items,
+        pagination: {
+          page: result.page,
+          pageSize: result.pageSize,
+          total: result.total,
+          totalPages: result.totalPages,
+        },
+      },
       message: "获取会员列表成功",
     })
   } catch (error) {

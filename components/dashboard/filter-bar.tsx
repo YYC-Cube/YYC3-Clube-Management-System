@@ -1,6 +1,5 @@
 'use client'
 
-import * as React from 'react'
 import { motion } from 'framer-motion'
 import { Search, Download, Plus } from 'lucide-react'
 import { Input } from '@/components/ui/input'
@@ -16,11 +15,15 @@ import { DatePickerWithRange } from '@/components/ui/date-range-picker'
 
 interface FilterBarProps {
   searchPlaceholder?: string
+  searchValue?: string
   onSearch?: (value: string) => void
+  onSearchChange?: (value: string) => void
   onExport?: () => void
   onAdd?: () => void
+  addButtonText?: string
   filters?: {
     label: string
+    value?: string
     options: { label: string; value: string }[]
     onChange: (value: string) => void
   }[]
@@ -30,9 +33,12 @@ interface FilterBarProps {
 
 export function FilterBar({
   searchPlaceholder = '搜索...',
+  searchValue,
   onSearch,
+  onSearchChange,
   onExport,
   onAdd,
+  addButtonText = '新增',
   filters,
   showDateRange,
   onDateRangeChange,
@@ -50,7 +56,11 @@ export function FilterBar({
           <Input
             placeholder={searchPlaceholder}
             className="pl-9"
-            onChange={e => onSearch?.(e.target.value)}
+            value={searchValue}
+            onChange={e => {
+              onSearch?.(e.target.value)
+              onSearchChange?.(e.target.value)
+            }}
           />
         </div>
 
@@ -59,7 +69,7 @@ export function FilterBar({
 
         {/* 筛选器 */}
         {filters?.map((filter, index) => (
-          <Select key={index} onValueChange={filter.onChange}>
+          <Select key={index} value={filter.value} onValueChange={filter.onChange}>
             <SelectTrigger className="w-full sm:w-[180px]">
               <SelectValue placeholder={filter.label} />
             </SelectTrigger>
@@ -85,7 +95,7 @@ export function FilterBar({
         {onAdd && (
           <Button size="sm" onClick={onAdd}>
             <Plus className="mr-2 h-4 w-4" />
-            新增
+            {addButtonText}
           </Button>
         )}
       </div>

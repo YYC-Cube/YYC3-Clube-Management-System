@@ -1,7 +1,6 @@
 "use client"
 
 
-import * as React from "react"
 import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import { Users, Gift, TrendingUp, UserPlus, Edit, Trash2, DollarSign } from "lucide-react"
@@ -40,7 +39,7 @@ export default function MembersPage() {
       setLoading(true)
       const res = await memberService.getMembers()
       if (res.success && res.data) {
-        setMembers(res.data.items)
+        setMembers(res.data.data)
       }
     } catch (error) {
       console.error("[v0] 加载会员数据失败:", error)
@@ -55,9 +54,29 @@ export default function MembersPage() {
   }
 
   const handleSubmitMember = async (data: MemberFormData) => {
+    const payload: Partial<Member> = {
+      name: data.name,
+      phone: data.phone,
+      level: data.level as Member["level"],
+      birthday: data.birthday,
+      gender: data.gender,
+      address: data.address,
+      remark: data.remark,
+      balance: {
+        general: data.balance ?? editingMember?.balance.general ?? 0,
+        room: editingMember?.balance.room ?? 0,
+        gift: editingMember?.balance.gift ?? 0,
+      },
+      points: {
+        total: editingMember?.points.total ?? data.points ?? 0,
+        used: editingMember?.points.used ?? 0,
+        available: data.points ?? editingMember?.points.available ?? 0,
+      },
+    }
+
     try {
       if (editingMember) {
-        const res = await memberService.updateMember(editingMember.id, data)
+        const res = await memberService.updateMember(editingMember.id, payload)
         if (res.success) {
           toast({
             title: "更新成功",
@@ -66,7 +85,7 @@ export default function MembersPage() {
           await loadMembers()
         }
       } else {
-        const res = await memberService.createMember(data)
+        const res = await memberService.createMember(payload)
         if (res.success) {
           toast({
             title: "创建成功",
@@ -124,7 +143,7 @@ export default function MembersPage() {
     const matchesSearch =
       member.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       member.phone.includes(searchTerm) ||
-      member.cardNumber.includes(searchTerm)
+      member.cardNo.includes(searchTerm)
     const matchesLevel = selectedLevel === "all" || member.level === Number.parseInt(selectedLevel)
     return matchesSearch && matchesLevel
   })
@@ -139,7 +158,7 @@ export default function MembersPage() {
       return createdDate > monthAgo
     }).length,
     totalConsumption: members.reduce((sum, m) => sum + m.totalConsumption, 0),
-    totalPoints: members.reduce((sum, m) => sum + m.points, 0),
+    totalPoints: members.reduce((sum, m) => sum + m.points.available, 0),
   }
 
   const columns = [
@@ -152,7 +171,7 @@ export default function MembersPage() {
         </Avatar>
       ),
     },
-    { key: "cardNumber", label: "会员卡号" },
+    { key: "cardNo", label: "会员卡号" },
     { key: "name", label: "姓名" },
     { key: "phone", label: "手机号" },
     {
@@ -163,7 +182,9 @@ export default function MembersPage() {
     {
       key: "balance",
       label: "账户余额",
-      render: (value: number) => <span className="font-medium">¥{value.toFixed(2)}</span>,
+      render: (value: Member["balance"]) => (
+        <span className="font-medium">¥{value.general.toFixed(2)}</span>
+      ),
     },
     {
       key: "visitCount",

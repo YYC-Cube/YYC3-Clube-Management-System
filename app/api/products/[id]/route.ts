@@ -2,10 +2,13 @@ import { type NextRequest, NextResponse } from "next/server"
 import { mockDatabase } from "@/lib/utils/storage"
 import type { Product } from "@/lib/types"
 
+type RouteContext = { params: Promise<{ id: string }> }
+
 // 获取单个商品
-export async function GET(_request: NextRequest, { params }: any) {
+export async function GET(_request: NextRequest, { params }: RouteContext) {
   try {
-    const product = await mockDatabase.findById<Product>("products", params.id)
+    const { id } = await params
+    const product = await mockDatabase.findById<Product>("products", id)
 
     if (!product) {
       return NextResponse.json(
@@ -37,11 +40,12 @@ export async function GET(_request: NextRequest, { params }: any) {
 }
 
 // 更新商品
-export async function PUT(request: NextRequest, { params }: any) {
+export async function PUT(request: NextRequest, { params }: RouteContext) {
   try {
+    const { id } = await params
     const body = await request.json()
 
-    const updated = await mockDatabase.update<Product>("products", params.id, {
+    const updated = await mockDatabase.update<Product>("products", id, {
       ...body,
       updatedAt: new Date().toISOString(),
     })
@@ -76,9 +80,10 @@ export async function PUT(request: NextRequest, { params }: any) {
 }
 
 // 删除商品
-export async function DELETE(_request: NextRequest, { params }: any) {
+export async function DELETE(_request: NextRequest, { params }: RouteContext) {
   try {
-    const deleted = await mockDatabase.delete("products", params.id)
+    const { id } = await params
+    const deleted = await mockDatabase.delete("products", id)
 
     if (!deleted) {
       return NextResponse.json(

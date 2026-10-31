@@ -1,6 +1,5 @@
 'use client'
 
-import * as React from 'react'
 import { useState, useEffect, useRef } from 'react'
 import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
@@ -154,7 +153,7 @@ export function VideoRoomView({ room, onLeave }: VideoRoomViewProps) {
         </motion.div>
 
         {/* 远程视频 */}
-        {Array.from(remoteStreams.entries()).map(([userId, stream], index) => (
+        {Array.from(remoteStreams.entries()).map(([userId], index) => (
           <motion.div
             key={userId}
             initial={{ opacity: 0, scale: 0.9 }}

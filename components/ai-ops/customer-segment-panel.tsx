@@ -1,6 +1,5 @@
 'use client'
 
-import * as React from 'react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Users } from 'lucide-react'
@@ -15,7 +14,7 @@ interface CustomerSegment {
 }
 
 interface CustomerSegmentPanelProps {
-  segments: CustomerSegment[]
+  segments?: CustomerSegment[]
 }
 
 export function CustomerSegmentPanel({ segments = [] }: CustomerSegmentPanelProps) {

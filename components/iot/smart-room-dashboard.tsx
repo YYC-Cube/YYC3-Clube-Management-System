@@ -1,6 +1,5 @@
 'use client'
 
-import * as React from 'react'
 import { useState, useEffect } from 'react'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { RoomControlCard } from './room-control-card'

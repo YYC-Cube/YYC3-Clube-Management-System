@@ -1,7 +1,7 @@
 import { type NextRequest, NextResponse } from "next/server"
 import { edgeComputeFunction } from "@/lib/edge/compute-functions"
 
-export const runtime = "edge"
+export const runtime = "nodejs"
 
 export async function POST(request: NextRequest) {
   try {

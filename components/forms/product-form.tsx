@@ -2,9 +2,8 @@
 
 'use client'
 
-import * as React from 'react'
 import { useState } from 'react'
-import { useForm } from 'react-hook-form'
+import { useForm, type Resolver } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Loader2, Plus, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -40,7 +39,7 @@ export function ProductForm({ product, categories, onSubmit, onCancel }: Product
     setValue,
     watch,
   } = useForm<ProductFormData>({
-    resolver: zodResolver(productSchema),
+    resolver: zodResolver(productSchema) as Resolver<ProductFormData>,
     defaultValues: product
       ? {
           name: product.name,

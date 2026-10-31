@@ -61,11 +61,6 @@ export interface AnomalyAlert {
 }
 
 export class TrafficPredictionSystem {
-  // @ts-ignore: 属性预留用于未来功能扩展
-  private historicalTraffic: TrafficData[] = []
-  // @ts-ignore: 属性预留用于未来功能扩展
-  private seasonalPatterns: Map<string, SeasonalPattern> = new Map()
-
   // 短期预测（1-7天）
   async shortTermForecast(
     historicalTraffic: TrafficData[],

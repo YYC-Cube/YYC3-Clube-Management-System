@@ -21,11 +21,12 @@ interface Column {
 interface DataTableProps {
   columns: Column[]
   data: any[]
+  loading?: boolean
   actions?: (row: any) => React.ReactNode
   onRowClick?: (row: any) => void
 }
 
-export function DataTable({ columns, data, actions, onRowClick }: DataTableProps) {
+export function DataTable({ columns, data, loading = false, actions, onRowClick }: DataTableProps) {
   return (
     <div className="rounded-lg border bg-card">
       <Table>
@@ -38,7 +39,16 @@ export function DataTable({ columns, data, actions, onRowClick }: DataTableProps
           </TableRow>
         </TableHeader>
         <TableBody>
-          {data.length === 0 ? (
+          {loading ? (
+            <TableRow>
+              <TableCell
+                colSpan={columns.length + (actions ? 1 : 0)}
+                className="h-24 text-center text-muted-foreground"
+              >
+                加载中...
+              </TableCell>
+            </TableRow>
+          ) : data.length === 0 ? (
             <TableRow>
               <TableCell
                 colSpan={columns.length + (actions ? 1 : 0)}

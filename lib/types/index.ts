@@ -179,6 +179,9 @@ export interface Member {
   name: string
   phone: string
   birthday?: string
+  gender?: "male" | "female" | "other"
+  address?: string
+  remark?: string
   level: MemberLevel
   balance: {
     general: number

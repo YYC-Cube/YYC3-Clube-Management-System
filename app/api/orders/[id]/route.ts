@@ -3,10 +3,13 @@ import { mockDatabase } from "@/lib/utils/storage"
 import type { Order } from "@/lib/types"
 import { PaymentStatus } from "@/lib/types"
 
+type RouteContext = { params: Promise<{ id: string }> }
+
 // 获取单个订单
-export async function GET(_request: NextRequest, { params }: any) {
+export async function GET(_request: NextRequest, { params }: RouteContext) {
   try {
-    const order = await mockDatabase.findById<Order>("orders", params.id)
+    const { id } = await params
+    const order = await mockDatabase.findById<Order>("orders", id)
 
     if (!order) {
       return NextResponse.json(
@@ -38,11 +41,12 @@ export async function GET(_request: NextRequest, { params }: any) {
 }
 
 // 更新订单
-export async function PUT(request: NextRequest, { params }: any) {
+export async function PUT(request: NextRequest, { params }: RouteContext) {
   try {
+    const { id } = await params
     const body = await request.json()
 
-    const updated = await mockDatabase.update<Order>("orders", params.id, {
+    const updated = await mockDatabase.update<Order>("orders", id, {
       ...body,
       updatedAt: new Date().toISOString(),
     })
@@ -77,9 +81,10 @@ export async function PUT(request: NextRequest, { params }: any) {
 }
 
 // 取消订单
-export async function DELETE(_request: NextRequest, { params }: any) {
+export async function DELETE(_request: NextRequest, { params }: RouteContext) {
   try {
-    const order = await mockDatabase.findById<Order>("orders", params.id)
+    const { id } = await params
+    const order = await mockDatabase.findById<Order>("orders", id)
 
     if (!order) {
       return NextResponse.json(
@@ -93,7 +98,7 @@ export async function DELETE(_request: NextRequest, { params }: any) {
     }
 
     // 更新订单状态为已取消
-    const updated = await mockDatabase.update<Order>("orders", params.id, {
+    const updated = await mockDatabase.update<Order>("orders", id, {
       paymentStatus: PaymentStatus.REFUNDED,
       updatedAt: new Date().toISOString(),
     })

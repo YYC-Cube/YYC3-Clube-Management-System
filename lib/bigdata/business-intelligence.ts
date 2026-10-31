@@ -118,25 +118,6 @@ export interface AttributionFactor {
  * 4. 归因分析 - 因果关系分析
  */
 export class BusinessIntelligence {
-  // @ts-ignore: 属性预留用于未来功能扩展
-  private metabaseUrl: string
-  // @ts-ignore: 属性预留用于未来功能扩展
-  private metabaseApiKey: string
-  // @ts-ignore: 属性预留用于未来功能扩展
-  private clickhouseUrl: string
-  // @ts-ignore: 属性预留用于未来功能扩展
-  private clickhouseUser: string
-  // @ts-ignore: 属性预留用于未来功能扩展
-  private clickhousePassword: string
-
-  constructor() {
-    this.metabaseUrl = env.BI_HOST
-    this.metabaseApiKey = env.BI_API_KEY
-    this.clickhouseUrl = env.OLAP_HOST
-    this.clickhouseUser = env.OLAP_USER
-    this.clickhousePassword = env.OLAP_PASSWORD
-  }
-
   /**
    * OLAP多维分析
    * 支持切片、切块、钻取、旋转等操作

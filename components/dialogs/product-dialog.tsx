@@ -1,6 +1,5 @@
 'use client'
 
-import * as React from 'react'
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import { ProductForm } from '@/components/forms/product-form'
 import type { Product, ProductCategory } from '@/lib/types'

@@ -2,7 +2,6 @@
 
 'use client'
 
-import * as React from 'react'
 import type { ReactNode } from 'react'
 import { useAuthStore } from '@/lib/store/auth-store'
 import type { Permission } from '@/lib/types'

@@ -1,8 +1,7 @@
 'use client'
 
-import * as React from 'react'
 import { useState } from 'react'
-import { useForm } from 'react-hook-form'
+import { useForm, type Resolver } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Loader2 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -34,16 +33,15 @@ export function MemberForm({ member, onSubmit, onCancel }: MemberFormProps) {
     handleSubmit,
     formState: { errors },
     setValue,
-    watch,
   } = useForm<MemberFormData>({
-    resolver: zodResolver(memberSchema),
+    resolver: zodResolver(memberSchema) as Resolver<MemberFormData>,
     defaultValues: member
       ? {
           name: member.name,
           phone: member.phone,
           level: member.level,
-          balance: member.balance,
-          points: member.points,
+          balance: member.balance.general,
+          points: member.points.available,
           birthday: member.birthday,
           gender: member.gender,
           address: member.address,
@@ -111,7 +109,7 @@ export function MemberForm({ member, onSubmit, onCancel }: MemberFormProps) {
             <div className="space-y-2">
               <Label htmlFor="gender">性别</Label>
               <Select
-                onValueChange={value => setValue('gender', value as any)}
+                onValueChange={value => setValue('gender', value as MemberFormData['gender'])}
                 defaultValue={member?.gender}
               >
                 <SelectTrigger>
@@ -148,12 +146,12 @@ export function MemberForm({ member, onSubmit, onCancel }: MemberFormProps) {
             <div className="grid gap-4 md:grid-cols-2">
               <div className="space-y-2">
                 <Label>账户余额</Label>
-                <div className="text-2xl font-bold text-primary">¥{member.balance.toFixed(2)}</div>
+                <div className="text-2xl font-bold text-primary">¥{member.balance.general.toFixed(2)}</div>
               </div>
 
               <div className="space-y-2">
                 <Label>积分余额</Label>
-                <div className="text-2xl font-bold text-primary">{member.points}</div>
+                <div className="text-2xl font-bold text-primary">{member.points.available}</div>
               </div>
             </div>
 

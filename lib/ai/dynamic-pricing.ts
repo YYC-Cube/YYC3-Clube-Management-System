@@ -90,11 +90,6 @@ export interface RevenueProjection {
 }
 
 export class DynamicPricingEngine {
-  // @ts-ignore: 属性预留用于未来功能扩展
-  private _historicalData: HistoricalData[] = []
-  // @ts-ignore: 属性预留用于未来功能扩展
-  private competitorPrices: Map<string, CompetitorPrice[]> = new Map()
-
   // 需求预测
   async predictDemand(
     timeSlot: TimeSlot,

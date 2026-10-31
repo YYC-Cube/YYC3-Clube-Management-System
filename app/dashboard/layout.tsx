@@ -1,6 +1,5 @@
 'use client'
 
-import * as React from 'react'
 import type { ReactNode } from 'react'
 
 import { useState } from 'react'

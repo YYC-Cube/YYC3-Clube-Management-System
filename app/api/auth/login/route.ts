@@ -61,11 +61,8 @@ const generateToken = (userId: string): string => {
   return Buffer.from(JSON.stringify(payload)).toString('base64')
 }
 
-// 配置API路由
-export const config = {
-  runtime: "edge",
-  regions: "auto",
-}
+// Next.js 16：使用路由段配置，替代已废弃的 config 对象
+export const runtime = "nodejs"
 
 // 处理预检请求
 function handleOPTIONS(request: NextRequest) {
@@ -90,10 +87,10 @@ export async function OPTIONS(request: NextRequest) {
 }
 
 export async function POST(request: NextRequest) {
+  // 允许跨域请求
+  const origin = request.headers.get("origin") || "*"
+
   try {
-    // 允许跨域请求
-    const origin = request.headers.get("origin") || "*"
-    
     const { phone, password } = await request.json()
 
     if (!phone || !password) {

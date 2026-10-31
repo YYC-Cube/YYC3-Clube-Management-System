@@ -2,10 +2,13 @@ import { type NextRequest, NextResponse } from "next/server"
 import { mockDatabase } from "@/lib/utils/storage"
 import type { Member } from "@/lib/types"
 
+type RouteContext = { params: Promise<{ id: string }> }
+
 // 获取单个会员
-export async function GET(_request: NextRequest, { params }: any) {
+export async function GET(_request: NextRequest, { params }: RouteContext) {
   try {
-    const member = await mockDatabase.findById<Member>("members", params.id)
+    const { id } = await params
+    const member = await mockDatabase.findById<Member>("members", id)
 
     if (!member) {
       return NextResponse.json(
@@ -37,11 +40,12 @@ export async function GET(_request: NextRequest, { params }: any) {
 }
 
 // 更新会员
-export async function PUT(request: NextRequest, { params }: any) {
+export async function PUT(request: NextRequest, { params }: RouteContext) {
   try {
+    const { id } = await params
     const body = await request.json()
 
-    const updated = await mockDatabase.update<Member>("members", params.id, {
+    const updated = await mockDatabase.update<Member>("members", id, {
       ...body,
       updatedAt: new Date().toISOString(),
     })
@@ -76,9 +80,10 @@ export async function PUT(request: NextRequest, { params }: any) {
 }
 
 // 删除会员
-export async function DELETE(_request: NextRequest, { params }: any) {
+export async function DELETE(_request: NextRequest, { params }: RouteContext) {
   try {
-    const deleted = await mockDatabase.delete("members", params.id)
+    const { id } = await params
+    const deleted = await mockDatabase.delete("members", id)
 
     if (!deleted) {
       return NextResponse.json(

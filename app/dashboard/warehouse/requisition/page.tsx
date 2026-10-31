@@ -1,7 +1,6 @@
 
 'use client'
 
-import * as React from 'react'
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Plus, Search, Eye, Trash2, FileText } from 'lucide-react'
@@ -37,7 +36,7 @@ import { toast } from 'sonner'
 
 // 领用单管理页面
 export default function RequisitionPage() {
-  const [requisitions, setRequisitions] = useState([
+  const [requisitions] = useState([
     {
       id: 'RQ001',
       storeId: 'store_1',

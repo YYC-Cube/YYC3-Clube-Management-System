@@ -1,7 +1,7 @@
 import { type NextRequest, NextResponse } from "next/server"
 import { edgeAIInference } from "@/lib/edge/ai-inference"
 
-export const runtime = "edge"
+export const runtime = "nodejs"
 
 export async function GET(_request: NextRequest) {
   try {

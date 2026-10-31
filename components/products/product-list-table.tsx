@@ -5,7 +5,6 @@
 "use client"
 
 
-import * as React from "react"
 import { motion } from "framer-motion"
 import { Edit, Trash2, ImageIcon } from "lucide-react"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"

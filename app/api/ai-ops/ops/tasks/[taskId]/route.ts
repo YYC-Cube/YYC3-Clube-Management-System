@@ -3,8 +3,10 @@ import { opsExecutionTrackerIncentive } from "@/lib/ai-ops/ops-execution-tracker
 
 export const runtime = "nodejs"
 
-export async function GET(_request: NextRequest, { params }: any) {
-  const { taskId } = params;
+type RouteContext = { params: Promise<{ taskId: string }> }
+
+export async function GET(_request: NextRequest, { params }: RouteContext) {
+  const { taskId } = await params;
   try {
     const taskStatus = await opsExecutionTrackerIncentive.trackTask(taskId)
 

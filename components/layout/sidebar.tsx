@@ -1,6 +1,5 @@
 'use client'
 
-import * as React from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
@@ -88,6 +87,11 @@ const menuItems = [
       { title: '仓库报表', href: '/dashboard/reports/warehouse' },
       { title: '会员报表', href: '/dashboard/reports/members' },
       { title: '酒水存取', href: '/dashboard/reports/liquor' },
+      { title: '艺人报表', href: '/dashboard/reports/artist' },
+      { title: '艺人上下钟明细', href: '/dashboard/reports/artist/clock-detail' },
+      { title: '艺人上下钟汇总', href: '/dashboard/reports/artist/clock-summary' },
+      { title: '艺人台费扣款明细', href: '/dashboard/reports/artist/fee-deduction' },
+      { title: '艺人台费流水汇总', href: '/dashboard/reports/artist/fee-summary' },
     ],
   },
   {

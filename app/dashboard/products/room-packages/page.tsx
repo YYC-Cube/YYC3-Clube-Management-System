@@ -1,7 +1,6 @@
 
 'use client'
 
-import * as React from 'react'
 import { motion } from 'framer-motion'
 import { useState } from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
@@ -71,21 +70,21 @@ export default function RoomPackagesPage() {
     name: '',
   })
 
-  const columns = [
-    { key: 'image', label: '图片', width: 'w-20' },
-    { key: 'store', label: '门店', width: 'w-32' },
-    { key: 'type', label: '套餐类型', width: 'w-32' },
-    { key: 'name', label: '套餐名称', width: 'w-48' },
-    { key: 'duration', label: '时长/分钟', width: 'w-28' },
-    { key: 'actions', label: '操作', width: 'w-48' },
-  ]
+  const filteredPackages = roomPackages.filter(item => {
+    const matchesStore = filters.store === 'all' || item.store === filters.store
+    const matchesType = filters.type === 'all' || item.type === filters.type
+    const matchesName = item.name.includes(filters.name)
+    return matchesStore && matchesType && matchesName
+  })
 
-  const renderCell = (item: any, key: string) => {
-    switch (key) {
-      case 'image':
-        return item.image ? (
+  const columns = [
+    {
+      key: 'image',
+      label: '图片',
+      render: (_: unknown, item: (typeof roomPackages)[number]) =>
+        item.image ? (
           <img
-            src={item.image || '/placeholder.svg'}
+            src={item.image}
             alt={item.name}
             className="h-12 w-12 rounded-lg object-cover"
           />
@@ -93,51 +92,60 @@ export default function RoomPackagesPage() {
           <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-muted">
             <Package className="h-6 w-6 text-muted-foreground" />
           </div>
-        )
-      case 'type':
-        return (
-          <Badge
-            variant={
-              item.type === '酒水套餐'
-                ? 'default'
-                : item.type === '团购套餐'
-                  ? 'secondary'
-                  : item.type === '时间套餐'
-                    ? 'outline'
-                    : 'destructive'
-            }
-          >
-            {item.type}
-          </Badge>
-        )
-      case 'duration':
-        return (
-          <div className="flex items-center gap-1 text-sm">
-            <Clock className="h-3 w-3 text-muted-foreground" />
-            <span>{item.duration}</span>
-          </div>
-        )
-      case 'actions':
-        return (
-          <div className="flex gap-2">
-            <Button variant="ghost" size="sm">
-              <Edit className="mr-1 h-3 w-3" />
-              修改
-            </Button>
-            <Button variant="ghost" size="sm">
-              <Trash2 className="mr-1 h-3 w-3" />
-              删除
-            </Button>
-            <Button variant="ghost" size="sm">
-              <Copy className="mr-1 h-3 w-3" />
-              复制
-            </Button>
-          </div>
-        )
-      default:
-        return item[key]
-    }
-  }
+        ),
+    },
+    { key: 'store', label: '门店' },
+    {
+      key: 'type',
+      label: '套餐类型',
+      render: (type: string) => (
+        <Badge
+          variant={
+            type === '酒水套餐'
+              ? 'default'
+              : type === '团购套餐'
+                ? 'secondary'
+                : type === '时间套餐'
+                  ? 'outline'
+                  : 'destructive'
+          }
+        >
+          {type}
+        </Badge>
+      ),
+    },
+    { key: 'name', label: '套餐名称' },
+    {
+      key: 'duration',
+      label: '时长/分钟',
+      render: (duration: number) => (
+        <div className="flex items-center gap-1 text-sm">
+          <Clock className="h-3 w-3 text-muted-foreground" />
+          <span>{duration}</span>
+        </div>
+      ),
+    },
+    {
+      key: 'actions',
+      label: '操作',
+      render: (_: unknown, item: (typeof roomPackages)[number]) => (
+        <div className="flex gap-2">
+          <Button variant="ghost" size="sm">
+            <Edit className="mr-1 h-3 w-3" />
+            修改
+          </Button>
+          <Button variant="ghost" size="sm" onClick={() => console.log('删除套餐', item.id)}>
+            <Trash2 className="mr-1 h-3 w-3" />
+            删除
+          </Button>
+          <Button variant="ghost" size="sm">
+            <Copy className="mr-1 h-3 w-3" />
+            复制
+          </Button>
+        </div>
+      ),
+    },
+  ]
 
   return (
     <div className="space-y-6">
@@ -227,46 +235,35 @@ export default function RoomPackagesPage() {
       </motion.div>
 
       {/* 筛选栏 */}
-      <FilterBar>
-        <Select
-          value={filters.store}
-          onValueChange={value => setFilters({ ...filters, store: value })}
-        >
-          <SelectTrigger className="w-40">
-            <SelectValue placeholder="选择门店" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="all">全部门店</SelectItem>
-            <SelectItem value="store1">巨嗨KTV</SelectItem>
-            <SelectItem value="store2">KTV旗舰店</SelectItem>
-          </SelectContent>
-        </Select>
-
-        <Select
-          value={filters.type}
-          onValueChange={value => setFilters({ ...filters, type: value })}
-        >
-          <SelectTrigger className="w-40">
-            <SelectValue placeholder="套餐类型" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="all">全部类型</SelectItem>
-            <SelectItem value="time">时间套餐</SelectItem>
-            <SelectItem value="liquor">酒水套餐</SelectItem>
-            <SelectItem value="minimum">最低消费套餐</SelectItem>
-            <SelectItem value="group">团购套餐</SelectItem>
-          </SelectContent>
-        </Select>
-
-        <Input
-          placeholder="请输入套餐名称"
-          value={filters.name}
-          onChange={e => setFilters({ ...filters, name: e.target.value })}
-          className="w-64"
-        />
-
-        <Button className="ml-auto">查询</Button>
-      </FilterBar>
+      <FilterBar
+        searchPlaceholder="请输入套餐名称"
+        searchValue={filters.name}
+        onSearchChange={value => setFilters(prev => ({ ...prev, name: value }))}
+        filters={[
+          {
+            label: '选择门店',
+            value: filters.store,
+            options: [
+              { label: '全部门店', value: 'all' },
+              { label: '巨嗨KTV', value: '巨嗨KTV' },
+              { label: 'KTV旗舰店', value: 'KTV旗舰店' },
+            ],
+            onChange: value => setFilters(prev => ({ ...prev, store: value })),
+          },
+          {
+            label: '套餐类型',
+            value: filters.type,
+            options: [
+              { label: '全部类型', value: 'all' },
+              { label: '时间套餐', value: '时间套餐' },
+              { label: '酒水套餐', value: '酒水套餐' },
+              { label: '最低消费套餐', value: '最低消费套餐' },
+              { label: '团购套餐', value: '团购套餐' },
+            ],
+            onChange: value => setFilters(prev => ({ ...prev, type: value })),
+          },
+        ]}
+      />
 
       {/* 统计卡片 */}
       <div className="grid gap-4 md:grid-cols-3">
@@ -330,7 +327,7 @@ export default function RoomPackagesPage() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.4 }}
       >
-        <DataTable columns={columns} data={roomPackages} renderCell={renderCell} />
+        <DataTable columns={columns} data={filteredPackages} />
       </motion.div>
     </div>
   )

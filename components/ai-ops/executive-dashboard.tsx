@@ -1,6 +1,5 @@
 'use client'
 
-import * as React from 'react'
 import { useState, useEffect } from 'react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
@@ -20,7 +19,7 @@ import {
 
 export default function ExecutiveDashboard() {
   const [strategicView, setStrategicView] = useState<any>(null)
-  const [kpiReport, setKpiReport] = useState<any>(null)
+  const [, setKpiReport] = useState<any>(null)
   const [recommendations, setRecommendations] = useState<any[]>([])
   const [risks, setRisks] = useState<any[]>([])
   const [loading, setLoading] = useState(true)

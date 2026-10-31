@@ -1,6 +1,5 @@
 'use client'
 
-import * as React from 'react'
 import { useState } from 'react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
@@ -165,7 +164,7 @@ export function RealtimeAnalysisPanel() {
                   tickFormatter={value => new Date(value).toLocaleTimeString()}
                 />
                 <YAxis />
-                <Tooltip labelFormatter={value => new Date(value).toLocaleString()} />
+                <Tooltip labelFormatter={value => new Date(value as string | number).toLocaleString()} />
                 <Line type="monotone" dataKey="count" stroke="#8884d8" strokeWidth={2} />
               </LineChart>
             </ResponsiveContainer>
