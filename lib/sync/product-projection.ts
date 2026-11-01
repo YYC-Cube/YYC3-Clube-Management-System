@@ -110,6 +110,33 @@ export async function projectProductEvent(
     throw new Error(`master.product 事件缺少 name：${envelope.eventId}`)
   }
 
+  // 04 §4 价格覆写审计：override* 三元组存在时，除常规投影外落审计行
+  // （普通改价无 overrideCents，不产生审计行——审计口径分界）
+  const overrideCents = asInt(envelope.payload.overrideCents)
+  if (overrideCents !== null) {
+    const overrideReason = asString(envelope.payload.overrideReason) ?? "强制价格"
+    const overrideOperatorId = asString(envelope.payload.overrideOperatorId) ?? "unknown"
+    await client.query(
+      `INSERT INTO public.price_override_audit
+         (id, tenant_id, store_id, product_id, override_cents, override_reason,
+          override_operator_id, record_version, command_id, source_event_id)
+       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
+       ON CONFLICT (id) DO NOTHING`,
+      [
+        `poa_${envelope.eventId}`,
+        envelope.tenantId,
+        envelope.storeId,
+        productId,
+        overrideCents,
+        overrideReason,
+        overrideOperatorId,
+        snapshot.recordVersion,
+        envelope.eventId,
+        envelope.eventId,
+      ],
+    )
+  }
+
   if (known === 0) {
     const insertSnapshot = JSON.stringify({
       operation: snapshot.operation ?? "create",
@@ -184,10 +211,10 @@ export async function projectProductEvent(
       productId,
       snapshot.name,
       snapshot.categoryId,
-      snapshot.unit ?? "件",
-      snapshot.priceCents ?? 0,
+      snapshot.unit,
+      snapshot.priceCents,
       snapshot.memberPriceCents,
-      snapshot.stock ?? 0,
+      snapshot.stock,
       snapshot.status,
       snapshot.recordVersion,
       envelope.eventId,

@@ -150,6 +150,20 @@ async function projectMasterEvent(
   client: QueryClient,
   event: IngestEvent,
 ): Promise<{ applied: true; recordVersion: number } | { applied: false; code: string } | null> {
+  // 增量语义：master.product.updated 允许不含 name（04 §4 changedFields 驱动合并）——
+  // 从既有投影行回填（须先于 base 构造，payload 引用共享）
+  if (
+    event.eventType === "master.product.updated" &&
+    typeof event.payload.name !== "string"
+  ) {
+    const known = await client.query<{ name: string | null }>(
+      "SELECT name FROM public.operational_product WHERE id = $1",
+      [event.aggregateId],
+    )
+    if (known.rows[0]?.name) {
+      event.payload = { ...event.payload, name: known.rows[0].name }
+    }
+  }
   const base = {
     eventId: event.eventId,
     eventType: event.eventType,
