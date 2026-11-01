@@ -61,10 +61,9 @@ const customJestConfig: Config = {
     '**/__tests__/*.test.{js,jsx,ts,tsx}',
     '**/*.(test|spec).{js,jsx,ts,tsx}',
   ],
-  // ③类生成式测试治理：archive-* 归档批次；components/dialogs 为 msw 重写稿
-  // （resolver 映射表已 95%：msw/interceptors/rettime/until-async/deferred-promise
-  //   全通，仅剩 BatchInterceptor 子拦截器 jest 互操作一环），启用前保持忽略
-  testPathIgnorePatterns: ['/node_modules/', '__tests__/archive-', '__tests__/components/dialogs'],
+  // ③类生成式测试治理：archive-* 归档批次不进门禁；components/dialogs 为 msw 重写稿
+  // （resolver/listen 全通，XHR 拦截语义由独立 msw-xhr 测试持续验证）
+  testPathIgnorePatterns: ['/node_modules/', '__tests__/archive-'],
   transform: {
     '^.+\\.(ts|tsx)$': 'ts-jest',
   },
