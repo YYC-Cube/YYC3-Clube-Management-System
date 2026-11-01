@@ -6,6 +6,7 @@
 import { projectProductEvent } from "./product-projection"
 import { projectMemberEvent } from "./member-projection"
 import { projectRoomEvent, projectStaffEvent, projectArtistEvent } from "./domain-projection"
+import { projectSettingsEvent } from "./settings-projection"
 import type { QueryClient } from "./query-client"
 
 export interface IngestEvent {
@@ -161,6 +162,7 @@ async function projectMasterEvent(
   if (event.eventType.startsWith("master.room.")) return projectRoomEvent(client, base)
   if (event.eventType.startsWith("master.staff.")) return projectStaffEvent(client, base)
   if (event.eventType.startsWith("master.artist.")) return projectArtistEvent(client, base)
+  if (event.eventType.startsWith("master.settings.")) return projectSettingsEvent(client, base)
   return null
 }
 
