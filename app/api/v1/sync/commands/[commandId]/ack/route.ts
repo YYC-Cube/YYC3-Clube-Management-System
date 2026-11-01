@@ -4,17 +4,11 @@
  */
 import { type NextRequest, NextResponse } from "next/server"
 import { ackCommandResult } from "@/lib/sync/command-claim"
+import { parseRegisteredKeys } from "@/lib/sync/keys"
 import { verifySyncHmac, type NonceStore } from "@/lib/sync/hmac"
 
 export const dynamic = "force-dynamic"
 
-function registeredKeys(): Record<string, { secret: string; tenantId: string }> {
-  const accessKey = process.env.SYNC_HMAC_ACCESS_KEY?.trim() ?? ""
-  const secret = process.env.SYNC_HMAC_SECRET?.trim() ?? ""
-  const tenantId = process.env.SYNC_HMAC_TENANT?.trim() ?? ""
-  if (!accessKey || !secret || !tenantId) return {}
-  return { [accessKey]: { secret, tenantId } }
-}
 
 async function resolveNonceStore(): Promise<NonceStore> {
   if (process.env.SYNC_EVENT_LOG_DIALECT === "mock") {
@@ -53,7 +47,7 @@ export async function POST(
   const hmac = await verifySyncHmac(
     request.headers,
     rawBody,
-    registeredKeys(),
+    parseRegisteredKeys(),
     Date.now(),
     await resolveNonceStore(),
   )

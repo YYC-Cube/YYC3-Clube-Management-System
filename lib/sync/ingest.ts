@@ -5,6 +5,7 @@
  */
 import { projectProductEvent } from "./product-projection"
 import { projectMemberEvent } from "./member-projection"
+import { projectRoomEvent, projectStaffEvent, projectArtistEvent } from "./domain-projection"
 import type { QueryClient } from "./query-client"
 
 export interface IngestEvent {
@@ -91,34 +92,14 @@ export async function ingestEvent(
     }
 
     // 投影（B 分支：master.* → operational_*）
-    const projectionTarget = masterProjectionOf(event.eventType)
-    if (projectionTarget) {
-      const projection =
-        projectionTarget === "product"
-          ? await projectProductEvent(client, {
-              eventId: event.eventId,
-              eventType: event.eventType,
-              aggregateId: event.aggregateId,
-              tenantId: event.tenantId,
-              storeId: event.storeId,
-              payload: event.payload,
-            })
-          : await projectMemberEvent(client, {
-              eventId: event.eventId,
-              eventType: event.eventType,
-              aggregateId: event.aggregateId,
-              tenantId: event.tenantId,
-              storeId: event.storeId,
-              payload: event.payload,
-            })
-      if (!projection.applied) {
-        await client.query(
-          `UPDATE public.sync_event_log SET status = 'rejected'
-            WHERE event_id = $1`,
-          [event.eventId],
-        )
-        return { eventId: event.eventId, outcome: "rejected", code: "version_conflict" }
-      }
+    const projection = await projectMasterEvent(client, event)
+    if (projection && !projection.applied) {
+      await client.query(
+        `UPDATE public.sync_event_log SET status = 'rejected'
+          WHERE event_id = $1`,
+        [event.eventId],
+      )
+      return { eventId: event.eventId, outcome: "rejected", code: "version_conflict" }
     }
 
     return { eventId: event.eventId, outcome: "accepted" }
@@ -162,10 +143,24 @@ function envelopeAggregateType(event: IngestEvent): string {
   return event.aggregateType
 }
 
-/** master.* 投影路由：已实现投影的域（room/staff/artist 随模块建设逐步加入）。 */
-function masterProjectionOf(eventType: string): "product" | "member" | null {
-  if (eventType.startsWith("master.product.")) return "product"
-  if (eventType.startsWith("master.member.")) return "member"
+/** master.* 投影路由：已实现投影的域。 */
+async function projectMasterEvent(
+  client: QueryClient,
+  event: IngestEvent,
+): Promise<{ applied: true; recordVersion: number } | { applied: false; code: string } | null> {
+  const base = {
+    eventId: event.eventId,
+    eventType: event.eventType,
+    aggregateId: event.aggregateId,
+    tenantId: event.tenantId,
+    storeId: event.storeId,
+    payload: event.payload,
+  }
+  if (event.eventType.startsWith("master.product.")) return projectProductEvent(client, base)
+  if (event.eventType.startsWith("master.member.")) return projectMemberEvent(client, base)
+  if (event.eventType.startsWith("master.room.")) return projectRoomEvent(client, base)
+  if (event.eventType.startsWith("master.staff.")) return projectStaffEvent(client, base)
+  if (event.eventType.startsWith("master.artist.")) return projectArtistEvent(client, base)
   return null
 }
 

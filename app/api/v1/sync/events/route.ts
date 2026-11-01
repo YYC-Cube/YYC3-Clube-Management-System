@@ -7,29 +7,17 @@
  */
 import { type NextRequest, NextResponse } from "next/server"
 import { validateEnvelopes } from "@/lib/sync/envelope"
+import { parseRegisteredKeys } from "@/lib/sync/keys"
 import { verifySyncHmac, type NonceStore } from "@/lib/sync/hmac"
 import { ingestBatch, type IngestAck } from "@/lib/sync/ingest"
 
 export const dynamic = "force-dynamic"
 
-interface RegisteredKey {
-  secret: string
-  tenantId: string
-}
-
-/** 服务间 key 登记：首批单 key→tenant，经 env 注入；多 key 时换表登记。 */
-function registeredKeys(): Record<string, RegisteredKey> {
-  const accessKey = process.env.SYNC_HMAC_ACCESS_KEY?.trim() ?? ""
-  const secret = process.env.SYNC_HMAC_SECRET?.trim() ?? ""
-  const tenantId = process.env.SYNC_HMAC_TENANT?.trim() ?? ""
-  if (!accessKey || !secret || !tenantId) return {}
-  return { [accessKey]: { secret, tenantId } }
-}
 
 export async function POST(request: NextRequest): Promise<NextResponse> {
   const rawBody = await request.text()
 
-  const hmac = await verifySyncHmac(request.headers, rawBody, registeredKeys(), Date.now(), await resolveNonceStore())
+  const hmac = await verifySyncHmac(request.headers, rawBody, parseRegisteredKeys(), Date.now(), await resolveNonceStore())
   if (!hmac.ok || !hmac.identity) {
     return NextResponse.json(
       { success: false, error: `服务间认证失败：${hmac.failure ?? "unknown"}`, code: "unauthorized" },
