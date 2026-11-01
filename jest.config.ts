@@ -64,25 +64,9 @@ const customJestConfig: Config = {
     '**/__tests__/*.test.{js,jsx,ts,tsx}',
     '**/*.(test|spec).{js,jsx,ts,tsx}',
   ],
-  // ③类生成式测试治理：archive-* 归档批次不进门禁
-  // A 类收编（2026-11-02 存量红分类治理）：/e2e/ 为 playwright testDir（jest 不得收集）；
-  // /tests/security/ 为 testDir 外孤儿 playwright 规格（jest/浏览器双不可跑，待人工归位）。
-  // B/C 类残件（生成式模板：缺 fixtures/语法错误/幻觉组件断言）——7 文件原位 ignore，
-  // 物理归档待人工（Mimosa 钩子拦 git mv，见 90-session-memory/decisions.log）
-  testPathIgnorePatterns: [
-    '/node_modules/',
-    '__tests__/archive-',
-    '/e2e/',
-    '/tests/security/',
-    '__tests__/quick-coverage-boost\\.test\\.tsx$',
-    '__tests__/essential-coverage\\.test\\.tsx$',
-    '__tests__/core-components\\.test\\.tsx$',
-    '__tests__/core-api-routes\\.test\\.tsx$',
-    '__tests__/performance-monitoring\\.test\\.tsx$',
-    'components/ui/button\\.test\\.tsx$',
-    'components/product-form\\.test\\.tsx$',
-    'project-root/config/env\\.test\\.ts$',
-  ],
+  // ③类生成式测试治理：archive-* 归档批次不进门禁；components/dialogs 为 msw 重写稿
+  // （resolver/listen 全通；XHR 拦截语义已定案——msw-xhr 转正全绿，见 vendor 三链转译）
+  testPathIgnorePatterns: ['/node_modules/', '__tests__/archive-'],
   transform: {
     '^.+\\.(ts|tsx)$': 'ts-jest',
   },
