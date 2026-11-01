@@ -1,19 +1,25 @@
 import '@testing-library/jest-dom'
 import { jest } from '@jest/globals'
-import 'whatwg-fetch' // 修复fetch未定义
 import { TextEncoder, TextDecoder } from 'node:util'
+import { TransformStream, ReadableStream, WritableStream } from 'node:stream/web'
+import { BroadcastChannel, MessageChannel, MessagePort } from 'node:worker_threads'
+import { Event as NodeEvent, EventTarget as NodeEventTarget } from 'node:events'
 
-// msw/node 依赖 Node 全局（jsdom 环境缺省）
+// msw/undici 依赖 Node 全局（jsdom 环境缺省）——polyfill 先于 undici require
+// （undici 用运行期 require，避开 ES import 提升）
 if (!globalThis.TextEncoder) globalThis.TextEncoder = TextEncoder
 if (!globalThis.TextDecoder) globalThis.TextDecoder = TextDecoder as unknown as typeof globalThis.TextDecoder
-// msw/interceptors 依赖 Web Streams（jsdom 缺省；Node 全局可用）
-import { TransformStream, ReadableStream, WritableStream } from 'node:stream/web'
 if (!globalThis.TransformStream) globalThis.TransformStream = TransformStream as typeof TransformStream
 if (!globalThis.ReadableStream) globalThis.ReadableStream = ReadableStream as typeof ReadableStream
 if (!globalThis.WritableStream) globalThis.WritableStream = WritableStream as typeof WritableStream
-// msw websocket 管理器依赖 BroadcastChannel（jsdom 缺省；Node 全局可用）
-import { BroadcastChannel } from 'node:worker_threads'
 if (!globalThis.BroadcastChannel) globalThis.BroadcastChannel = BroadcastChannel as typeof BroadcastChannel
+if (!globalThis.MessageChannel) globalThis.MessageChannel = MessageChannel as typeof MessageChannel
+if (!globalThis.MessagePort) globalThis.MessagePort = MessagePort as typeof MessagePort
+if (!globalThis.Event) globalThis.Event = NodeEvent as typeof NodeEvent
+if (!globalThis.EventTarget) globalThis.EventTarget = NodeEventTarget as typeof NodeEventTarget
+
+// undici fetch 注入实验已回滚：undici fetch 走自有连接器（非 http.ClientRequest），
+// 与 msw(node) 的 ClientRequestInterceptor 不匹配；jsdom XHR 拦截语义列专项继续
 
 // Mock完整的Response类
 class MockResponse {
@@ -100,6 +106,20 @@ global.Headers = class Headers extends Map {
   }
   has(name: string) {
     return super.has(name.toLowerCase())
+  }
+  // msw/interceptors recordRawHeaders 会 Proxy append（缺省即崩）
+  append(name: string, value: string) {
+    const prev = this.get(name)
+    this.set(name, prev ? `${prev}, ${value}` : value)
+  }
+  forEach(cb: (value: string, name: string) => void) {
+    for (const [name, value] of this.entries()) cb(value, name)
+  }
+  *entries(): IterableIterator<[string, string]> {
+    for (const [name, value] of super.entries()) yield [name, value] as [string, string]
+  }
+  [Symbol.iterator](): IterableIterator<[string, string]> {
+    return this.entries()
   }
 } as any
 

@@ -21,6 +21,15 @@ const customJestConfig: Config = {
       '<rootDir>/node_modules/.pnpm/@mswjs+interceptors@0.41.9/node_modules/@mswjs/interceptors/lib/node/index.cjs',
     '^@mswjs/interceptors/(.*)$':
       '<rootDir>/node_modules/.pnpm/@mswjs+interceptors@0.41.9/node_modules/@mswjs/interceptors/$1',
+    // BatchInterceptor 子拦截器：目录 exports 在 jest 互操作下拿 undefined，精确映射 CJS 分片
+    '^@mswjs/interceptors/ClientRequest$':
+      '<rootDir>/node_modules/.pnpm/@mswjs+interceptors@0.41.9/node_modules/@mswjs/interceptors/lib/node/interceptors/ClientRequest/index.cjs',
+    '^@mswjs/interceptors/fetch$':
+      '<rootDir>/node_modules/.pnpm/@mswjs+interceptors@0.41.9/node_modules/@mswjs/interceptors/lib/node/interceptors/fetch/index.cjs',
+    '^@mswjs/interceptors/WebSocket$':
+      '<rootDir>/node_modules/.pnpm/@mswjs+interceptors@0.41.9/node_modules/@mswjs/interceptors/lib/browser/interceptors/WebSocket/index.cjs',
+    '^@mswjs/interceptors/XMLHttpRequest$':
+      '<rootDir>/node_modules/.pnpm/@mswjs+interceptors@0.41.9/node_modules/@mswjs/interceptors/lib/node/interceptors/XMLHttpRequest/index.cjs',
     // @open-draft/deferred-promise 仅 ESM：CJS stub（jsdom 渲染测试不触发兑现）
     '^@open-draft/deferred-promise$': '<rootDir>/__tests__/stubs/deferred-promise.cjs',
     // rettime 仅发布 ESM：以 CJS stub 替代（jsdom 测试不触发真实拦截）
