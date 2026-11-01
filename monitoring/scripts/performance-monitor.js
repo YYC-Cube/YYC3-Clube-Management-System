@@ -202,7 +202,12 @@ class PerformanceMonitor {
     };
 
     const filename = `performance-${new Date().toISOString().split('T')[0]}.json`;
-    const filepath = path.join(CONFIG.outputPath, filename);
+    // 防路径穿越：输出文件必须位于配置的输出目录内（安全门禁要求）
+    const outputRoot = path.resolve(CONFIG.outputPath);
+    const filepath = path.resolve(outputRoot, filename);
+    if (!filepath.startsWith(outputRoot + path.sep)) {
+      throw new Error('非法报告输出路径');
+    }
     fs.writeFileSync(filepath, JSON.stringify(report, null, 2));
     
     console.log(`📊 性能报告已保存: ${filename}`);

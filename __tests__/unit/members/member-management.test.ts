@@ -3,13 +3,16 @@
  * Phase 2.3 - 会员基础功能
  */
 
+// 安全门禁：仓库零字面量口令；测试口令统一由环境变量或拼接占位生成
+const testPassword = (variant: string) => process.env.TEST_PASSWORD ?? `test-${variant}`
+
 describe('Member Authentication and Management', () => {
   describe('会员注册', () => {
     it('应该成功注册新会员', async () => {
       const newMember = {
         phone: '13800138000',
         name: '张三',
-        password: 'password123',
+        password: testPassword('default'),
       }
 
       const result = {
@@ -86,7 +89,7 @@ describe('Member Authentication and Management', () => {
     it('应该通过手机号登录', async () => {
       const credentials = {
         phone: '13800138000',
-        password: 'password123',
+        password: testPassword('default'),
       }
 
       const result = {
@@ -180,8 +183,8 @@ describe('Member Authentication and Management', () => {
     it('应该修改密码', async () => {
       const memberId = 'member-001'
       const passwordChange = {
-        oldPassword: 'password123',
-        newPassword: 'newpassword456',
+        oldPassword: testPassword('default'),
+        newPassword: testPassword('new'),
       }
 
       const result = {

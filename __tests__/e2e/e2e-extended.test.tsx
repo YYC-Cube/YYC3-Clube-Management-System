@@ -8,7 +8,7 @@
  * @updated 2025-01-06
  */
 
-import { describe, it, expect, beforeEach, afterEach, vi, beforeAll } from 'vitest'
+// Jest 全局：describe/it/expect/beforeEach/afterEach/beforeAll；原 vitest 导入已清理（协同规范 05 §6 治理②）
 import { render, screen, fireEvent, waitFor, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import React from 'react'

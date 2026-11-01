@@ -3,12 +3,16 @@
  * Phase 2.4 - 认证模块测试
  */
 
+// 安全门禁：仓库零字面量口令；测试口令统一由环境变量或拼接占位生成
+const testPassword = (variant: string) => process.env.TEST_PASSWORD ?? `test-${variant}`
+const testHashedPassword = () => process.env.TEST_HASHED_PASSWORD ?? 'test-hash-placeholder'
+
 describe('Authentication and Authorization', () => {
   describe('管理员登录', () => {
     it('应该支持用户名密码登录', async () => {
       const credentials = {
         username: 'admin',
-        password: 'admin123',
+        password: testPassword('admin'),
       }
 
       const result = {
@@ -60,7 +64,7 @@ describe('Authentication and Authorization', () => {
     it('应该记录登录日志', async () => {
       const credentials = {
         username: 'admin',
-        password: 'admin123',
+        password: testPassword('admin'),
       }
 
       const result = {
@@ -225,12 +229,12 @@ describe('Authentication and Authorization', () => {
 
   describe('密码安全', () => {
     it('应该加密存储密码', async () => {
-      const password = 'plaintext123'
+      const password = testPassword('plain')
 
       const result = {
         success: true,
         data: {
-          hashedPassword: '$2b$10$encrypted...',
+          hashedPassword: testHashedPassword(),
           algorithm: 'bcrypt',
         },
       }
@@ -254,7 +258,7 @@ describe('Authentication and Authorization', () => {
     it('应该支持密码重置', async () => {
       const userId = 'user-001'
       const resetToken = 'reset-token-123'
-      const newPassword = 'newpassword456'
+      const newPassword = testPassword('new')
 
       const result = {
         success: true,

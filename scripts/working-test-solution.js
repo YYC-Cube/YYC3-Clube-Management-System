@@ -9,7 +9,7 @@
 
 const fs = require('fs');
 const path = require('path');
-const { execSync } = require('child_process');
+const { execFileSync } = require('child_process');
 
 class WorkingTestSolution {
   constructor() {
@@ -67,8 +67,15 @@ class WorkingTestSolution {
 
   async createFixedTestFile(fileName) {
     const testContent = this.getTestTemplate(fileName);
-    const filePath = path.join(this.testDir, fileName);
-    
+    const testRoot = path.resolve(this.testDir);
+    const filePath = path.resolve(testRoot, fileName);
+
+    // 防路径穿越：写入目标必须位于测试目录内
+    if (!filePath.startsWith(testRoot + path.sep)) {
+      console.log(`⚠️ 非法测试文件路径，已跳过: ${fileName}`);
+      return;
+    }
+
     fs.writeFileSync(filePath, testContent, 'utf8');
     console.log(`✅ 创建测试文件: ${fileName}`);
   }
@@ -386,11 +393,16 @@ module.exports = createJestConfig(customJestConfig);
     console.log('🧪 执行测试...');
     
     try {
-      // 运行基础测试
-      const testCommand = `npx jest --testPathPattern=__tests__/working --coverage --coverageReporters=json --coverageReporters=text --silent`;
-      
+      // 运行基础测试（固定命令 + 字面量参数数组，不经 shell 拼接）
       console.log('🔍 执行工作测试...');
-      const result = execSync(testCommand, { 
+      const result = execFileSync('npx', [
+        'jest',
+        '--testPathPattern=__tests__/working',
+        '--coverage',
+        '--coverageReporters=json',
+        '--coverageReporters=text',
+        '--silent',
+      ], {
         encoding: 'utf8',
         cwd: this.workspaceRoot,
         stdio: 'pipe'

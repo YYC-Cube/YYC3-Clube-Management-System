@@ -99,7 +99,8 @@ describe('艺人报表导出 — 生产严格模式', () => {
   it('严格模式开启时仅有请求头身份 → 403，且不触发取数与审计', async () => {
     process.env.ARTIST_EXPORT_REQUIRE_JWT = 'true'
 
-    const response = await POST(makeRequest({ 'x-operator-id': 'OP-1', 'x-operator-name': '前台小王' }))
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const response = await POST(makeRequest({ 'x-operator-id': 'OP-1', 'x-operator-name': '前台小王' }) as any)
 
     expect(response.status).toBe(403)
     expect(await response.json()).toMatchObject({ success: false })
@@ -110,7 +111,8 @@ describe('艺人报表导出 — 生产严格模式', () => {
   it('严格模式开启但无任何身份信息 → 403', async () => {
     process.env.ARTIST_EXPORT_REQUIRE_JWT = '1'
 
-    const response = await POST(makeRequest({}))
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const response = await POST(makeRequest({}) as any)
 
     expect(response.status).toBe(403)
     expect(mockedGetData).not.toHaveBeenCalled()
@@ -119,7 +121,8 @@ describe('艺人报表导出 — 生产严格模式', () => {
   it('严格模式关闭时请求头回退可用 → 200，审计标记 operatorTrust=header', async () => {
     process.env.ARTIST_EXPORT_REQUIRE_JWT = 'false'
 
-    const response = await POST(makeRequest({ 'x-operator-id': 'OP-2', 'x-operator-name': '运营李四' }))
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const response = await POST(makeRequest({ 'x-operator-id': 'OP-2', 'x-operator-name': '运营李四' }) as any)
 
     expect(response.status).toBe(200)
     expect(mockedGetData).toHaveBeenCalled()
@@ -140,7 +143,8 @@ describe('艺人报表导出 — 生产严格模式', () => {
       exp: 2,
     })
 
-    const response = await POST(makeRequest({ authorization: 'Bearer signed.jwt' }))
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const response = await POST(makeRequest({ authorization: 'Bearer signed.jwt' }) as any)
 
     expect(response.status).toBe(200)
     expect(mockedAudit).toHaveBeenCalledWith(
@@ -149,7 +153,11 @@ describe('艺人报表导出 — 生产严格模式', () => {
   })
 
   it('非法 reportType 在鉴权前返回 400', async () => {
-    const response = await POST(makeRequest({}, { reportType: 'unknown' }))
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const response = await POST({
+      headers: new Headers({}),
+      json: () => Promise.resolve({ reportType: 'unknown' }),
+    } as any)
 
     expect(response.status).toBe(400)
     expect(mockedGetData).not.toHaveBeenCalled()

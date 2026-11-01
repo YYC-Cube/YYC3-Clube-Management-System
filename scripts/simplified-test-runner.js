@@ -66,7 +66,13 @@ class SimplifiedTestRunner {
 
     for (const test of tests) {
       const content = this.generateBasicTest(test);
-      const testPath = path.join(testDir, test.file);
+      const testRoot = path.resolve(testDir);
+      const testPath = path.resolve(testRoot, test.file);
+      // 防路径穿越：写入目标必须位于测试目录内
+      if (!testPath.startsWith(testRoot + path.sep)) {
+        console.log(`⚠️ 非法测试文件路径，已跳过: ${test.file}`);
+        continue;
+      }
       fs.writeFileSync(testPath, content);
       console.log(`✅ 创建测试: ${test.file}`);
     }

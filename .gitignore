@@ -42,6 +42,11 @@ kanban-schema-gate.json
 # pnpm store (local)
 .pnpm-store/
 
+# local tool artifacts
+.mimosa/
+.v2c/
+.video_agent/
+
 # sub-projects (independent repos)
 /club-ops/
 
@@ -49,3 +54,6 @@ kanban-schema-gate.json
 /mobile-app/dist/
 /mobile-app/.expo/
 /mobile-app/node_modules/
+
+# python
+__pycache__/

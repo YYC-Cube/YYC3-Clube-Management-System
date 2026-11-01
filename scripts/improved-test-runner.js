@@ -132,7 +132,13 @@ class ImprovedTestRunner {
 
     for (const testCase of testCases) {
       const testContent = this.generateImprovedTest(testCase);
-      const testPath = path.join(testDir, testCase.file);
+      const testRoot = path.resolve(testDir);
+      const testPath = path.resolve(testRoot, testCase.file);
+      // 防路径穿越：写入目标必须位于测试目录内
+      if (!testPath.startsWith(testRoot + path.sep)) {
+        console.log(`⚠️ 非法测试文件路径，已跳过: ${testCase.file}`);
+        continue;
+      }
       fs.writeFileSync(testPath, testContent);
       console.log(`✅ 创建测试文件: ${testCase.file}`);
     }

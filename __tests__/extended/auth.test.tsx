@@ -8,7 +8,7 @@
  * @updated 2025-01-06
  */
 
-import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest'
+// Jest 全局：describe/it/expect/beforeEach/afterEach；原 vitest 导入已清理（协同规范 05 §6 治理②）
 import { render, screen, fireEvent, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import React from 'react'
@@ -26,11 +26,11 @@ const mockAuthStore = {
   user: null as any,
   isAuthenticated: false,
   isLoading: false,
-  login: vi.fn(),
-  logout: vi.fn(),
-  hasPermission: vi.fn(),
-  hasAnyPermission: vi.fn(),
-  hasAllPermissions: vi.fn()
+  login: jest.fn(),
+  logout: jest.fn(),
+  hasPermission: jest.fn(),
+  hasAnyPermission: jest.fn(),
+  hasAllPermissions: jest.fn()
 }
 
 // 🎭 创建登录页面组件的模拟版本
@@ -142,7 +142,7 @@ describe('认证系统测试套件', () => {
 
   beforeEach(() => {
     // 重置所有mock函数
-    vi.clearAllMocks()
+    jest.clearAllMocks()
     mockAuthStore.user = null
     mockAuthStore.isAuthenticated = false
     mockAuthStore.isLoading = false
@@ -150,17 +150,17 @@ describe('认证系统测试套件', () => {
     // 模拟localStorage
     Object.defineProperty(window, 'localStorage', {
       value: {
-        getItem: vi.fn(),
-        setItem: vi.fn(),
-        removeItem: vi.fn(),
-        clear: vi.fn()
+        getItem: jest.fn(),
+        setItem: jest.fn(),
+        removeItem: jest.fn(),
+        clear: jest.fn()
       },
       writable: true
     })
   })
 
   afterEach(() => {
-    vi.restoreAllMocks()
+    jest.restoreAllMocks()
   })
 
   describe('登录页面组件测试', () => {

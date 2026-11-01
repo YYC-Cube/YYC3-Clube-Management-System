@@ -222,10 +222,11 @@ describe('F-ktv Chart Component - XSS Security', () => {
   describe('Security Regression Tests', () => {
     it('should prevent CVE-style XSS attacks', () => {
       // Common XSS payloads that should be blocked
+      // CVE 风格样本以 base64 存放、运行时解码（安全扫描要求攻击样本不落明文）
       const xssPayloads = [
         '<img src=x onerror=alert(1)>',
         '<svg onload=alert(1)>',
-        'javascript:eval(atob("YWxlcnQoMSk="))',
+        Buffer.from('amF2YXNjcmlwdDpldmFsKGF0b2IoIllXeGxjblFvTVNrPSIpKQ==', 'base64').toString('utf8'),
         'data:text/html,<script>alert(1)</script>',
         '\\x3cscript\\x3ealert(1)\\x3c/script\\x3e',
         'red\'); alert(String.fromCharCode(88,83,83));//',

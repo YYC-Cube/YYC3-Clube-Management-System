@@ -5,7 +5,7 @@
  * @author YYC
  */
 
-const { execSync } = require('child_process');
+const { execFile, execSync } = require('child_process');
 
 console.log('🎯 开始重置应用数据...');
 
@@ -40,15 +40,21 @@ fs.writeFileSync(tempHtmlPath, tempHtml);
 // 尝试使用默认浏览器打开临时HTML文件来清除localStorage
 console.log('🔄 正在清除localStorage数据...');
 try {
-  // 根据操作系统打开浏览器
-  const platform = process.platform;
-  if (platform === 'win32') {
-    execSync(`start ${tempHtmlPath}`);
-  } else if (platform === 'darwin') {
-    execSync(`open ${tempHtmlPath}`);
-  } else {
-    // Linux
-    execSync(`xdg-open ${tempHtmlPath}`);
+  // 根据操作系统打开浏览器（固定命令 + 参数数组，不经 shell 拼接）
+  const onOpen = (error) => {
+    if (error) {
+      console.error('❌ 打开浏览器失败:', error.message);
+    }
+  };
+  switch (process.platform) {
+    case 'win32':
+      execFile('cmd', ['/c', 'start', '', tempHtmlPath], onOpen);
+      break;
+    case 'darwin':
+      execFile('open', [tempHtmlPath], onOpen);
+      break;
+    default:
+      execFile('xdg-open', [tempHtmlPath], onOpen);
   }
   
   // 给浏览器一些时间来执行脚本

@@ -8,7 +8,7 @@
  * @updated 2025-01-06
  */
 
-import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest'
+// Jest 全局：describe/it/expect/beforeEach/afterEach；原 vitest 导入已清理（协同规范 05 §6 治理②）
 import { render, screen, fireEvent, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import React from 'react'
@@ -438,11 +438,11 @@ describe('核心功能页面集成测试', () => {
   const user = userEvent.setup()
 
   beforeEach(() => {
-    vi.clearAllMocks()
+    jest.clearAllMocks()
   })
 
   afterEach(() => {
-    vi.restoreAllMocks()
+    jest.restoreAllMocks()
   })
 
   describe('仪表盘页面测试', () => {
