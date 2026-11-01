@@ -3,7 +3,9 @@
  * 每事件独立事务：验签与校验之后 → 去重 → 顺序校验 → 写日志 → 投影 → ACK。
  * 单条失败不影响同批其他事件（部分成功语义，逐事件返回结果明细）。
  */
-import { projectProductEvent, type QueryClient } from "./product-projection"
+import { projectProductEvent } from "./product-projection"
+import { projectMemberEvent } from "./member-projection"
+import type { QueryClient } from "./query-client"
 
 export interface IngestEvent {
   eventId: string
@@ -89,15 +91,26 @@ export async function ingestEvent(
     }
 
     // 投影（B 分支：master.* → operational_*）
-    if (event.eventType === "master.product.created" || event.eventType === "master.product.updated" || event.eventType === "master.product.deleted") {
-      const projection = await projectProductEvent(client, {
-        eventId: event.eventId,
-        eventType: event.eventType,
-        aggregateId: event.aggregateId,
-        tenantId: event.tenantId,
-        storeId: event.storeId,
-        payload: event.payload,
-      })
+    const projectionTarget = masterProjectionOf(event.eventType)
+    if (projectionTarget) {
+      const projection =
+        projectionTarget === "product"
+          ? await projectProductEvent(client, {
+              eventId: event.eventId,
+              eventType: event.eventType,
+              aggregateId: event.aggregateId,
+              tenantId: event.tenantId,
+              storeId: event.storeId,
+              payload: event.payload,
+            })
+          : await projectMemberEvent(client, {
+              eventId: event.eventId,
+              eventType: event.eventType,
+              aggregateId: event.aggregateId,
+              tenantId: event.tenantId,
+              storeId: event.storeId,
+              payload: event.payload,
+            })
       if (!projection.applied) {
         await client.query(
           `UPDATE public.sync_event_log SET status = 'rejected'
@@ -147,6 +160,13 @@ export async function ingestBatch(
 
 function envelopeAggregateType(event: IngestEvent): string {
   return event.aggregateType
+}
+
+/** master.* 投影路由：已实现投影的域（room/staff/artist 随模块建设逐步加入）。 */
+function masterProjectionOf(eventType: string): "product" | "member" | null {
+  if (eventType.startsWith("master.product.")) return "product"
+  if (eventType.startsWith("master.member.")) return "member"
+  return null
 }
 
 function writerOf(event: IngestEvent): string {

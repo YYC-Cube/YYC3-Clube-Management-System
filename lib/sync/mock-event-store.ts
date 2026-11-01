@@ -31,6 +31,21 @@ export interface MockProductRow {
   payload: Record<string, unknown>
 }
 
+export interface MockMemberRow {
+  id: string
+  tenant_id: string
+  store_id: string
+  card_no: string | null
+  name: string | null
+  phone_masked: string | null
+  balance_cents: number
+  points: number
+  record_version: number
+  status: string
+  deleted: boolean
+  payload: Record<string, unknown>
+}
+
 const EVENT_INSERT = "INSERT INTO public.sync_event_log"
 const EVENT_MAX_SEQ = "SELECT MAX(sequence) AS sequence FROM public.sync_event_log"
 const EVENT_REJECT = "UPDATE public.sync_event_log SET status = 'rejected'"
@@ -38,14 +53,19 @@ const PRODUCT_VERSION = "SELECT record_version FROM public.operational_product W
 const PRODUCT_DELETE = "UPDATE public.operational_product"
 const PRODUCT_INSERT = "INSERT INTO public.operational_product"
 const PRODUCT_UPDATE = "UPDATE public.operational_product SET name = $2"
+const MEMBER_VERSION = "SELECT record_version FROM public.operational_member WHERE id = $1"
+const MEMBER_DELETE = "UPDATE public.operational_member SET deleted"
+const MEMBER_INSERT = "INSERT INTO public.operational_member"
+const MEMBER_UPDATE = "UPDATE public.operational_member SET card_no"
 
 export interface MockStore {
   events: Map<string, MockEventRow>
   products: Map<string, MockProductRow>
+  members: Map<string, MockMemberRow>
 }
 
 export function createMockStore(): MockStore {
-  return { events: new Map(), products: new Map() }
+  return { events: new Map(), products: new Map(), members: new Map() }
 }
 
 const globalForMock = globalThis as unknown as { __yyc3MockSyncStore?: MockStore }
@@ -149,6 +169,57 @@ function execute(store: MockStore, text: string, params: unknown[]): unknown[] {
       row.price_cents = Number(params[4])
       row.record_version = Number(params[8])
       row.status = String(params[7])
+      row.deleted = false
+      row.payload = typeof params[10] === "string" ? JSON.parse(params[10] as string) : {}
+    }
+    return []
+  }
+
+  if (normalized === MEMBER_VERSION) {
+    const row = store.members.get(String(params[0]))
+    return [{ record_version: row ? row.record_version : null }]
+  }
+
+  if (normalized.startsWith(MEMBER_DELETE)) {
+    const row = store.members.get(String(params[0]))
+    if (row) {
+      row.deleted = true
+      row.record_version = Number(params[2])
+      row.payload = typeof params[4] === "string" ? JSON.parse(params[4] as string) : {}
+    }
+    return []
+  }
+
+  if (normalized.startsWith(MEMBER_INSERT)) {
+    const id = String(params[0])
+    if (store.members.has(id)) return []
+    store.members.set(id, {
+      id,
+      tenant_id: String(params[1]),
+      store_id: String(params[2]),
+      card_no: params[3] === null ? null : String(params[3]),
+      name: params[4] === null ? null : String(params[4]),
+      phone_masked: params[5] === null ? null : String(params[5]),
+      balance_cents: Number(params[7]),
+      points: Number(params[8]),
+      record_version: Number(params[10]),
+      status: String(params[9]),
+      deleted: false,
+      payload: typeof params[12] === "string" ? JSON.parse(params[12] as string) : {},
+    })
+    return [{ id }]
+  }
+
+  if (normalized.startsWith(MEMBER_UPDATE)) {
+    const row = store.members.get(String(params[0]))
+    if (row) {
+      row.card_no = params[1] === null ? null : String(params[1])
+      row.name = params[2] === null ? null : String(params[2])
+      row.phone_masked = params[3] === null ? null : String(params[3])
+      row.balance_cents = Number(params[5])
+      row.points = Number(params[6])
+      row.status = String(params[7])
+      row.record_version = Number(params[8])
       row.deleted = false
       row.payload = typeof params[10] === "string" ? JSON.parse(params[10] as string) : {}
     }

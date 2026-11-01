@@ -28,8 +28,13 @@ export type HmacFailure =
   | "unknown_access_key"
   | "signature_mismatch"
 
-/** 实例内 nonce 缓存（容量上限淘汰，过期懒清理）。 */
-export class NonceCache {
+/** nonce 存储接口：实例内缓存（mock/单机）或 sync_nonce 表（多实例）。 */
+export interface NonceStore {
+  seen(nonce: string, now?: number): boolean | Promise<boolean>
+}
+
+/** 实例内 nonce 缓存（容量上限淘汰，过期懒清理）；多实例部署请用 sync_nonce 表。 */
+export class NonceCache implements NonceStore {
   private readonly entries = new Map<string, number>()
 
   constructor(private readonly capacity = 10_000) {}
@@ -83,13 +88,13 @@ export interface HmacVerifyResult {
 }
 
 /** 校验签名头；identity 为服务端登记的 key→tenant 绑定（env 注入，见 route）。 */
-export function verifySyncHmac(
+export async function verifySyncHmac(
   headers: Headers,
   rawBody: string,
   registered: Record<string, { secret: string; tenantId: string }>,
   now = Date.now(),
-  nonceCacheInstance: NonceCache = nonceCache,
-): HmacVerifyResult {
+  nonceStore: NonceStore = nonceCache,
+): Promise<HmacVerifyResult> {
   const accessKey = headers.get("x-yyc3-access-key")?.trim() ?? ""
   const timestamp = headers.get("x-yyc3-timestamp")?.trim() ?? ""
   const nonce = headers.get("x-yyc3-nonce")?.trim() ?? ""
@@ -108,7 +113,7 @@ export function verifySyncHmac(
   if (!record) {
     return { ok: false, failure: "unknown_access_key" }
   }
-  if (nonceCacheInstance.seen(nonce, now)) {
+  if (await nonceStore.seen(nonce, now)) {
     return { ok: false, failure: "nonce_replayed" }
   }
   const expected = computeSignature(record.secret, accessKey, timestamp, nonce, rawBody)

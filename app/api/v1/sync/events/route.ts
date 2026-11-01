@@ -7,7 +7,7 @@
  */
 import { type NextRequest, NextResponse } from "next/server"
 import { validateEnvelopes } from "@/lib/sync/envelope"
-import { verifySyncHmac } from "@/lib/sync/hmac"
+import { verifySyncHmac, type NonceStore } from "@/lib/sync/hmac"
 import { ingestBatch, type IngestAck } from "@/lib/sync/ingest"
 
 export const dynamic = "force-dynamic"
@@ -29,7 +29,7 @@ function registeredKeys(): Record<string, RegisteredKey> {
 export async function POST(request: NextRequest): Promise<NextResponse> {
   const rawBody = await request.text()
 
-  const hmac = verifySyncHmac(request.headers, rawBody, registeredKeys())
+  const hmac = await verifySyncHmac(request.headers, rawBody, registeredKeys(), Date.now(), await resolveNonceStore())
   if (!hmac.ok || !hmac.identity) {
     return NextResponse.json(
       { success: false, error: `服务间认证失败：${hmac.failure ?? "unknown"}`, code: "unauthorized" },
@@ -93,6 +93,21 @@ async function openEventStore(): Promise<{
       rows: await query<T>(text, params),
     }),
   }
+}
+
+/** nonce 存储：pg 方言用 sync_nonce 表（多实例安全）；mock 方言用实例内缓存。 */
+async function resolveNonceStore(): Promise<NonceStore> {
+  if (process.env.SYNC_EVENT_LOG_DIALECT === "mock") {
+    const { nonceCache } = await import("@/lib/sync/hmac")
+    return nonceCache
+  }
+  const { PgNonceStore } = await import("@/lib/sync/pg-nonce-store")
+  const { query } = await import("@/lib/db/pg")
+  return new PgNonceStore({
+    query: async <T>(text: string, params?: unknown[]) => ({
+      rows: await query<T>(text, params),
+    }),
+  })
 }
 
 function NextOpenError(error: unknown): NextResponse {

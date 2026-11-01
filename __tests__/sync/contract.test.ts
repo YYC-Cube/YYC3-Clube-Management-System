@@ -64,46 +64,46 @@ describe("sync/hmac", () => {
     return h
   }
 
-  it("合法签名通过并返回租户身份", () => {
+  it("合法签名通过并返回租户身份", async () => {
     const now = Date.now()
     const body = JSON.stringify({ events: [] })
-    const result = verifySyncHmac(headers(body, String(now), `n-${randomUUID()}`), body, registered(), now)
+    const result = await verifySyncHmac(headers(body, String(now), `n-${randomUUID()}`), body, registered(), now)
     expect(result.ok).toBe(true)
     expect(result.identity?.tenantId).toBe(TENANT)
   })
 
-  it("缺失头 / 时间窗外 / 未知 key / 签名篡改 全部拒绝", () => {
+  it("缺失头 / 时间窗外 / 未知 key / 签名篡改 全部拒绝", async () => {
     const now = Date.now()
     const body = "{}"
     const empty = new Headers()
-    expect(verifySyncHmac(empty, body, registered(), now).failure).toBe("missing_headers")
+    expect((await verifySyncHmac(empty, body, registered(), now)).failure).toBe("missing_headers")
 
     const stale = headers(body, String(now - 10 * 60 * 1000), `n-${randomUUID()}`)
-    expect(verifySyncHmac(stale, body, registered(), now).failure).toBe("timestamp_out_of_window")
+    expect((await verifySyncHmac(stale, body, registered(), now)).failure).toBe("timestamp_out_of_window")
 
     const unknownKey = new Headers()
     unknownKey.set("x-yyc3-access-key", "ghost")
     unknownKey.set("x-yyc3-timestamp", String(now))
     unknownKey.set("x-yyc3-nonce", `n-${randomUUID()}`)
     unknownKey.set("x-yyc3-signature", "deadbeef")
-    expect(verifySyncHmac(unknownKey, body, registered(), now).failure).toBe("unknown_access_key")
+    expect((await verifySyncHmac(unknownKey, body, registered(), now)).failure).toBe("unknown_access_key")
 
     const tampered = new Headers()
     tampered.set("x-yyc3-access-key", ACCESS_KEY)
     tampered.set("x-yyc3-timestamp", String(now))
     tampered.set("x-yyc3-nonce", `n-${randomUUID()}`)
     tampered.set("x-yyc3-signature", "0".repeat(64))
-    expect(verifySyncHmac(tampered, body, registered(), now).failure).toBe("signature_mismatch")
+    expect((await verifySyncHmac(tampered, body, registered(), now)).failure).toBe("signature_mismatch")
   })
 
-  it("nonce 重放被拒绝（同 nonce 二次使用）", () => {
+  it("nonce 重放被拒绝（同 nonce 二次使用）", async () => {
     const now = Date.now()
     const body = "{}"
     const nonce = `n-${randomUUID()}`
     const cache = new NonceCache()
-    const first = verifySyncHmac(headers(body, String(now), nonce), body, registered(), now, cache)
+    const first = await verifySyncHmac(headers(body, String(now), nonce), body, registered(), now, cache)
     expect(first.ok).toBe(true)
-    const second = verifySyncHmac(headers(body, String(now), nonce), body, registered(), now, cache)
+    const second = await verifySyncHmac(headers(body, String(now), nonce), body, registered(), now, cache)
     expect(second.ok).toBe(false)
     expect(second.failure).toBe("nonce_replayed")
   })
@@ -249,5 +249,54 @@ describe("sync/ingest + 投影（内存存储）", () => {
     const row = getMockStoreSnapshot().products.get(productId)
     expect(row?.deleted).toBe(true)
     expect(row?.record_version).toBe(2)
+  })
+
+  it("master.member.created 投影：手机号脱敏 + 旧版本 version_conflict（C7）", async () => {
+    const { getMockStoreSnapshot } = await import("@/lib/sync/mock-event-store")
+    getMockStoreSnapshot().events.clear()
+    getMockStoreSnapshot().products.clear()
+    const client = freshClient()
+    const memberId = `mbr_${randomUUID()}`
+
+    const created = buildEnvelope({
+      eventType: "master.member.created",
+      aggregateType: "member",
+      aggregateId: memberId,
+      payload: {
+        operation: "create",
+        writer: "app",
+        recordVersion: 1,
+        memberId,
+        cardNo: "VIP-001",
+        name: "契约会员",
+        phone: "13800138000",
+        balanceCents: 50000,
+        points: 1200,
+      },
+    })
+    const outcome = await ingestBatch(client, [toIngest(created)])
+    expect(outcome.accepted).toBe(1)
+
+    const row = getMockStoreSnapshot().members.get(memberId)
+    expect(row?.phone_masked).toBe("138****00")
+    expect(row?.record_version).toBe(1)
+
+    // 旧版本重放（新 eventId、同版本）→ version_conflict
+    const stale = buildEnvelope({
+      eventType: "master.member.updated",
+      aggregateType: "member",
+      aggregateId: memberId,
+      sequence: 2,
+      payload: {
+        operation: "update",
+        writer: "app",
+        recordVersion: 1,
+        memberId,
+        name: "过期版本",
+      },
+    })
+    const staleOutcome = await ingestBatch(client, [toIngest(stale)])
+    expect(staleOutcome.rejected).toHaveLength(1)
+    expect(staleOutcome.rejected[0].code).toBe("version_conflict")
   })
 })
