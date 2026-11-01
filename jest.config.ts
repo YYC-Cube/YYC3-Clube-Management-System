@@ -33,12 +33,12 @@ const customJestConfig: Config = {
       '<rootDir>/node_modules/.pnpm/@mswjs+interceptors@0.41.9/node_modules/@mswjs/interceptors/lib/browser/interceptors/WebSocket/index.cjs',
     '^@mswjs/interceptors/XMLHttpRequest$':
       '<rootDir>/node_modules/.pnpm/@mswjs+interceptors@0.41.9/node_modules/@mswjs/interceptors/lib/node/interceptors/XMLHttpRequest/index.cjs',
-    // @open-draft/deferred-promise 仅 ESM：CJS stub（jsdom 渲染测试不触发兑现）
-    '^@open-draft/deferred-promise$': '<rootDir>/__tests__/stubs/deferred-promise.cjs',
-    // rettime 仅发布 ESM：以 CJS stub 替代（jsdom 测试不触发真实拦截）
-    '^rettime$': '<rootDir>/__tests__/stubs/rettime.cjs',
-    // until-async：lib 为 ESM；以 CJS stub 替代（jsdom 测试不触发真实拦截重试）
-    '^until-async$': '<rootDir>/__tests__/stubs/until-async.cjs',
+    // 三包仅发布 ESM：esbuild 转译真实包为 CJS 入 vendor（msw XHR 真实拦截依赖
+    // rettime Emitter.emitAsPromise——stub 缺该函数是 XHR 专项根因）。
+    // 再生：bash scripts/msw-vendor.sh（msw/@mswjs/interceptors 升版后必须重跑）
+    '^@open-draft/deferred-promise$': '<rootDir>/__tests__/vendor/deferred-promise.cjs',
+    '^rettime$': '<rootDir>/__tests__/vendor/rettime.cjs',
+    '^until-async$': '<rootDir>/__tests__/vendor/until-async.cjs',
   },
   testEnvironment: 'jest-environment-jsdom',
   collectCoverageFrom: [
@@ -65,7 +65,7 @@ const customJestConfig: Config = {
     '**/*.(test|spec).{js,jsx,ts,tsx}',
   ],
   // ③类生成式测试治理：archive-* 归档批次不进门禁；components/dialogs 为 msw 重写稿
-  // （resolver/listen 全通，XHR 拦截语义由独立 msw-xhr 测试持续验证）
+  // （resolver/listen 全通；XHR 拦截语义已定案——msw-xhr 转正全绿，见 vendor 三链转译）
   testPathIgnorePatterns: ['/node_modules/', '__tests__/archive-'],
   transform: {
     '^.+\\.(ts|tsx)$': 'ts-jest',

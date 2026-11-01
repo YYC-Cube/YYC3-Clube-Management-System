@@ -63,6 +63,7 @@ class MockResponse {
   public ok: boolean
   private _body: any
   private _bodyUsed: boolean = false
+  private _bodyStream: ReadableStream<Uint8Array> | null = null
 
   constructor(body?: any, init?: { status?: number; statusText?: string; headers?: any }) {
     this._body = body
@@ -79,6 +80,28 @@ class MockResponse {
       headers: { 'Content-Type': 'application/json', ...(init?.headers || {}) },
     })
     return response
+  }
+
+  // msw XHR respondWith 以 response.body.getReader() 流式收集 responseBuffer；
+  // 缺 body 时直接 finalizeResponse 导致 responseText 为空串。惰性单 chunk 流。
+  get body(): ReadableStream<Uint8Array> | null {
+    if (this._body == null) return null
+    if (!this._bodyStream) {
+      const payload =
+        typeof this._body === 'string'
+          ? this._body
+          : typeof this._body === 'object'
+            ? JSON.stringify(this._body)
+            : String(this._body)
+      const bytes = new TextEncoder().encode(payload)
+      this._bodyStream = new ReadableStream<Uint8Array>({
+        start(controller) {
+          controller.enqueue(bytes)
+          controller.close()
+        },
+      }) as ReadableStream<Uint8Array>
+    }
+    return this._bodyStream
   }
 
   async json() {
@@ -115,6 +138,14 @@ class MockResponse {
     }
 
     return ''
+  }
+
+  // msw respondWith → getBodyByteLength 依赖 Body mixin 的 arrayBuffer
+  // （undici 补丁同款实现；130 行 global.Response 覆写后 MockResponse 是唯一 Response 实现）
+  async arrayBuffer() {
+    const text = await this.text()
+    const buf = Buffer.from(text, 'utf-8')
+    return buf.buffer.slice(buf.byteOffset, buf.byteOffset + buf.byteLength)
   }
 
   clone() {

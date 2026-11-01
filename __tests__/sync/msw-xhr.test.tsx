@@ -2,8 +2,9 @@
  * @jest-environment ./node_modules/@happy-dom/jest-environment/lib/index.js
  *
  * msw XHR 拦截语义独立验证（不依赖 dialogs 目录启停）。
- * 闭环：setup-server listen → fetch/XHR → XMLHttpRequestInterceptor → mock 响应
- * → 断言未发生真实网络（listen error 语义下未拦截请求会抛错而非静默放行）。
+ * 闭环：setup-server listen → XHR → XMLHttpRequestInterceptor → mock 响应
+ * → 断言未发生真实网络（若 msw 未拦截，happy-dom XHR 直连将 ECONNREFUSED → network-failed；
+ *   两条用例均非 network-failed 即证明响应全部来自 mock 层）。
  */
 import { render, screen, waitFor } from "@testing-library/react"
 import React from "react"
@@ -17,24 +18,29 @@ describe("msw XHR 拦截语义（listen error 闭环）", () => {
   afterAll(() => server.close())
 
   function Probe(): React.ReactElement {
-    const [name, setName] = React.useState<string>("")
-    const [failed, setFailed] = React.useState(false)
+    const [status, setStatus] = React.useState<string>("loading")
     React.useEffect(() => {
       // XHR 语义本义：直接走 XMLHttpRequest（XMLHttpRequestInterceptor 的 patch 目标）
       const xhr = new XMLHttpRequest()
       xhr.open("GET", "/api/probe")
       xhr.onload = () => {
         try {
-          setName(JSON.parse(xhr.responseText).name)
+          const parsed: { name?: string | null; message?: string } =
+            JSON.parse(xhr.responseText)
+          // 兜底 handler 返回 {success:true,data:null} → name 为空；
+          // 区分「命名 mock 命中」与「兜底 mock 命中」，两者均证明来自 mock 层
+          if (parsed.name == null) setStatus("fallback-hit")
+          else if (parsed.name === "TypeError" || parsed.name === "Error")
+            setStatus(`${parsed.name}:${String(parsed.message).slice(0, 120)}`)
+          else setStatus(String(parsed.name))
         } catch {
-          setFailed(true)
+          setStatus(`parse-failed:${xhr.status}:${xhr.responseText.slice(0, 80)}`)
         }
       }
-      xhr.onerror = () => setFailed(true)
+      xhr.onerror = () => setStatus("network-failed")
       xhr.send()
     }, [])
-    if (failed) return <div data-testid="probe-failed">network-failed</div>
-    return <div data-testid="probe-name">{name || "loading"}</div>
+    return <div data-testid="probe-status">{status}</div>
   }
 
   it("XMLHttpRequest 请求被 msw 拦截并返回 mock 数据（无真实网络）", async () => {
@@ -46,21 +52,23 @@ describe("msw XHR 拦截语义（listen error 闭环）", () => {
     render(<Probe />)
     await waitFor(
       () => {
-        const node = screen.getByTestId("probe-name")
-        expect(node.textContent).toBe("msw-xhr-ok")
+        expect(screen.getByTestId("probe-status").textContent).toBe(
+          "msw-xhr-ok",
+        )
       },
       { timeout: 3000 },
     )
-    expect(screen.queryByTestId("probe-failed")).toBeNull()
   })
 
-  it("未处理请求在 error 语义下不会静默真实联网（走 mock 兜底或错误响应）", async () => {
-    // 默认兜底 handler（msw-server）覆盖任意路径 → 组件收到 success:null
+  it("未显式 mock 的路径命中兜底 handler——响应来自 mock 层而非真实网络", async () => {
+    // 兜底 http.all("*") 使请求不存在「未处理」形态；若拦截链断裂，
+    // happy-dom XHR 直连 ECONNREFUSED → network-failed，而非 fallback-hit
     render(<Probe />)
     await waitFor(
       () => {
-        const failed = screen.queryByTestId("probe-failed")
-        expect(failed).not.toBeNull()
+        expect(screen.getByTestId("probe-status").textContent).toBe(
+          "fallback-hit",
+        )
       },
       { timeout: 3000 },
     )
