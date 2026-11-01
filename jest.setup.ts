@@ -1,6 +1,19 @@
 import '@testing-library/jest-dom'
 import { jest } from '@jest/globals'
 import 'whatwg-fetch' // 修复fetch未定义
+import { TextEncoder, TextDecoder } from 'node:util'
+
+// msw/node 依赖 Node 全局（jsdom 环境缺省）
+if (!globalThis.TextEncoder) globalThis.TextEncoder = TextEncoder
+if (!globalThis.TextDecoder) globalThis.TextDecoder = TextDecoder as unknown as typeof globalThis.TextDecoder
+// msw/interceptors 依赖 Web Streams（jsdom 缺省；Node 全局可用）
+import { TransformStream, ReadableStream, WritableStream } from 'node:stream/web'
+if (!globalThis.TransformStream) globalThis.TransformStream = TransformStream as typeof TransformStream
+if (!globalThis.ReadableStream) globalThis.ReadableStream = ReadableStream as typeof ReadableStream
+if (!globalThis.WritableStream) globalThis.WritableStream = WritableStream as typeof WritableStream
+// msw websocket 管理器依赖 BroadcastChannel（jsdom 缺省；Node 全局可用）
+import { BroadcastChannel } from 'node:worker_threads'
+if (!globalThis.BroadcastChannel) globalThis.BroadcastChannel = BroadcastChannel as typeof BroadcastChannel
 
 // Mock完整的Response类
 class MockResponse {
