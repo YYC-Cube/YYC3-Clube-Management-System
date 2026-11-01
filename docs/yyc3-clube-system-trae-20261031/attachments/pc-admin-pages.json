@@ -1,0 +1,5134 @@
+[
+  {
+    "module": "销售",
+    "group": null,
+    "name": "订单列表",
+    "hash": "#/sale_manage/order_list",
+    "activeTab": "订单列表",
+    "headings": [],
+    "columns": [
+      "订单 序号",
+      "消费门店",
+      "包厢号",
+      "区域",
+      "订单编号",
+      "消费 金额",
+      "实收 金额",
+      "退款 金额",
+      "下单时间",
+      "订单 类型",
+      "支付 类型",
+      "支付 状态",
+      "订单 来源",
+      "导购 员工",
+      "操作人",
+      "操作"
+    ],
+    "buttons": [
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "请选择包厢号",
+      "请选择支付状态",
+      "请输入订单号",
+      "请选择导购员工"
+    ],
+    "rows": 1,
+    "tableCount": 12,
+    "dialogs": [],
+    "routeChanged": false
+  },
+  {
+    "module": "销售",
+    "group": null,
+    "name": "账单列表",
+    "hash": "#/sale_manage/bill_list",
+    "activeTab": "账单列表",
+    "headings": [],
+    "columns": [
+      "账单 序号",
+      "消费门店",
+      "包厢 类型",
+      "消费 包厢",
+      "区域",
+      "账单号",
+      "开房类型",
+      "消费 金额",
+      "实收 金额",
+      "退款 金额",
+      "预订 信息",
+      "发票 情况",
+      "发票 金额",
+      "挂账 担保人",
+      "操作"
+    ],
+    "buttons": [
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "请选择包厢",
+      "请输入账单号",
+      "请输入预订信息",
+      "担保人姓名或工号"
+    ],
+    "rows": 1,
+    "tableCount": 22,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "销售",
+    "group": null,
+    "name": "在线预订",
+    "hash": "#/sale_manage/book_order",
+    "activeTab": "在线预订",
+    "headings": [],
+    "columns": [
+      "包厢类型",
+      "包厢号",
+      "预订单号",
+      "套餐名称",
+      "下单时间",
+      "到店时间",
+      "预订昵称",
+      "预订手机号",
+      "实收金额",
+      "退款金额",
+      "订单来源",
+      "使用状态",
+      "操作"
+    ],
+    "buttons": [
+      "导出",
+      "查询"
+    ],
+    "placeholders": [
+      "请选择包厢类型",
+      "请输入预订单号"
+    ],
+    "rows": 1,
+    "tableCount": 34,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "销售",
+    "group": null,
+    "name": "支付流水",
+    "hash": "#/sale_manage/pay_flow",
+    "activeTab": "支付流水",
+    "headings": [
+      "支付流水"
+    ],
+    "columns": [
+      "支付时间",
+      "门店",
+      "支付操作人",
+      "实收金额",
+      "退款金额",
+      "支付类型",
+      "对应账单"
+    ],
+    "buttons": [
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "请选择支付类型"
+    ],
+    "rows": 1,
+    "tableCount": 44,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "销售",
+    "group": null,
+    "name": "预订列表",
+    "hash": "#/sale_manage/book_list",
+    "activeTab": "预订列表",
+    "headings": [],
+    "columns": [
+      "预订号",
+      "预订时间",
+      "包厢号",
+      "包厢类型",
+      "包厢区域",
+      "预订员工",
+      "客户姓名",
+      "客户电话",
+      "到店人数",
+      "预订到店时间",
+      "状态",
+      "操作人",
+      "班次",
+      "备注",
+      "操作"
+    ],
+    "buttons": [
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "请选择包厢类型",
+      "请选择预订员工",
+      "请输入客户姓名",
+      "请输入客户手机号",
+      "请输入备注"
+    ],
+    "rows": 1,
+    "tableCount": 55,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "商品",
+    "group": null,
+    "name": "商品管理",
+    "hash": "#/commodity_manage/commodity_list",
+    "activeTab": "商品管理",
+    "headings": [],
+    "columns": [],
+    "buttons": [],
+    "placeholders": [],
+    "rows": 0,
+    "tableCount": 66,
+    "dialogs": [],
+    "routeChanged": false
+  },
+  {
+    "module": "商品",
+    "group": null,
+    "name": "商品套餐列表",
+    "hash": "#/commodity_manage/commodity_package_list",
+    "activeTab": "商品套餐列表",
+    "headings": [],
+    "columns": [],
+    "buttons": [],
+    "placeholders": [],
+    "rows": 0,
+    "tableCount": 70,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "商品",
+    "group": null,
+    "name": "开房套餐名称",
+    "hash": "#/commodity_manage/package_name",
+    "activeTab": "开房套餐名称",
+    "headings": [],
+    "columns": [
+      "图片",
+      "门店",
+      "套餐类型",
+      "套餐名称",
+      "时长/分钟",
+      "操作"
+    ],
+    "buttons": [
+      "设置开房套餐名称",
+      "查询"
+    ],
+    "placeholders": [
+      "请输入套餐名称"
+    ],
+    "rows": 1,
+    "tableCount": 75,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "商品",
+    "group": null,
+    "name": "开房套餐价格",
+    "hash": "#/commodity_manage/package_price",
+    "activeTab": "开房套餐价格",
+    "headings": [],
+    "columns": [
+      "显示 顺序",
+      "门店",
+      "套餐类型",
+      "套餐名称",
+      "时长 /分钟",
+      "原价",
+      "优惠价",
+      "预订 优惠价",
+      "每日可订 数量",
+      "有效 星期日",
+      "适用包厢 类型",
+      "可使用时间",
+      "状态",
+      "操作"
+    ],
+    "buttons": [
+      "新增开房套餐价格",
+      "开房套餐导入模板下载",
+      "导入开房套餐",
+      "批量修改价格",
+      "开房套餐批量修改",
+      "查询"
+    ],
+    "placeholders": [
+      "请输入套餐名称"
+    ],
+    "rows": 1,
+    "tableCount": 84,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "商品",
+    "group": null,
+    "name": "计时开房列表",
+    "hash": "#/commodity_manage/timing_package",
+    "activeTab": "计时开房列表",
+    "headings": [],
+    "columns": [
+      "门店",
+      "优先级",
+      "适用包厢类型",
+      "包厢号",
+      "有效星期日",
+      "可使用时间",
+      "计时单价/小时",
+      "低消金额",
+      "操作"
+    ],
+    "buttons": [
+      "计时开房设置",
+      "包断价格管理",
+      "批量修改价格",
+      "查询"
+    ],
+    "placeholders": [],
+    "rows": 10,
+    "tableCount": 89,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "商品",
+    "group": null,
+    "name": "不满一小时按小时算",
+    "hash": "#/commodity_manage/setting_package",
+    "activeTab": "不满一小时按小时算",
+    "headings": [],
+    "columns": [
+      "门店",
+      "不满一小时按一小时算",
+      "操作"
+    ],
+    "buttons": [],
+    "placeholders": [],
+    "rows": 1,
+    "tableCount": 92,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "商品",
+    "group": null,
+    "name": "商品配送",
+    "hash": "#/commodity_manage/commodity_distribt",
+    "activeTab": "商品配送",
+    "headings": [],
+    "columns": [
+      "优先级",
+      "适用门店",
+      "规则名称",
+      "适用包厢",
+      "使用日期",
+      "使用时间",
+      "适用星期几",
+      "适用商品",
+      "配送 起购数",
+      "配送方式",
+      "配送商品",
+      "操作"
+    ],
+    "buttons": [
+      "新增配送规则",
+      "查询"
+    ],
+    "placeholders": [
+      "请选择包厢号",
+      "请输入规则名称",
+      "请输入适用商品名称",
+      "请输入配送商品名称"
+    ],
+    "rows": 1,
+    "tableCount": 100,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "商品",
+    "group": null,
+    "name": "开房小吃",
+    "hash": "#/commodity_manage/commodity_snack",
+    "activeTab": "开房小吃",
+    "headings": [],
+    "columns": [
+      "优先级",
+      "适用门店",
+      "适用包厢",
+      "包厢类型",
+      "有效星期几",
+      "使用时间",
+      "免费小吃",
+      "收费小吃",
+      "操作"
+    ],
+    "buttons": [
+      "新增开房小吃",
+      "查询"
+    ],
+    "placeholders": [],
+    "rows": 1,
+    "tableCount": 107,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "商品",
+    "group": null,
+    "name": "价格策略",
+    "hash": "#/commodity_manage/price_strategy",
+    "activeTab": "价格策略",
+    "headings": [],
+    "columns": [
+      "适用门店",
+      "策略名称",
+      "适用包厢",
+      "适用时间段",
+      "适用时间区间",
+      "操作"
+    ],
+    "buttons": [
+      "新增价格策略",
+      "查询"
+    ],
+    "placeholders": [
+      "请选择",
+      "请选择状态",
+      "请输入策略名称"
+    ],
+    "rows": 0,
+    "tableCount": 117,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "商品",
+    "group": null,
+    "name": "积分兑换",
+    "hash": "#/commodity_manage/point_exchange",
+    "activeTab": "积分兑换",
+    "headings": [],
+    "columns": [
+      "兑换类型",
+      "类型名称",
+      "商品/卡券名称",
+      "单位",
+      "兑换积分",
+      "消费者端显示",
+      "可兑换总数/已兑换",
+      "每个用户可兑换数量",
+      "操作"
+    ],
+    "buttons": [
+      "查询",
+      "添加兑换"
+    ],
+    "placeholders": [
+      "请输入套餐/商品别名"
+    ],
+    "rows": 1,
+    "tableCount": 124,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "商品",
+    "group": null,
+    "name": "自助大厅商品推荐类型设置",
+    "hash": "#/commodity_manage/self_roll_set",
+    "activeTab": "自助大厅商品推荐类型设置",
+    "headings": [],
+    "columns": [
+      "门店",
+      "推荐序号",
+      "标题",
+      "商品类型",
+      "推荐商品/套餐",
+      "操作"
+    ],
+    "buttons": [
+      "设置",
+      "查询"
+    ],
+    "placeholders": [
+      "请输入标题"
+    ],
+    "rows": 1,
+    "tableCount": 128,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "商品",
+    "group": null,
+    "name": "商品免单规则设置",
+    "hash": "#/commodity_manage/commodity_free_rule",
+    "activeTab": "商品免单规则设置",
+    "headings": [
+      "商品免单规则设置"
+    ],
+    "columns": [
+      "行号",
+      "规则名称",
+      "适用门店",
+      "适用包厢",
+      "使用日期",
+      "使用时间",
+      "适用星期几",
+      "适用角色",
+      "适用商品",
+      "操作"
+    ],
+    "buttons": [
+      "新增商品免单规则",
+      "查询"
+    ],
+    "placeholders": [
+      "请选择门店",
+      "请输入规则名称"
+    ],
+    "rows": 0,
+    "tableCount": 134,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "商品",
+    "group": null,
+    "name": "花管理",
+    "hash": "#/commodity_manage/flower_manage",
+    "activeTab": "花管理",
+    "headings": [],
+    "columns": [],
+    "buttons": [],
+    "placeholders": [],
+    "rows": 0,
+    "tableCount": 138,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "商品",
+    "group": null,
+    "name": "首次下单必点商品设置",
+    "hash": "#/commodity_manage/commodity_must_order",
+    "activeTab": "首次下单必点商品设置",
+    "headings": [],
+    "columns": [
+      "优先级",
+      "适用包厢",
+      "包厢类型",
+      "有效星期几",
+      "使用时间",
+      "必点商品",
+      "状态",
+      "操作"
+    ],
+    "buttons": [
+      "查询",
+      "新增规则"
+    ],
+    "placeholders": [
+      "请选择门店",
+      "请输入包厢号",
+      "请选择包厢类型",
+      "请选择状态",
+      "请输入商品名称"
+    ],
+    "rows": 0,
+    "tableCount": 144,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "仓库",
+    "group": null,
+    "name": "仓库管理",
+    "hash": "#/stock_management/store_getStoreList",
+    "activeTab": "仓库管理",
+    "headings": [],
+    "columns": [
+      "门店",
+      "名称",
+      "存取酒仓库",
+      "操作"
+    ],
+    "buttons": [
+      "查询",
+      "新增仓库"
+    ],
+    "placeholders": [],
+    "rows": 2,
+    "tableCount": 8,
+    "dialogs": [],
+    "routeChanged": false
+  },
+  {
+    "module": "仓库",
+    "group": null,
+    "name": "出货仓管理",
+    "hash": "#/stock_management/store_getStoreProduceList",
+    "activeTab": "出货仓管理",
+    "headings": [],
+    "columns": [
+      "门店",
+      "出货点名称",
+      "区域",
+      "包厢号",
+      "商品属性",
+      "仓库",
+      "状态",
+      "操作"
+    ],
+    "buttons": [
+      "新增出货仓",
+      "查询"
+    ],
+    "placeholders": [
+      "请输入出货点名称"
+    ],
+    "rows": 1,
+    "tableCount": 11,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "仓库",
+    "group": null,
+    "name": "供应商管理",
+    "hash": "#/stock_management/supplier_management",
+    "activeTab": "供应商管理",
+    "headings": [],
+    "columns": [
+      "序号",
+      "供应商名称",
+      "联系人",
+      "联系方式",
+      "操作"
+    ],
+    "buttons": [
+      "添加供应商",
+      "合同价管理",
+      "查询"
+    ],
+    "placeholders": [
+      "请输入供应商名称"
+    ],
+    "rows": 3,
+    "tableCount": 18,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "仓库",
+    "group": null,
+    "name": "采购进货",
+    "hash": "#/stock_management/purchasing",
+    "activeTab": "采购进货",
+    "headings": [],
+    "columns": [
+      "进货单号",
+      "进货日期",
+      "门店",
+      "仓库",
+      "供应商",
+      "进货数量",
+      "进货总额",
+      "类型",
+      "操作人",
+      "操作"
+    ],
+    "buttons": [
+      "新增采购进货单",
+      "查询"
+    ],
+    "placeholders": [],
+    "rows": 1,
+    "tableCount": 25,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "仓库",
+    "group": null,
+    "name": "采购退货",
+    "hash": "#/stock_management/procurement_return",
+    "activeTab": "采购退货",
+    "headings": [],
+    "columns": [
+      "退购单号",
+      "退购日期",
+      "门店",
+      "仓库",
+      "供应商",
+      "退购数量",
+      "退购总额",
+      "操作人",
+      "操作"
+    ],
+    "buttons": [
+      "新增采购退货单",
+      "查询"
+    ],
+    "placeholders": [
+      "请选择供应商名称"
+    ],
+    "rows": 1,
+    "tableCount": 31,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "仓库",
+    "group": null,
+    "name": "库存调拨",
+    "hash": "#/stock_management/stock_getExchangeStockList",
+    "activeTab": "库存调拨",
+    "headings": [],
+    "columns": [
+      "库存调拨单号",
+      "调拨日期",
+      "调出门店",
+      "调出仓库",
+      "调入门店",
+      "调入仓库",
+      "调拨数量",
+      "调拨总额",
+      "操作人",
+      "操作"
+    ],
+    "buttons": [
+      "新增库存调拨单",
+      "查询"
+    ],
+    "placeholders": [
+      "请选择调出仓库",
+      "请选择调入仓库"
+    ],
+    "rows": 1,
+    "tableCount": 36,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "仓库",
+    "group": null,
+    "name": "报损单",
+    "hash": "#/stock_management/reported_loss",
+    "activeTab": "报损单",
+    "headings": [],
+    "columns": [
+      "报损单号",
+      "报损日期",
+      "门店",
+      "报损仓库",
+      "报损总量",
+      "报损总额",
+      "操作人",
+      "备注",
+      "操作"
+    ],
+    "buttons": [
+      "新增报损单",
+      "查询"
+    ],
+    "placeholders": [
+      "请选择操作人"
+    ],
+    "rows": 1,
+    "tableCount": 41,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "仓库",
+    "group": null,
+    "name": "领用单",
+    "hash": "#/stock_management/stock_receipts",
+    "activeTab": "领用单",
+    "headings": [],
+    "columns": [
+      "领用单号",
+      "领用日期",
+      "门店",
+      "领用仓库",
+      "领用总量",
+      "领用总额",
+      "操作人",
+      "领用人",
+      "备注",
+      "操作"
+    ],
+    "buttons": [
+      "新增领用单",
+      "查询"
+    ],
+    "placeholders": [
+      "请选择操作人",
+      "请选择领用人"
+    ],
+    "rows": 1,
+    "tableCount": 47,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "仓库",
+    "group": null,
+    "name": "库存盘点",
+    "hash": "#/stock_management/stock_checks",
+    "activeTab": "库存盘点",
+    "headings": [],
+    "columns": [
+      "操作时间",
+      "盘点单号",
+      "盘点日期",
+      "门店",
+      "盘点仓库",
+      "操作人",
+      "操作"
+    ],
+    "buttons": [
+      "新增盘点单",
+      "查询"
+    ],
+    "placeholders": [],
+    "rows": 1,
+    "tableCount": 52,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "仓库",
+    "group": null,
+    "name": "实时库存",
+    "hash": "#/stock_management/actual_stock",
+    "activeTab": "实时库存",
+    "headings": [],
+    "columns": [
+      "全部门店",
+      "仓库",
+      "商品名称",
+      "类型",
+      "单位",
+      "销售商品",
+      "实时库存",
+      "成本单价",
+      "成本总额",
+      "最小库存预警"
+    ],
+    "buttons": [
+      "按实时库存排序",
+      "按商品类型名称排序",
+      "导出",
+      "查询",
+      "缺货查询"
+    ],
+    "placeholders": [
+      "请输入商品名称",
+      "请选择截止时间"
+    ],
+    "rows": 10,
+    "tableCount": 55,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "仓库",
+    "group": null,
+    "name": "寄存管理",
+    "hash": "#/stock_management/deposit_manage",
+    "activeTab": "寄存管理",
+    "headings": [],
+    "columns": [
+      "行号",
+      "门店",
+      "存酒单号",
+      "存酒码",
+      "寄存时间",
+      "审核时间",
+      "修改到期时间次数",
+      "到期时间",
+      "用户姓名",
+      "微信昵称",
+      "手机号",
+      "寄存单状态",
+      "操作"
+    ],
+    "buttons": [
+      "清空寄存单",
+      "存取酒模板导入",
+      "导出",
+      "查询"
+    ],
+    "placeholders": [
+      "请输入手机号"
+    ],
+    "rows": 1,
+    "tableCount": 62,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "仓库",
+    "group": null,
+    "name": "库存不足是否出货",
+    "hash": "#/stock_management/shipment_set",
+    "activeTab": "库存不足是否出货",
+    "headings": [],
+    "columns": [
+      "门店",
+      "名称",
+      "库存不足是否出货",
+      "操作"
+    ],
+    "buttons": [
+      "新增设置"
+    ],
+    "placeholders": [],
+    "rows": 6,
+    "tableCount": 65,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "员工",
+    "group": null,
+    "name": "员工列表",
+    "hash": "#/staff_manage/employee_list",
+    "activeTab": "员工列表",
+    "headings": [],
+    "columns": [
+      "服务门店",
+      "组别",
+      "姓名",
+      "工号",
+      "手机号",
+      "职位",
+      "状态",
+      "操作"
+    ],
+    "buttons": [
+      "员工资料模板导入",
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "输入职位",
+      "请输入姓名",
+      "请选择组别"
+    ],
+    "rows": 10,
+    "tableCount": 68,
+    "dialogs": [],
+    "routeChanged": false
+  },
+  {
+    "module": "员工",
+    "group": null,
+    "name": "艺人列表",
+    "hash": "#/staff_manage/waiter_list",
+    "activeTab": "艺人列表",
+    "headings": [
+      "艺人列表"
+    ],
+    "columns": [
+      "门店",
+      "组别",
+      "主管",
+      "艺名",
+      "腰牌号",
+      "手机号",
+      "串台次数",
+      "台费余额",
+      "操作"
+    ],
+    "buttons": [
+      "艺人资料模板下载",
+      "艺人资料模板导入",
+      "串台次数模板下载",
+      "串台次数模板导入",
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "请选择门店",
+      "请选择组别",
+      "请选择",
+      "请输入查找内容"
+    ],
+    "rows": 0,
+    "tableCount": 70,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "设置",
+    "group": null,
+    "name": "门店设置",
+    "hash": "#/system_set/store_set",
+    "activeTab": "门店设置",
+    "headings": [
+      "营业设置",
+      "单据设置",
+      "寄存设置",
+      "点歌系统设置",
+      "仓库设置",
+      "打印单据设置"
+    ],
+    "columns": [],
+    "buttons": [],
+    "placeholders": [],
+    "rows": 0,
+    "tableCount": 199,
+    "dialogs": [],
+    "routeChanged": false
+  },
+  {
+    "module": "设置",
+    "group": null,
+    "name": "门店列表",
+    "hash": "#/system_set/store_list",
+    "activeTab": "门店列表",
+    "headings": [],
+    "columns": [
+      "门店名称",
+      "包厢数",
+      "门店地址",
+      "电话",
+      "营业时间",
+      "操作"
+    ],
+    "buttons": [
+      "添加门店",
+      "包厢导入模板下载",
+      "导入",
+      "小程序门店排序",
+      "查询"
+    ],
+    "placeholders": [
+      "请选择"
+    ],
+    "rows": 1,
+    "tableCount": 75,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "设置",
+    "group": null,
+    "name": "打印机设置",
+    "hash": "#/system_set/printer_list",
+    "activeTab": "打印机设置",
+    "headings": [],
+    "columns": [
+      "打印机ID",
+      "门店",
+      "区域",
+      "包厢号",
+      "打印机名称",
+      "状态",
+      "操作"
+    ],
+    "buttons": [
+      "添加打印机",
+      "商品总单打印设置",
+      "查询"
+    ],
+    "placeholders": [
+      "请输入打印机别名"
+    ],
+    "rows": 5,
+    "tableCount": 78,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "设置",
+    "group": null,
+    "name": "轮播歌曲设置",
+    "hash": "#/system_set/set_rotation_song",
+    "activeTab": "轮播歌曲设置",
+    "headings": [],
+    "columns": [
+      "优先级",
+      "门店",
+      "包厢",
+      "轮播歌曲类型",
+      "使用时间",
+      "离线默认轮播",
+      "有效星期日",
+      "适用日期",
+      "操作时间",
+      "操作"
+    ],
+    "buttons": [
+      "轮播歌曲设置"
+    ],
+    "placeholders": [],
+    "rows": 1,
+    "tableCount": 85,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "设置",
+    "group": null,
+    "name": "vod在线设置",
+    "hash": "#/system_set/vod_online_set",
+    "activeTab": "vod在线设置",
+    "headings": [],
+    "columns": [],
+    "buttons": [],
+    "placeholders": [],
+    "rows": 0,
+    "tableCount": 128,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "设置",
+    "group": null,
+    "name": "寄存设置",
+    "hash": "#/system_set/deposit_set",
+    "activeTab": "寄存设置",
+    "headings": [],
+    "columns": [
+      "门店",
+      "寄存商品类型",
+      "寄存期限",
+      "操作"
+    ],
+    "buttons": [
+      "新增寄存设置"
+    ],
+    "placeholders": [],
+    "rows": 3,
+    "tableCount": 132,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "设置",
+    "group": null,
+    "name": "抹零设置",
+    "hash": "#/system_set/moling_set",
+    "activeTab": "抹零设置",
+    "headings": [],
+    "columns": [
+      "门店",
+      "抹零设置",
+      "操作"
+    ],
+    "buttons": [],
+    "placeholders": [],
+    "rows": 1,
+    "tableCount": 135,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "设置",
+    "group": null,
+    "name": "走马灯设置",
+    "hash": "#/system_set/zoumadeng_set",
+    "activeTab": "走马灯设置",
+    "headings": [],
+    "columns": [
+      "播放序号",
+      "门店",
+      "播放内容",
+      "播放日期",
+      "播放时间",
+      "区域",
+      "包厢号",
+      "播放频率",
+      "状态",
+      "操作"
+    ],
+    "buttons": [
+      "走马灯设置",
+      "查询"
+    ],
+    "placeholders": [],
+    "rows": 1,
+    "tableCount": 140,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "设置",
+    "group": null,
+    "name": "收银机设置",
+    "hash": "#/system_set/cash_register_set",
+    "activeTab": "收银机设置",
+    "headings": [],
+    "columns": [
+      "收银机名称",
+      "管辖区域",
+      "管辖商品",
+      "管辖商品适用场景",
+      "操作"
+    ],
+    "buttons": [
+      "查询",
+      "新增收银机"
+    ],
+    "placeholders": [],
+    "rows": 2,
+    "tableCount": 143,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "设置",
+    "group": null,
+    "name": "抹零设置2",
+    "hash": "#/system_set/zero_set",
+    "activeTab": "抹零设置2",
+    "headings": [],
+    "columns": [
+      "行号",
+      "门店",
+      "区域",
+      "类型",
+      "抹零设置",
+      "操作"
+    ],
+    "buttons": [
+      "新增抹零设置"
+    ],
+    "placeholders": [],
+    "rows": 1,
+    "tableCount": 146,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "设置",
+    "group": null,
+    "name": "影片管理",
+    "hash": "#/system_set/movie_manage",
+    "activeTab": "影片管理",
+    "headings": [],
+    "columns": [
+      "门店",
+      "类型",
+      "影片名称",
+      "影片封面图",
+      "主演",
+      "添加时间",
+      "文件名",
+      "操作"
+    ],
+    "buttons": [
+      "新增影片",
+      "查询",
+      "导入",
+      "影片类型管理",
+      "清空"
+    ],
+    "placeholders": [
+      "请输入影片名称"
+    ],
+    "rows": 1,
+    "tableCount": 150,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "设置",
+    "group": null,
+    "name": "退款退货设置",
+    "hash": "#/system_set/refund_check",
+    "activeTab": "退款退货设置",
+    "headings": [
+      "退款退货设置"
+    ],
+    "columns": [
+      "门店",
+      "规则名称",
+      "包厢区域",
+      "包厢类型",
+      "使用日期",
+      "使用时间",
+      "审批人",
+      "操作"
+    ],
+    "buttons": [
+      "新增退款退货审批",
+      "查询"
+    ],
+    "placeholders": [],
+    "rows": 4,
+    "tableCount": 155,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "设置",
+    "group": null,
+    "name": "商品赠送审批设置",
+    "hash": "#/system_set/present_check",
+    "activeTab": "商品赠送审批设置",
+    "headings": [
+      "商品赠送审批设置"
+    ],
+    "columns": [
+      "门店",
+      "规则名称",
+      "包厢区域",
+      "包厢类型",
+      "使用日期",
+      "使用时间",
+      "审批人",
+      "操作"
+    ],
+    "buttons": [
+      "新增商品赠送审批",
+      "查询"
+    ],
+    "placeholders": [],
+    "rows": 3,
+    "tableCount": 160,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "设置",
+    "group": null,
+    "name": "缺歌反馈",
+    "hash": "#/system_set/lack_song_set",
+    "activeTab": "缺歌反馈",
+    "headings": [
+      "缺歌反馈"
+    ],
+    "columns": [
+      "门店名称",
+      "提交时间",
+      "歌曲名称",
+      "歌星姓名",
+      "歌曲文件",
+      "处理状态",
+      "处理时间",
+      "处理结果",
+      "操作"
+    ],
+    "buttons": [
+      "查询",
+      "新增缺歌"
+    ],
+    "placeholders": [
+      "请输入歌曲名称"
+    ],
+    "rows": 1,
+    "tableCount": 163,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "设置",
+    "group": null,
+    "name": "包厢类型设置",
+    "hash": "#/system_set/room_type_set",
+    "activeTab": "包厢类型设置",
+    "headings": [
+      "包厢类型设置"
+    ],
+    "columns": [
+      "门店",
+      "包厢类型",
+      "可容纳人数",
+      "每日最大 预订包厢数",
+      "每个主题每天 最大显示预订数",
+      "操作"
+    ],
+    "buttons": [
+      "新增包厢类型",
+      "查询"
+    ],
+    "placeholders": [
+      "请输入包厢类型"
+    ],
+    "rows": 6,
+    "tableCount": 166,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "设置",
+    "group": null,
+    "name": "欢迎词设置",
+    "hash": "#/system_set/welcome_template",
+    "activeTab": "欢迎词设置",
+    "headings": [],
+    "columns": [
+      "门店",
+      "模板名称",
+      "背景图",
+      "欢迎词标题",
+      "欢迎词内容",
+      "操作"
+    ],
+    "buttons": [
+      "欢迎词设置",
+      "欢迎词样例",
+      "查询"
+    ],
+    "placeholders": [
+      "请选择门店",
+      "请选择",
+      "请输入内容"
+    ],
+    "rows": 0,
+    "tableCount": 168,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "设置",
+    "group": null,
+    "name": "报修审批设置",
+    "hash": "#/system_set/repair_check",
+    "activeTab": "报修审批设置",
+    "headings": [],
+    "columns": [
+      "门店",
+      "规则名称",
+      "使用日期",
+      "使用时间",
+      "操作"
+    ],
+    "buttons": [
+      "新增报修审批",
+      "查询"
+    ],
+    "placeholders": [
+      "请选择门店"
+    ],
+    "rows": 0,
+    "tableCount": 172,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "设置",
+    "group": null,
+    "name": "主题菜单歌曲设置",
+    "hash": "#/system_set/theme_menu_song",
+    "activeTab": "主题菜单歌曲设置",
+    "headings": [
+      "主题菜单歌曲自定义设置"
+    ],
+    "columns": [
+      "门店",
+      "类型名称",
+      "状态",
+      "操作"
+    ],
+    "buttons": [
+      "查询"
+    ],
+    "placeholders": [
+      "请选择门店"
+    ],
+    "rows": 4,
+    "tableCount": 178,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "设置",
+    "group": null,
+    "name": "电视屏广告位设置",
+    "hash": "#/system_set/ad_space_set",
+    "activeTab": "电视屏广告位设置",
+    "headings": [
+      "电视屏广告位置设置"
+    ],
+    "columns": [
+      "功能模块",
+      "状态",
+      "操作"
+    ],
+    "buttons": [
+      "查询",
+      "同步"
+    ],
+    "placeholders": [
+      "请选择门店"
+    ],
+    "rows": 3,
+    "tableCount": 180,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "设置",
+    "group": null,
+    "name": "平板点歌app设置",
+    "hash": "#/system_set/pad_order_set",
+    "activeTab": "平板点歌app设置",
+    "headings": [],
+    "columns": [],
+    "buttons": [],
+    "placeholders": [],
+    "rows": 0,
+    "tableCount": 190,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "设置",
+    "group": null,
+    "name": "自定义曲库管理",
+    "hash": "#/system_set/custom_music_manage",
+    "activeTab": "自定义曲库管理",
+    "headings": [
+      "自定义曲库管理"
+    ],
+    "columns": [
+      "歌星",
+      "歌曲",
+      "操作"
+    ],
+    "buttons": [
+      "自定义歌星列表",
+      "打包上传",
+      "查询",
+      "新增歌曲"
+    ],
+    "placeholders": [
+      "请输入歌星名称",
+      "请输入歌曲名称"
+    ],
+    "rows": 0,
+    "tableCount": 196,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "设置",
+    "group": null,
+    "name": "点歌屏广告位设置",
+    "hash": "#/system_set/screen_ad_set",
+    "activeTab": "点歌屏广告位设置",
+    "headings": [
+      "点歌屏广告位设置"
+    ],
+    "columns": [
+      "应用场景",
+      "适用皮肤",
+      "操作"
+    ],
+    "buttons": [
+      "查询"
+    ],
+    "placeholders": [
+      "请选择"
+    ],
+    "rows": 3,
+    "tableCount": 202,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "设置",
+    "group": null,
+    "name": "门牌机自定义设置",
+    "hash": "#/system_set/door_plate_set",
+    "activeTab": "门牌机自定义设置",
+    "headings": [
+      "门牌机自定义设置"
+    ],
+    "columns": [
+      "门店",
+      "操作"
+    ],
+    "buttons": [],
+    "placeholders": [],
+    "rows": 1,
+    "tableCount": 204,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "设置",
+    "group": null,
+    "name": "包厢赠送比例设置",
+    "hash": "#/system_set/room_give_rule_set",
+    "activeTab": "包厢赠送比例设置",
+    "headings": [],
+    "columns": [
+      "规则名称",
+      "适用包厢",
+      "账单消费金额可赠送比例（%）",
+      "操作"
+    ],
+    "buttons": [
+      "查询",
+      "新增可赠送比例设置"
+    ],
+    "placeholders": [
+      "请选择"
+    ],
+    "rows": 0,
+    "tableCount": 206,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "设置",
+    "group": null,
+    "name": "客遗酒水回收入库审批设置",
+    "hash": "#/system_set/guest_leave_store_apply_set",
+    "activeTab": "客遗酒水回收入库审批设置",
+    "headings": [
+      "客遗酒水回收入库审批设置"
+    ],
+    "columns": [
+      "门店",
+      "规则名称",
+      "包厢区域",
+      "包厢类型",
+      "使用日期",
+      "使用时间",
+      "审批人",
+      "操作"
+    ],
+    "buttons": [
+      "查询",
+      "新增客遗酒水回收入库审批"
+    ],
+    "placeholders": [],
+    "rows": 1,
+    "tableCount": 211,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "设置",
+    "group": null,
+    "name": "业绩系数设置",
+    "hash": "#/system_set/performance_set",
+    "activeTab": "业绩系数设置",
+    "headings": [],
+    "columns": [
+      "优先级",
+      "适用包厢",
+      "业绩系数",
+      "操作"
+    ],
+    "buttons": [
+      "查询",
+      "新增业绩系数"
+    ],
+    "placeholders": [
+      "请选择"
+    ],
+    "rows": 0,
+    "tableCount": 213,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "账单",
+    "group": null,
+    "name": "账单制作",
+    "hash": "#/account_book/account_book_make",
+    "activeTab": "账单制作",
+    "headings": [
+      "账单制作"
+    ],
+    "columns": [
+      "行号",
+      "包厢 区域",
+      "消费 包厢",
+      "账单号",
+      "实收金额",
+      "开房时间",
+      "操作"
+    ],
+    "buttons": [
+      "只保留开房套餐",
+      "批量删除",
+      "查询"
+    ],
+    "placeholders": [
+      "请选择支付类型"
+    ],
+    "rows": 1,
+    "tableCount": 220,
+    "dialogs": [],
+    "routeChanged": false
+  },
+  {
+    "module": "账单",
+    "group": null,
+    "name": "账单查看",
+    "hash": "#/account_book/account_book_report",
+    "activeTab": "账单查看",
+    "headings": [],
+    "columns": [],
+    "buttons": [],
+    "placeholders": [],
+    "rows": 0,
+    "tableCount": 222,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "账单",
+    "group": null,
+    "name": "账单打印机设置",
+    "hash": "#/account_book/account_book_printer",
+    "activeTab": "账单打印机设置",
+    "headings": [
+      "账单打印机设置"
+    ],
+    "columns": [
+      "门店",
+      "打印机名称",
+      "操作"
+    ],
+    "buttons": [
+      "查询",
+      "添加打印机"
+    ],
+    "placeholders": [],
+    "rows": 1,
+    "tableCount": 225,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "营业报表",
+    "name": "账单明细报表",
+    "hash": "#/finance_report/business_report/zm_report",
+    "activeTab": "账单明细报表",
+    "headings": [],
+    "columns": [
+      "账单序号",
+      "包厢类型",
+      "包厢区域",
+      "消费包厢",
+      "预订人",
+      "开房类型",
+      "开房时间",
+      "关房时间",
+      "账单号",
+      "实收金额",
+      "抹零金额",
+      "经理优惠",
+      "酒水金额",
+      "现金",
+      "刷卡",
+      "微信",
+      "支付宝",
+      "会员通用账户",
+      "会员房费账户",
+      "会员赠送账户",
+      "会员积分抵扣金额",
+      "团购",
+      "优惠券",
+      "挂账",
+      "免单招待",
+      "赠送金额",
+      "抖音",
+      "自定义2",
+      "自定义3",
+      "自定义4",
+      "自定义支付5",
+      "自定义支付6",
+      "自定义支付7",
+      "自定义支付8",
+      "自定义支付9",
+      "自定义支付10",
+      "操作人",
+      "退款金额",
+      "服务费",
+      "会员卡号",
+      "会员姓名",
+      "轮台人",
+      "转房信息",
+      "班次",
+      "价格策略",
+      "备注",
+      "操作"
+    ],
+    "buttons": [
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "请输入账单号",
+      "请选择包厢区域",
+      "请输入会员卡号",
+      "请输入预订人",
+      "请输入轮台人"
+    ],
+    "rows": 0,
+    "tableCount": 13,
+    "dialogs": [],
+    "routeChanged": false
+  },
+  {
+    "module": "报表",
+    "group": "营业报表",
+    "name": "账单汇总报表",
+    "hash": "#/finance_report/business_report/zh_report",
+    "activeTab": "账单汇总报表",
+    "headings": [],
+    "columns": [
+      "日期",
+      "账单数",
+      "实收金额",
+      "酒水金额",
+      "现金",
+      "刷卡",
+      "微信",
+      "支付宝",
+      "会员卡",
+      "会员积分抵扣金额",
+      "团购",
+      "优惠券",
+      "挂账",
+      "会员充值免单",
+      "抖音",
+      "自定义2",
+      "自定义3",
+      "自定义4",
+      "自定义支付5",
+      "自定义支付6",
+      "自定义支付7",
+      "自定义支付8",
+      "自定义支付9",
+      "自定义支付10",
+      "退款金额"
+    ],
+    "buttons": [
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "请选择包厢区域"
+    ],
+    "rows": 1,
+    "tableCount": 15,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "营业报表",
+    "name": "订台业绩明细报表",
+    "hash": "#/finance_report/business_report/dm_report",
+    "activeTab": "订台业绩明细报表",
+    "headings": [],
+    "columns": [
+      "组别",
+      "订台人",
+      "订台人工号",
+      "主管",
+      "消费包厢",
+      "包厢类型",
+      "账单号",
+      "账单实收金额",
+      "业绩",
+      "会员通用账户支付",
+      "会员房费账户支付",
+      "会员赠送账户支付",
+      "扣除会员支付金额",
+      "开房时间",
+      "操作"
+    ],
+    "buttons": [
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "请输入账单号",
+      "请输入订台人姓名",
+      "请选择组别",
+      "请选择需要剔除金额的支付类型"
+    ],
+    "rows": 0,
+    "tableCount": 24,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "营业报表",
+    "name": "订台业绩汇总报表",
+    "hash": "#/finance_report/business_report/dh_report",
+    "activeTab": "订台业绩汇总报表",
+    "headings": [],
+    "columns": [
+      "组别",
+      "订台人",
+      "订台人工号",
+      "主管",
+      "业绩",
+      "业绩指标",
+      "订台数",
+      "账单实收总额",
+      "操作"
+    ],
+    "buttons": [
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "请输入订台人姓名",
+      "请选择组别",
+      "请选择需要剔除金额的支付类型"
+    ],
+    "rows": 0,
+    "tableCount": 26,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "营业报表",
+    "name": "营业收入报表",
+    "hash": "#/finance_report/business_report/ys_report",
+    "activeTab": "营业收入报表",
+    "headings": [
+      "收入汇总",
+      "收入明细"
+    ],
+    "columns": [
+      "支付类型",
+      "金额",
+      "操作"
+    ],
+    "buttons": [
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "请选择支付类型"
+    ],
+    "rows": 19,
+    "tableCount": 32,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "营业报表",
+    "name": "销售盈利报表",
+    "hash": "#/finance_report/business_report/xy_report",
+    "activeTab": "销售盈利报表",
+    "headings": [],
+    "columns": [
+      "行号",
+      "商品类型",
+      "商品名称",
+      "单位",
+      "销售数量",
+      "赠送数量",
+      "配送数量",
+      "销售单价",
+      "折后单价",
+      "进货单价",
+      "销售总额",
+      "折后总额",
+      "进货总额",
+      "盈利",
+      "毛利率"
+    ],
+    "buttons": [
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "请选择商品类型",
+      "请输入商品名称"
+    ],
+    "rows": 0,
+    "tableCount": 34,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "营业报表",
+    "name": "经理实收报表",
+    "hash": "#/finance_report/business_report/jls_report",
+    "activeTab": "经理实收报表",
+    "headings": [],
+    "columns": [
+      "行号",
+      "包厢号",
+      "下单时间",
+      "操作人",
+      "单据编号",
+      "经理实收差额"
+    ],
+    "buttons": [
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "请输入包厢号"
+    ],
+    "rows": 0,
+    "tableCount": 45,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "营业报表",
+    "name": "经理打折报表",
+    "hash": "#/finance_report/business_report/jld_report",
+    "activeTab": "经理打折报表",
+    "headings": [],
+    "columns": [
+      "行号",
+      "包厢号",
+      "下单时间",
+      "单据编号",
+      "经理姓名",
+      "单据实收金额",
+      "经理打折额度",
+      "经理打折金额",
+      "折后金额"
+    ],
+    "buttons": [
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "请输入包厢号"
+    ],
+    "rows": 0,
+    "tableCount": 54,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "营业报表",
+    "name": "收银交接明细报表",
+    "hash": "#/finance_report/business_report/sjm_report",
+    "activeTab": "收银交接明细报表",
+    "headings": [],
+    "columns": [
+      "交接操作时间",
+      "交接起始时间",
+      "交接结束时间",
+      "交接人",
+      "账号",
+      "营业额",
+      "交接款",
+      "微信消费",
+      "支付宝消费",
+      "会员消费",
+      "现金消费",
+      "挂账消费",
+      "刷卡消费",
+      "团购消费",
+      "免单招待(不计入营业额)",
+      "充值免单(不计入营业额)",
+      "抖音消费",
+      "自定义2消费",
+      "自定义3消费",
+      "自定义4消费",
+      "自定义支付5消费",
+      "自定义支付6消费",
+      "自定义支付7消费",
+      "自定义支付8消费",
+      "自定义支付9消费",
+      "自定义支付10消费",
+      "会员充值办卡(不计入营业额)",
+      "管理员充值",
+      "微信充值",
+      "支付宝充值",
+      "现金充值",
+      "刷卡充值",
+      "抖音充值",
+      "自定义2充值",
+      "自定义3充值",
+      "自定义4充值",
+      "自定义支付5充值",
+      "自定义支付6充值",
+      "自定义支付7充值",
+      "自定义支付8充值",
+      "自定义支付9充值",
+      "自定义支付10充值"
+    ],
+    "buttons": [
+      "交接班",
+      "营业收入交接",
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "请输入交接人姓名"
+    ],
+    "rows": 0,
+    "tableCount": 56,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "营业报表",
+    "name": "收银交接汇总报表",
+    "hash": "#/finance_report/business_report/sjh_report",
+    "activeTab": "收银交接汇总报表",
+    "headings": [],
+    "columns": [
+      "营业日",
+      "交接次数",
+      "营业额",
+      "交接款",
+      "微信消费",
+      "支付宝消费",
+      "会员消费",
+      "现金消费",
+      "挂账消费",
+      "刷卡消费",
+      "团购消费",
+      "免单招待(不计入营业额)",
+      "充值免单(不计入营业额)",
+      "抖音消费",
+      "自定义2消费",
+      "自定义3消费",
+      "自定义4消费",
+      "自定义支付5消费",
+      "自定义支付6消费",
+      "自定义支付7消费",
+      "自定义支付8消费",
+      "自定义支付9消费",
+      "自定义支付10消费",
+      "会员充值办卡(不计入营业额)",
+      "管理员充值",
+      "微信充值",
+      "支付宝充值",
+      "现金充值",
+      "刷卡充值",
+      "抖音充值",
+      "自定义2充值",
+      "自定义3充值",
+      "自定义4充值",
+      "自定义支付5充值",
+      "自定义支付6充值",
+      "自定义支付7充值",
+      "自定义支付8充值",
+      "自定义支付9充值",
+      "自定义支付10充值"
+    ],
+    "buttons": [
+      "交接班",
+      "营业收入交接",
+      "查询",
+      "导出"
+    ],
+    "placeholders": [],
+    "rows": 0,
+    "tableCount": 58,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "营业报表",
+    "name": "挂账明细报表",
+    "hash": "#/finance_report/business_report/gzm_report",
+    "activeTab": "挂账明细报表",
+    "headings": [],
+    "columns": [
+      "行号",
+      "挂账时间",
+      "包厢号",
+      "账单号",
+      "预订人(姓名/工号)",
+      "挂账人(姓名/工号)",
+      "担保人(姓名/工号)",
+      "挂账金额",
+      "是否还款",
+      "支付方式",
+      "还款时间",
+      "还款详情",
+      "还款金额",
+      "备注",
+      "微信",
+      "支付宝",
+      "现金",
+      "刷卡",
+      "会员卡",
+      "会员赠送账户",
+      "免单招待",
+      "抖音",
+      "自定义2",
+      "自定义3",
+      "自定义4",
+      "自定义支付5",
+      "自定义支付6",
+      "自定义支付7",
+      "自定义支付8",
+      "自定义支付9",
+      "自定义支付10",
+      "操作"
+    ],
+    "buttons": [
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "请输入账单号",
+      "请选择日期",
+      "请选择日期"
+    ],
+    "rows": 0,
+    "tableCount": 73,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "营业报表",
+    "name": "导购员工业绩明细报表",
+    "hash": "#/finance_report/business_report/dym_report",
+    "activeTab": "导购员工业绩明细报表",
+    "headings": [],
+    "columns": [
+      "行号",
+      "支付时间",
+      "订单编号",
+      "支付类型",
+      "门店",
+      "包厢区域",
+      "包厢号",
+      "操作人",
+      "商品类型",
+      "商品名称",
+      "单位",
+      "折后单价",
+      "销售数量",
+      "折后总额",
+      "商品提成百分比",
+      "商品提成金额",
+      "导购员工",
+      "提成总额"
+    ],
+    "buttons": [
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "开始时间",
+      "结束时间",
+      "请选择门店",
+      "请选择包厢区域",
+      "请选择包厢号",
+      "请选择操作人",
+      "请选择支付类型",
+      "请选择商品类型",
+      "请输入商品名称",
+      "请选择导购员工"
+    ],
+    "rows": 0,
+    "tableCount": 75,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "营业报表",
+    "name": "导购员工业绩汇总报表",
+    "hash": "#/finance_report/business_report/dyh_report",
+    "activeTab": "导购员工业绩汇总报表",
+    "headings": [],
+    "columns": [
+      "行号",
+      "门店",
+      "商品类型",
+      "商品名称",
+      "单位",
+      "折后单价",
+      "销售数量",
+      "折后总额",
+      "商品提成百分比",
+      "商品提成金额",
+      "导购员工",
+      "提成总额"
+    ],
+    "buttons": [
+      "查询",
+      "导出",
+      "按商品统计",
+      "按员工统计"
+    ],
+    "placeholders": [
+      "开始时间",
+      "结束时间",
+      "请选择门店",
+      "请选择商品类型",
+      "请输入商品名称",
+      "请选择导购员工"
+    ],
+    "rows": 10,
+    "tableCount": 79,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "营业报表",
+    "name": "版权使用费与系统服务费报表",
+    "hash": "#/finance_report/business_report/bxf_report",
+    "activeTab": "版权使用费与系统服务费报表",
+    "headings": [],
+    "columns": [
+      "行号",
+      "时间",
+      "门店",
+      "包厢号",
+      "订单号",
+      "微信昵称",
+      "版权使用费金额",
+      "系统服务费金额",
+      "合计金额"
+    ],
+    "buttons": [
+      "系统服务费发票申请",
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "开始时间",
+      "结束时间",
+      "请选择门店",
+      "请选择包厢号",
+      "请输入订单号"
+    ],
+    "rows": 0,
+    "tableCount": 81,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "营业报表",
+    "name": "营业平衡表",
+    "hash": "#/finance_report/business_report/balance_report",
+    "activeTab": "营业平衡表",
+    "headings": [],
+    "columns": [],
+    "buttons": [
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "开始时间",
+      "结束时间",
+      "请选择门店",
+      "请选择包厢",
+      "请输入账单号",
+      "请选择要显示的字段"
+    ],
+    "rows": 0,
+    "tableCount": 83,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "营业报表",
+    "name": "时间费明细报表",
+    "hash": "#/finance_report/business_report/timefee_detail_report",
+    "activeTab": "时间费明细报表",
+    "headings": [],
+    "columns": [
+      "包厢号",
+      "包厢类型",
+      "包厢区域",
+      "账单号",
+      "开房时间",
+      "消费时长",
+      "订单类型",
+      "时间费折后金额",
+      "操作"
+    ],
+    "buttons": [
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "开始时间",
+      "结束时间",
+      "请选择门店",
+      "请选择包厢区域",
+      "请选择包厢类型",
+      "请选择包厢",
+      "请选择订单类型"
+    ],
+    "rows": 0,
+    "tableCount": 92,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "营业报表",
+    "name": "酒水服务费报表",
+    "hash": "#/finance_report/business_report/wine_servicefee_report",
+    "activeTab": "酒水服务费报表",
+    "headings": [],
+    "columns": [
+      "包厢号",
+      "包厢类型",
+      "包厢区域",
+      "账单号",
+      "服务费折后金额",
+      "操作"
+    ],
+    "buttons": [
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "开始时间",
+      "结束时间",
+      "请选择门店",
+      "请选择包厢区域",
+      "请选择包厢类型",
+      "请选择包厢",
+      "请输入账单号"
+    ],
+    "rows": 0,
+    "tableCount": 101,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "营业报表",
+    "name": "营业平衡报表（商务版）",
+    "hash": "#/finance_report/business_report/balance_business_report",
+    "activeTab": "营业平衡报表（商务版）",
+    "headings": [],
+    "columns": [],
+    "buttons": [
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "开始时间",
+      "结束时间",
+      "请选择门店",
+      "请选择包厢区域",
+      "请选择包厢",
+      "请输入预订人姓名",
+      "请输入账单号",
+      "请选择要显示的字段"
+    ],
+    "rows": 0,
+    "tableCount": 103,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "营业报表",
+    "name": "营业收入日报表",
+    "hash": "#/finance_report/business_report/business_income_day_report",
+    "activeTab": "营业收入日报表",
+    "headings": [],
+    "columns": [
+      "会员充值免单",
+      "自定义2",
+      "自定义3",
+      "自定义4",
+      "自定义支付5",
+      "自定义支付6",
+      "自定义支付7",
+      "自定义支付8",
+      "自定义支付9",
+      "自定义支付10",
+      "日期",
+      "收入总额"
+    ],
+    "buttons": [
+      "按支付方式",
+      "按收入类型",
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "开始时间",
+      "结束时间",
+      "请选择门店",
+      "请选择支付类型",
+      "请选择收入类型",
+      "请选择包厢区域",
+      "请选择价格策略"
+    ],
+    "rows": 2,
+    "tableCount": 109,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "仓库报表",
+    "name": "库存数量明细报表",
+    "hash": "#/finance_report/store_report/sr_ksm_report",
+    "activeTab": "库存数量明细报表",
+    "headings": [],
+    "columns": [
+      "行号",
+      "操作时间",
+      "单据编号",
+      "单据类型",
+      "库存变化",
+      "仓库",
+      "商品类型",
+      "商品名称",
+      "单位",
+      "数量",
+      "进货单价",
+      "进货价合计",
+      "备注"
+    ],
+    "buttons": [
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "请输入商品名称"
+    ],
+    "rows": 1,
+    "tableCount": 112,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "仓库报表",
+    "name": "库存数量汇总报表",
+    "hash": "#/finance_report/store_report/sr_ksh_report",
+    "activeTab": "库存数量汇总报表",
+    "headings": [],
+    "columns": [
+      "行号",
+      "仓库",
+      "单据类型",
+      "库存变化",
+      "商品类型",
+      "商品名称",
+      "单位",
+      "数量",
+      "进货单价",
+      "进货价合计"
+    ],
+    "buttons": [
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "请输入商品名称"
+    ],
+    "rows": 1,
+    "tableCount": 115,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "仓库报表",
+    "name": "采购明细报表",
+    "hash": "#/finance_report/store_report/sr_cgm_report",
+    "activeTab": "采购明细报表",
+    "headings": [],
+    "columns": [
+      "行号",
+      "进货时间",
+      "进货单号",
+      "类型",
+      "仓库",
+      "商品类型",
+      "商品名称",
+      "单位",
+      "数量",
+      "供应商",
+      "进货单价",
+      "合同价",
+      "进货价合计"
+    ],
+    "buttons": [
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "请输入商品名称"
+    ],
+    "rows": 1,
+    "tableCount": 118,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "仓库报表",
+    "name": "采购汇总报表",
+    "hash": "#/finance_report/store_report/sr_cgh_report",
+    "activeTab": "采购汇总报表",
+    "headings": [],
+    "columns": [
+      "行号",
+      "仓库",
+      "类型",
+      "供应商",
+      "商品类型",
+      "商品名称",
+      "单位",
+      "进货数量",
+      "退货数量",
+      "进货单价",
+      "合同价",
+      "进货价合计"
+    ],
+    "buttons": [
+      "按商品统计",
+      "按供应商统计",
+      "导出",
+      "查询"
+    ],
+    "placeholders": [
+      "请输入商品名称"
+    ],
+    "rows": 1,
+    "tableCount": 121,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "仓库报表",
+    "name": "商品盘点盈亏明细报表",
+    "hash": "#/finance_report/store_report/sr_sym_report",
+    "activeTab": "商品盘点盈亏明细报表",
+    "headings": [],
+    "columns": [
+      "行号",
+      "盘点时间",
+      "仓库",
+      "商品类型",
+      "商品名称",
+      "单位",
+      "销售单价",
+      "进货单价",
+      "盈亏"
+    ],
+    "buttons": [
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "请输入商品名称"
+    ],
+    "rows": 1,
+    "tableCount": 124,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "仓库报表",
+    "name": "商品盘点盈亏汇总报表",
+    "hash": "#/finance_report/store_report/sr_syh_report",
+    "activeTab": "商品盘点盈亏汇总报表",
+    "headings": [],
+    "columns": [
+      "行号",
+      "仓库",
+      "商品类型",
+      "商品名称",
+      "单位",
+      "销售单价",
+      "进货单价",
+      "盈余",
+      "亏空"
+    ],
+    "buttons": [
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "请输入商品名称"
+    ],
+    "rows": 1,
+    "tableCount": 127,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "仓库报表",
+    "name": "进销存报表",
+    "hash": "#/finance_report/store_report/sr_jxc_report",
+    "activeTab": "进销存报表",
+    "headings": [],
+    "columns": [
+      "行号",
+      "仓库",
+      "商品类型",
+      "商品名称",
+      "单位",
+      "期初数量",
+      "采购入库数量",
+      "赠送入库数量",
+      "调拨入库数量",
+      "换货入库数量",
+      "商品退货入库数量",
+      "盈余入库数量",
+      "客遗入库数量",
+      "寄存入库数量",
+      "充公入库数量",
+      "取消充公入库数量",
+      "盘盈入库数量",
+      "入库总数量",
+      "商品销售数量",
+      "商品赠送数量",
+      "商品例送数量",
+      "开房小吃数量",
+      "调拨出库数量",
+      "盘亏出库数量",
+      "取酒出库数量",
+      "充公出库数量",
+      "取消充公出库数量",
+      "寄存作废出库数量",
+      "采购退货出库数量",
+      "领用出库数量",
+      "报损出库数量",
+      "出库总数量",
+      "期末数量",
+      "进货价",
+      "金额"
+    ],
+    "buttons": [
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "请选择商品类型",
+      "请输入商品名称"
+    ],
+    "rows": 0,
+    "tableCount": 129,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "仓库报表",
+    "name": "配料消耗明细报表",
+    "hash": "#/finance_report/store_report/sr_pxm_report",
+    "activeTab": "配料消耗明细报表",
+    "headings": [],
+    "columns": [
+      "下单时间",
+      "商品类型",
+      "名称",
+      "单位",
+      "消耗数量",
+      "进货单价",
+      "进货价合计",
+      "所属商品",
+      "账单号",
+      "包厢号",
+      "操作"
+    ],
+    "buttons": [
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "开始时间",
+      "结束时间",
+      "请选择门店",
+      "请输入包厢号",
+      "请输入账单号",
+      "请选择商品类型",
+      "请输入配料名称"
+    ],
+    "rows": 0,
+    "tableCount": 138,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "会员报表",
+    "name": "会员充值报表",
+    "hash": "#/finance_report/member_report/mr_hcz_report",
+    "activeTab": "会员充值报表",
+    "headings": [],
+    "columns": [
+      "行号",
+      "充值时间",
+      "充值单号",
+      "收款门店",
+      "注册门店",
+      "会员卡号",
+      "会员姓名",
+      "会员手机号",
+      "会员注册时间",
+      "充值金额",
+      "充值入账",
+      "赠送金额",
+      "赠送入账",
+      "支付状态",
+      "支付类型",
+      "充值员工",
+      "提成员工",
+      "充值前通用余额",
+      "充值前赠送余额",
+      "充值前房费余额",
+      "充值后通用余额",
+      "充值后赠送余额",
+      "充值后房费余额",
+      "充值类型"
+    ],
+    "buttons": [
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "请输入会员卡号"
+    ],
+    "rows": 0,
+    "tableCount": 140,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "会员报表",
+    "name": "会员办卡费用报表",
+    "hash": "#/finance_report/member_report/mr_hbf_report",
+    "activeTab": "会员办卡费用报表",
+    "headings": [],
+    "columns": [
+      "行号",
+      "注册时间",
+      "办卡费用单号",
+      "收款门店",
+      "会员卡号",
+      "会员手机号",
+      "办卡费用",
+      "操作人",
+      "支付类型",
+      "支付状态"
+    ],
+    "buttons": [
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "请输入会员卡号"
+    ],
+    "rows": 1,
+    "tableCount": 143,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "会员报表",
+    "name": "会员资料报表",
+    "hash": "#/finance_report/member_report/mr_hzl_report",
+    "activeTab": "会员资料报表",
+    "headings": [],
+    "columns": [
+      "行号",
+      "注册时间",
+      "注册门店",
+      "会员姓名",
+      "微信昵称",
+      "卡等级",
+      "会员卡号",
+      "会员手机号",
+      "生日",
+      "会员卡余额",
+      "会员卡充值",
+      "会员卡消费总额",
+      "会员卡积分",
+      "到店次数",
+      "累计消费",
+      "介绍人",
+      "来源门店",
+      "通用账户",
+      "赠送账户",
+      "房费账户",
+      "合计",
+      "充值金额",
+      "赠送金额",
+      "累计积分",
+      "已用积分",
+      "剩余积分",
+      "操作"
+    ],
+    "buttons": [
+      "会员资料模板导入",
+      "群发历史任务",
+      "短信群发",
+      "导出",
+      "查询"
+    ],
+    "placeholders": [
+      "请选择日期",
+      "请选择日期",
+      "请输入会员卡号",
+      "请选择日期",
+      "请选择日期"
+    ],
+    "rows": 20,
+    "tableCount": 152,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "会员报表",
+    "name": "会员卡绑定合并报表",
+    "hash": "#/finance_report/member_report/mr_hkb_report",
+    "activeTab": "会员卡绑定合并报表",
+    "headings": [],
+    "columns": [
+      "行号",
+      "门店",
+      "会员手机号",
+      "微信昵称",
+      "主卡号",
+      "被合并卡号",
+      "被合并 通用账户余额",
+      "被合并 房费账户余额",
+      "被合并 赠送账户余额",
+      "被合并 会员卡积分",
+      "操作时间"
+    ],
+    "buttons": [
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "请输入主卡号"
+    ],
+    "rows": 1,
+    "tableCount": 155,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "会员报表",
+    "name": "会员消费明细报表",
+    "hash": "#/finance_report/member_report/mr_hxm_report",
+    "activeTab": "会员消费明细报表",
+    "headings": [],
+    "columns": [
+      "行号",
+      "消费时间",
+      "消费门店",
+      "包厢号",
+      "账单号",
+      "会员卡等级",
+      "会员卡号",
+      "会员姓名",
+      "会员手机号",
+      "房费账户 消费金额",
+      "赠送账户 消费金额",
+      "通用账户 消费金额",
+      "房费账户 退款金额",
+      "赠送账户 退款金额",
+      "通用账户 退款金额",
+      "操作人",
+      "费用类型"
+    ],
+    "buttons": [
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "请输入会员卡号"
+    ],
+    "rows": 1,
+    "tableCount": 158,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "会员报表",
+    "name": "会员生日报表",
+    "hash": "#/finance_report/member_report/mr_hsr_report",
+    "activeTab": "会员生日报表",
+    "headings": [],
+    "columns": [
+      "行号",
+      "门店",
+      "微信昵称",
+      "会员卡号",
+      "会员手机号",
+      "生日"
+    ],
+    "buttons": [
+      "本月生日",
+      "本周生日",
+      "本日生日",
+      "导出",
+      "查询"
+    ],
+    "placeholders": [
+      "请输入会员卡号"
+    ],
+    "rows": 10,
+    "tableCount": 161,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "会员报表",
+    "name": "异店会员消费报表",
+    "hash": "#/finance_report/member_report/mr_yhx_report",
+    "activeTab": "异店会员消费报表",
+    "headings": [],
+    "columns": [
+      "行号",
+      "消费时间",
+      "会员卡所属门店",
+      "收款门店",
+      "会员卡号",
+      "会员手机号",
+      "消费金额"
+    ],
+    "buttons": [
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "请输入会员卡号"
+    ],
+    "rows": 1,
+    "tableCount": 164,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "会员报表",
+    "name": "会员冲销报表",
+    "hash": "#/finance_report/member_report/mr_hcx_report",
+    "activeTab": "会员冲销报表",
+    "headings": [],
+    "columns": [
+      "行号",
+      "门店",
+      "会员姓名",
+      "会员卡号",
+      "会员等级",
+      "会员手机号",
+      "操作时间",
+      "操作类型",
+      "支付类型",
+      "赠送账户 进出金额",
+      "通用账户 进出金额",
+      "房费账户 进出金额",
+      "实际金额",
+      "操作前 通用金额",
+      "操作前 赠送金额",
+      "操作前 房费金额",
+      "操作后 通用金额",
+      "操作后 赠送金额",
+      "操作后 房费金额",
+      "单号",
+      "预订员工",
+      "介绍人",
+      "提成人"
+    ],
+    "buttons": [
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "请选择消费时间",
+      "请选择消费时间",
+      "请选择支付类型",
+      "请输入会员卡号"
+    ],
+    "rows": 1,
+    "tableCount": 167,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "会员报表",
+    "name": "会员积分明细报表",
+    "hash": "#/finance_report/member_report/mr_hjm_report",
+    "activeTab": "会员积分明细报表",
+    "headings": [],
+    "columns": [
+      "行号",
+      "时间",
+      "门店",
+      "包厢号",
+      "会员卡号",
+      "会员姓名",
+      "会员手机号",
+      "积分类型",
+      "积分",
+      "操作前积分",
+      "操作后积分",
+      "积分变化",
+      "操作"
+    ],
+    "buttons": [
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "开始时间",
+      "结束时间",
+      "请选择门店",
+      "请选择包厢号",
+      "请选择积分类型",
+      "请选择积分变化",
+      "请选择",
+      "请输入内容"
+    ],
+    "rows": 0,
+    "tableCount": 176,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "会员报表",
+    "name": "会员积分汇总报表",
+    "hash": "#/finance_report/member_report/mr_hjh_report",
+    "activeTab": "会员积分汇总报表",
+    "headings": [],
+    "columns": [
+      "行号",
+      "门店",
+      "会员卡号",
+      "会员姓名",
+      "会员手机号",
+      "积分获得",
+      "积分使用"
+    ],
+    "buttons": [
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "开始时间",
+      "结束时间",
+      "请选择门店",
+      "请选择",
+      "请输入内容"
+    ],
+    "rows": 0,
+    "tableCount": 178,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "会员报表",
+    "name": "共享股东提现明细报表",
+    "hash": "#/finance_report/member_report/mr_ggtm_report",
+    "activeTab": "共享股东提现明细报表",
+    "headings": [],
+    "columns": [
+      "提现时间",
+      "会员等级",
+      "股东卡号",
+      "股东手机号",
+      "股东姓名",
+      "提现之前分红余额",
+      "提现金额",
+      "提现之后余额",
+      "提现方式",
+      "状态",
+      "备注",
+      "操作人"
+    ],
+    "buttons": [
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "开始时间",
+      "结束时间",
+      "请选择门店",
+      "请选择",
+      "请输入内容",
+      "请选择会员等级",
+      "请选择提现方式",
+      "请输入操作人",
+      "请选择状态"
+    ],
+    "rows": 0,
+    "tableCount": 180,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "会员报表",
+    "name": "会员等级变动报表",
+    "hash": "#/finance_report/member_report/mr_level_change_report",
+    "activeTab": "会员等级变动报表",
+    "headings": [],
+    "columns": [
+      "时间",
+      "姓名",
+      "卡号",
+      "手机号",
+      "变动前等级",
+      "变动类型",
+      "变动后等级",
+      "操作人"
+    ],
+    "buttons": [
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "开始时间",
+      "结束时间",
+      "请选择门店",
+      "请选择",
+      "请输入内容",
+      "请选择变动类型"
+    ],
+    "rows": 0,
+    "tableCount": 182,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "酒水存取报表",
+    "name": "寄存明细报表",
+    "hash": "#/finance_report/Wine_access_report/war_jcm_report",
+    "activeTab": "寄存明细报表",
+    "headings": [],
+    "columns": [
+      "行号",
+      "寄存时间",
+      "审核时间",
+      "到期时间",
+      "寄存服务员",
+      "寄存单号",
+      "门店",
+      "寄存包厢",
+      "手机号",
+      "姓名",
+      "存酒单状态",
+      "微信昵称",
+      "商品类型",
+      "商品名称",
+      "单位",
+      "寄存数量",
+      "寄存仓库",
+      "操作人",
+      "备注",
+      "进货单价",
+      "进货价合计"
+    ],
+    "buttons": [
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "开始时间",
+      "结束时间",
+      "请选择门店",
+      "请选择仓库",
+      "请选择商品类型",
+      "请输入商品名称",
+      "请选择存酒单状态",
+      "请选择到期时间",
+      "请选择",
+      "请输入内容"
+    ],
+    "rows": 0,
+    "tableCount": 184,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "酒水存取报表",
+    "name": "寄存汇总报表",
+    "hash": "#/finance_report/Wine_access_report/war_jch_report",
+    "activeTab": "寄存汇总报表",
+    "headings": [],
+    "columns": [
+      "行号",
+      "门店",
+      "商品类型",
+      "商品名称",
+      "单位",
+      "寄存数量",
+      "进货单价",
+      "进货价合计"
+    ],
+    "buttons": [
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "开始时间",
+      "结束时间",
+      "请选择门店",
+      "请选择区域",
+      "请选择商品类型",
+      "请输入商品名称",
+      "请输入手机号"
+    ],
+    "rows": 0,
+    "tableCount": 186,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "酒水存取报表",
+    "name": "取酒明细报表",
+    "hash": "#/finance_report/Wine_access_report/war_qjm_report",
+    "activeTab": "取酒明细报表",
+    "headings": [],
+    "columns": [
+      "行号",
+      "取酒时间",
+      "取酒员工",
+      "取酒员工手机",
+      "取酒包厢",
+      "寄存单号",
+      "手机号",
+      "商品类型",
+      "商品名称",
+      "单位",
+      "取酒数量",
+      "取酒门店",
+      "取酒仓库",
+      "操作人",
+      "寄存门店",
+      "进货单价",
+      "进货价合计"
+    ],
+    "buttons": [
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "开始时间",
+      "结束时间",
+      "请选择寄存门店",
+      "请选择取酒门店",
+      "请选择取酒仓库",
+      "请选择商品类型",
+      "请输入寄存单号",
+      "请输入手机号",
+      "请选择",
+      "请输入内容",
+      "请选择操作人"
+    ],
+    "rows": 0,
+    "tableCount": 188,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "酒水存取报表",
+    "name": "取酒汇总报表",
+    "hash": "#/finance_report/Wine_access_report/war_qjh_report",
+    "activeTab": "取酒汇总报表",
+    "headings": [],
+    "columns": [
+      "行号",
+      "门店",
+      "商品类型",
+      "商品名称",
+      "单位",
+      "取酒数量",
+      "进货单价",
+      "进货价合计"
+    ],
+    "buttons": [
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "开始时间",
+      "结束时间",
+      "请选择门店",
+      "请选择区域",
+      "请选择商品类型",
+      "请输入商品名称",
+      "请输入手机号"
+    ],
+    "rows": 0,
+    "tableCount": 190,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "酒水存取报表",
+    "name": "充公明细报表",
+    "hash": "#/finance_report/Wine_access_report/war_cgm_report",
+    "activeTab": "充公明细报表",
+    "headings": [],
+    "columns": [
+      "行号",
+      "充公时间",
+      "寄存单号",
+      "门店",
+      "手机号",
+      "商品类型",
+      "商品名称",
+      "单位",
+      "充公数量",
+      "操作类型",
+      "仓库",
+      "库存变化",
+      "进货单价",
+      "进货价合计"
+    ],
+    "buttons": [
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "开始时间",
+      "结束时间",
+      "请选择门店",
+      "请选择仓库",
+      "请选择商品类型",
+      "请选择库存变化",
+      "请输入手机号",
+      "请选择操作类型"
+    ],
+    "rows": 0,
+    "tableCount": 192,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "酒水存取报表",
+    "name": "充公汇总报表",
+    "hash": "#/finance_report/Wine_access_report/war_cgh_report",
+    "activeTab": "充公汇总报表",
+    "headings": [],
+    "columns": [
+      "行号",
+      "门店",
+      "商品类型",
+      "商品名称",
+      "单位",
+      "充公入库总量",
+      "充公出库总量",
+      "进货单价",
+      "进货价合计"
+    ],
+    "buttons": [
+      "查询",
+      "导出",
+      "按商品统计",
+      "按区域统计"
+    ],
+    "placeholders": [
+      "开始时间",
+      "结束时间",
+      "请选择门店",
+      "请选择商品类型",
+      "请输入商品名称",
+      "请输入手机号"
+    ],
+    "rows": 0,
+    "tableCount": 194,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "酒水存取报表",
+    "name": "存取酒汇总报表",
+    "hash": "#/finance_report/Wine_access_report/war_cqh_report",
+    "activeTab": "存取酒汇总报表",
+    "headings": [],
+    "columns": [
+      "行号",
+      "门店",
+      "商品类型",
+      "商品名称",
+      "单位",
+      "寄存总量",
+      "取酒总量",
+      "寄存金额",
+      "取酒金额",
+      "进货单价"
+    ],
+    "buttons": [
+      "查询",
+      "导出",
+      "按商品统计",
+      "按出货仓库统计"
+    ],
+    "placeholders": [
+      "开始时间",
+      "结束时间",
+      "请选择门店",
+      "请选择区域",
+      "请选择商品类型",
+      "请输入商品名称",
+      "请输入手机号"
+    ],
+    "rows": 0,
+    "tableCount": 196,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "酒水存取报表",
+    "name": "寄存结转报表",
+    "hash": "#/finance_report/Wine_access_report/war_jcj_report",
+    "activeTab": "寄存结转报表",
+    "headings": [],
+    "columns": [
+      "行号",
+      "门店",
+      "商品类型",
+      "商品名称",
+      "单位",
+      "期初数量",
+      "寄存数量",
+      "取酒数量",
+      "充公数量",
+      "取消充公数量",
+      "期末数量",
+      "成本价",
+      "期末成本总额",
+      "操作"
+    ],
+    "buttons": [
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "开始时间",
+      "结束时间",
+      "请选择门店",
+      "请选择商品类型",
+      "请输入商品名称"
+    ],
+    "rows": 10,
+    "tableCount": 198,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "酒水存取报表",
+    "name": "异店取酒汇总报表",
+    "hash": "#/finance_report/Wine_access_report/war_yqh_report",
+    "activeTab": "异店取酒汇总报表",
+    "headings": [],
+    "columns": [
+      "行号",
+      "寄存门店",
+      "取酒门店",
+      "商品类型",
+      "商品名称",
+      "单位",
+      "取酒数量",
+      "进货单价",
+      "进货价合计"
+    ],
+    "buttons": [
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "开始时间",
+      "结束时间",
+      "请选择寄存门店",
+      "请选择取酒门店",
+      "请选择区域",
+      "请选择商品类型",
+      "请输入商品名称"
+    ],
+    "rows": 0,
+    "tableCount": 200,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "酒水存取报表",
+    "name": "寄存单作废明细表",
+    "hash": "#/finance_report/Wine_access_report/war_jczfm_report",
+    "activeTab": "寄存单作废明细表",
+    "headings": [],
+    "columns": [
+      "作废操作时间",
+      "操作人",
+      "寄存单号",
+      "门店",
+      "姓名",
+      "手机号",
+      "备注",
+      "操作"
+    ],
+    "buttons": [
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "开始时间",
+      "结束时间",
+      "请选择门店",
+      "请选择",
+      "请输入内容"
+    ],
+    "rows": 0,
+    "tableCount": 205,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "商品销售报表",
+    "name": "商品销售明细报表",
+    "hash": "#/finance_report/goods_sales_report/gsr_sxm_report",
+    "activeTab": "商品销售明细报表",
+    "headings": [],
+    "columns": [
+      "支付时间",
+      "订单编号",
+      "订单类型",
+      "支付类型",
+      "会员卡号",
+      "会员等级名称",
+      "包厢区域",
+      "包厢类型",
+      "包厢号",
+      "账单号",
+      "操作人",
+      "商品类型",
+      "商品名称",
+      "单位",
+      "导购员工",
+      "预订人",
+      "净销售数量",
+      "销售数量",
+      "退货数量",
+      "折后单价",
+      "成本单价",
+      "折后总额",
+      "成本总额",
+      "利润总额",
+      "提成金额",
+      "提成百分比"
+    ],
+    "buttons": [
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "请选择包厢区域",
+      "请选择订单类型",
+      "请选择支付类型",
+      "请选择商品类型",
+      "请输入商品名称",
+      "请输入会员卡号",
+      "请输入预订人姓名",
+      "请选择销售类型",
+      "请选择包厢类型"
+    ],
+    "rows": 0,
+    "tableCount": 207,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "商品销售报表",
+    "name": "商品销售汇总报表",
+    "hash": "#/finance_report/goods_sales_report/gsr_sxh_report",
+    "activeTab": "商品销售汇总报表",
+    "headings": [],
+    "columns": [],
+    "buttons": [
+      "按商品统计",
+      "按出货仓库统计",
+      "按区域统计",
+      "按商品类型统计",
+      "导出",
+      "查询"
+    ],
+    "placeholders": [
+      "请选择商品类型",
+      "请输入商品名称"
+    ],
+    "rows": 0,
+    "tableCount": 208,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "商品销售报表",
+    "name": "商品退货明细报表",
+    "hash": "#/finance_report/goods_sales_report/gsr_stm_report",
+    "activeTab": "商品退货明细报表",
+    "headings": [],
+    "columns": [],
+    "buttons": [
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "请选择订单类型"
+    ],
+    "rows": 0,
+    "tableCount": 209,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "商品销售报表",
+    "name": "商品退货汇总报表",
+    "hash": "#/finance_report/goods_sales_report/gsr_sth_report",
+    "activeTab": "商品退货汇总报表",
+    "headings": [],
+    "columns": [],
+    "buttons": [
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "请输入商品名称"
+    ],
+    "rows": 0,
+    "tableCount": 210,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "商品销售报表",
+    "name": "商品赠送汇总报表",
+    "hash": "#/finance_report/goods_sales_report/gsr_szh_report",
+    "activeTab": "商品赠送汇总报表",
+    "headings": [],
+    "columns": [],
+    "buttons": [
+      "查询",
+      "导出",
+      "按赠送人统计",
+      "按赠送商品统计"
+    ],
+    "placeholders": [
+      "请选择商品类型",
+      "请输入商品名称",
+      "请选择组别"
+    ],
+    "rows": 0,
+    "tableCount": 211,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "商品销售报表",
+    "name": "商品套餐销售明细报表",
+    "hash": "#/finance_report/goods_sales_report/gsr_stxm_report",
+    "activeTab": "商品套餐销售明细报表",
+    "headings": [],
+    "columns": [],
+    "buttons": [
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "请选择包厢区域",
+      "请输入商品套餐名称",
+      "请输入会员卡号"
+    ],
+    "rows": 0,
+    "tableCount": 212,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "商品销售报表",
+    "name": "商品套餐销售汇总报表",
+    "hash": "#/finance_report/goods_sales_report/gsr_stxh_report",
+    "activeTab": "商品套餐销售汇总报表",
+    "headings": [],
+    "columns": [],
+    "buttons": [
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "请输入商品套餐名称"
+    ],
+    "rows": 0,
+    "tableCount": 213,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "商品销售报表",
+    "name": "团购套餐销售明细报表",
+    "hash": "#/finance_report/goods_sales_report/gsr_ttxm_report",
+    "activeTab": "团购套餐销售明细报表",
+    "headings": [],
+    "columns": [],
+    "buttons": [
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "请选择包厢区域"
+    ],
+    "rows": 0,
+    "tableCount": 214,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "商品销售报表",
+    "name": "团购套餐销售汇总报表",
+    "hash": "#/finance_report/goods_sales_report/gsr_ttxh_report",
+    "activeTab": "团购套餐销售汇总报表",
+    "headings": [],
+    "columns": [],
+    "buttons": [
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "请输入团购套餐名称"
+    ],
+    "rows": 0,
+    "tableCount": 215,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "商品销售报表",
+    "name": "商品赠送明细报表",
+    "hash": "#/finance_report/goods_sales_report/gsr_szm_report",
+    "activeTab": "商品赠送明细报表",
+    "headings": [],
+    "columns": [],
+    "buttons": [
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "请选择商品类型",
+      "请输入商品名称",
+      "请输入预订人"
+    ],
+    "rows": 0,
+    "tableCount": 226,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "商品销售报表",
+    "name": "出品汇总报表",
+    "hash": "#/finance_report/goods_sales_report/gsr_cph_report",
+    "activeTab": "出品汇总报表",
+    "headings": [],
+    "columns": [
+      "行号",
+      "门店",
+      "商品类型",
+      "商品名称",
+      "单位",
+      "单价",
+      "销售数量",
+      "套餐数量",
+      "赠送数量",
+      "配送数量",
+      "商品兑换数量",
+      "出品总量",
+      "出品总额",
+      "进货单价",
+      "进货总额"
+    ],
+    "buttons": [
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "请选择商品类型",
+      "请输入商品名称",
+      "请选择包厢区域"
+    ],
+    "rows": 1,
+    "tableCount": 239,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "商品销售报表",
+    "name": "开房套餐销售明细报表",
+    "hash": "#/finance_report/goods_sales_report/gsr_ktxm_report",
+    "activeTab": "开房套餐销售明细报表",
+    "headings": [],
+    "columns": [
+      "支付时间",
+      "订单编号",
+      "支付类型",
+      "会员卡号",
+      "门店",
+      "包厢区域",
+      "包厢号",
+      "操作人",
+      "开房套餐类型",
+      "开房套餐名称",
+      "销售数量",
+      "退货数量",
+      "折后金额"
+    ],
+    "buttons": [
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "开始时间",
+      "结束时间",
+      "请选择门店",
+      "请选择包厢区域",
+      "请选择操作人",
+      "请选择支付类型",
+      "请选择开房套餐类型",
+      "请输入开房套餐名称",
+      "请输入会员卡号"
+    ],
+    "rows": 0,
+    "tableCount": 241,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "商品销售报表",
+    "name": "开房套餐销售汇总报表",
+    "hash": "#/finance_report/goods_sales_report/gsr_ktxh_report",
+    "activeTab": "开房套餐销售汇总报表",
+    "headings": [],
+    "columns": [
+      "门店",
+      "开房套餐类型",
+      "开房套餐名称",
+      "销售总量",
+      "销售单价",
+      "折后总额"
+    ],
+    "buttons": [
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "开始时间",
+      "结束时间",
+      "请选择门店",
+      "请选择开房套餐类型",
+      "请输入开房套餐名称"
+    ],
+    "rows": 0,
+    "tableCount": 243,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "商品销售报表",
+    "name": "商品免单招待明细报表",
+    "hash": "#/finance_report/goods_sales_report/gsr_smzm_report",
+    "activeTab": "商品免单招待明细报表",
+    "headings": [],
+    "columns": [
+      "下单时间",
+      "订单编号",
+      "包厢区域",
+      "包厢号",
+      "预订人",
+      "账单号",
+      "操作人",
+      "商品类型",
+      "商品名称",
+      "单位",
+      "单价",
+      "净销售数量",
+      "金额",
+      "成本单价",
+      "成本总额"
+    ],
+    "buttons": [
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "开始时间",
+      "结束时间",
+      "请选择门店",
+      "请选择包厢区域",
+      "请选择包厢",
+      "请输入预订人姓名",
+      "请选择商品类型",
+      "请输入商品名称",
+      "请输入操作人姓名"
+    ],
+    "rows": 0,
+    "tableCount": 245,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "艺人报表",
+    "name": "艺人台费扣款明细报表",
+    "hash": "#/finance_report/waiter_report/wr_ytkm_report",
+    "activeTab": "艺人台费扣款明细报表",
+    "headings": [],
+    "columns": [],
+    "buttons": [
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "请输入艺人姓名",
+      "请选择组别"
+    ],
+    "rows": 0,
+    "tableCount": 246,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "艺人报表",
+    "name": "艺人台费充值报表",
+    "hash": "#/finance_report/waiter_report/wr_ytc_report",
+    "activeTab": "艺人台费充值报表",
+    "headings": [],
+    "columns": [],
+    "buttons": [
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "请选择组别",
+      "请输入艺名/腰牌"
+    ],
+    "rows": 0,
+    "tableCount": 248,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "艺人报表",
+    "name": "艺人台费流水汇总报表",
+    "hash": "#/finance_report/waiter_report/wr_ytlh_report",
+    "activeTab": "艺人台费流水汇总报表",
+    "headings": [],
+    "columns": [],
+    "buttons": [
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "请输入艺人姓名",
+      "请选择组别"
+    ],
+    "rows": 0,
+    "tableCount": 249,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "艺人报表",
+    "name": "艺人报备明细报表",
+    "hash": "#/finance_report/waiter_report/wr_ybm_report",
+    "activeTab": "艺人报备明细报表",
+    "headings": [],
+    "columns": [],
+    "buttons": [
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "请输入艺名",
+      "请选择组别"
+    ],
+    "rows": 0,
+    "tableCount": 250,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "艺人报表",
+    "name": "艺人报备汇总报表",
+    "hash": "#/finance_report/waiter_report/wr_ybh_report",
+    "activeTab": "艺人报备汇总报表",
+    "headings": [],
+    "columns": [],
+    "buttons": [
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "请选择组别"
+    ],
+    "rows": 0,
+    "tableCount": 251,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "艺人报表",
+    "name": "艺人上下钟明细报表",
+    "hash": "#/finance_report/waiter_report/wr_ydm_report",
+    "activeTab": "艺人上下钟明细报表",
+    "headings": [],
+    "columns": [],
+    "buttons": [
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "请输入艺名",
+      "请选择组别"
+    ],
+    "rows": 0,
+    "tableCount": 252,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "艺人报表",
+    "name": "艺人上下钟汇总报表",
+    "hash": "#/finance_report/waiter_report/wr_ydh_report",
+    "activeTab": "艺人上下钟汇总报表",
+    "headings": [],
+    "columns": [],
+    "buttons": [
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "请选择组别"
+    ],
+    "rows": 0,
+    "tableCount": 253,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "艺人报表",
+    "name": "艺人主管轮台报表",
+    "hash": "#/finance_report/waiter_report/wr_yzl_report",
+    "activeTab": "艺人主管轮台报表",
+    "headings": [],
+    "columns": [],
+    "buttons": [
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "请输入姓名",
+      "请选择组别",
+      "请输入姓名",
+      "请输入姓名"
+    ],
+    "rows": 0,
+    "tableCount": 254,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "艺人报表",
+    "name": "艺人台票购买明细报表",
+    "hash": "#/finance_report/waiter_report/wr_ytpgm_report",
+    "activeTab": "艺人台票购买明细报表",
+    "headings": [],
+    "columns": [],
+    "buttons": [
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "请选择组别",
+      "请输入艺名/腰牌"
+    ],
+    "rows": 0,
+    "tableCount": 256,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "艺人报表",
+    "name": "艺人台票使用明细报表",
+    "hash": "#/finance_report/waiter_report/wr_ytpsm_report",
+    "activeTab": "艺人台票使用明细报表",
+    "headings": [],
+    "columns": [],
+    "buttons": [
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "请选择组别",
+      "请输入艺名/腰牌"
+    ],
+    "rows": 0,
+    "tableCount": 257,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "其它报表",
+    "name": "呼叫服务报表",
+    "hash": "#/finance_report/others_report/or_hf_report",
+    "activeTab": "呼叫服务报表",
+    "headings": [],
+    "columns": [],
+    "buttons": [
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "接收员工姓名/工号"
+    ],
+    "rows": 0,
+    "tableCount": 258,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "其它报表",
+    "name": "虚拟送礼的答谢报表",
+    "hash": "#/finance_report/others_report/or_xld_report",
+    "activeTab": "虚拟送礼的答谢报表",
+    "headings": [],
+    "columns": [],
+    "buttons": [
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "请输入收礼人艺名"
+    ],
+    "rows": 0,
+    "tableCount": 259,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "其它报表",
+    "name": "客遗记录报表",
+    "hash": "#/finance_report/others_report/or_kj_report",
+    "activeTab": "客遗记录报表",
+    "headings": [],
+    "columns": [],
+    "buttons": [
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "请输入拾到员工姓名"
+    ],
+    "rows": 0,
+    "tableCount": 260,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "其它报表",
+    "name": "意见管理报表",
+    "hash": "#/finance_report/others_report/or_yg_report",
+    "activeTab": "意见管理报表",
+    "headings": [],
+    "columns": [],
+    "buttons": [
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "请输入用户微信昵称"
+    ],
+    "rows": 0,
+    "tableCount": 261,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "其它报表",
+    "name": "服务评价报表",
+    "hash": "#/finance_report/others_report/or_fp_report",
+    "activeTab": "服务评价报表",
+    "headings": [],
+    "columns": [],
+    "buttons": [
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "请输入用户微信昵称"
+    ],
+    "rows": 0,
+    "tableCount": 263,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "其它报表",
+    "name": "内容服务费报表",
+    "hash": "#/finance_report/others_report/or_nff_report",
+    "activeTab": "内容服务费报表",
+    "headings": [],
+    "columns": [],
+    "buttons": [
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "请输入支付人"
+    ],
+    "rows": 0,
+    "tableCount": 264,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "其它报表",
+    "name": "卡券报表",
+    "hash": "#/finance_report/others_report/or_kq_report",
+    "activeTab": "卡券报表",
+    "headings": [],
+    "columns": [
+      "领券时间",
+      "送券方式",
+      "卡券类型",
+      "卡券名称",
+      "卡券价值",
+      "卡券状态",
+      "使用门店",
+      "领取会员",
+      "会员卡号",
+      "会员手机号",
+      "微信昵称",
+      "活动名称"
+    ],
+    "buttons": [
+      "领券明细",
+      "使用明细",
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "开始时间",
+      "结束时间",
+      "请选择门店",
+      "请选择送券方式",
+      "请选择卡券类型",
+      "请选择卡券状态",
+      "请输入卡券名称",
+      "请选择",
+      "请输入检索内容",
+      "请输入活动名称或ID"
+    ],
+    "rows": 0,
+    "tableCount": 273,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "其它报表",
+    "name": "员工小费收款明细报表",
+    "hash": "#/finance_report/others_report/or_yxsm_report",
+    "activeTab": "员工小费收款明细报表",
+    "headings": [],
+    "columns": [
+      "收款时间",
+      "收款员工",
+      "员工工号",
+      "收款总额",
+      "打赏金额",
+      "追加金额",
+      "评价"
+    ],
+    "buttons": [
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "开始时间",
+      "结束时间",
+      "请选择门店",
+      "请选择收款员工",
+      "请输入员工工号",
+      "请选择评价"
+    ],
+    "rows": 0,
+    "tableCount": 275,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "其它报表",
+    "name": "积分兑换明细报表",
+    "hash": "#/finance_report/others_report/or_jfdhm_report",
+    "activeTab": "积分兑换明细报表",
+    "headings": [],
+    "columns": [
+      "兑换时间",
+      "兑换包厢",
+      "兑换类型",
+      "分类名称",
+      "兑换详情",
+      "兑换积分",
+      "兑换数量",
+      "使用积分",
+      "会员姓名",
+      "会员手机号",
+      "会员等级",
+      "兑换方式",
+      "操作人"
+    ],
+    "buttons": [
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "开始时间",
+      "结束时间",
+      "请选择门店",
+      "请选择兑换类型",
+      "请选择分类名称",
+      "请输入兑换详情名称",
+      "请选择会员等级",
+      "请输入会员卡号",
+      "请输入会员姓名",
+      "请输入会员手机号",
+      "请选择兑换方式",
+      "请选择包厢"
+    ],
+    "rows": 0,
+    "tableCount": 277,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "其它报表",
+    "name": "积分兑换汇总报表",
+    "hash": "#/finance_report/others_report/or_jfdhh_report",
+    "activeTab": "积分兑换汇总报表",
+    "headings": [],
+    "columns": [
+      "兑换类型",
+      "分类名称",
+      "兑换详情",
+      "兑换数量",
+      "使用积分"
+    ],
+    "buttons": [
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "开始时间",
+      "结束时间",
+      "请选择门店",
+      "请选择兑换类型",
+      "请选择分类名称",
+      "请输入兑换详情名称"
+    ],
+    "rows": 0,
+    "tableCount": 279,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "其它报表",
+    "name": "客遗酒水回收入库报表",
+    "hash": "#/finance_report/others_report/or_kyjs_report",
+    "activeTab": "客遗酒水回收入库报表",
+    "headings": [],
+    "columns": [
+      "入库时间",
+      "入库仓库",
+      "商品名称",
+      "单价",
+      "实际入库数量",
+      "拾到员工",
+      "拾到包厢",
+      "入库操作人",
+      "审批人",
+      "操作"
+    ],
+    "buttons": [
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "开始时间",
+      "结束时间",
+      "请选择门店",
+      "请选择包厢",
+      "请选择仓库",
+      "请输入商品名称",
+      "请输入员工名称",
+      "请选择入库操作人",
+      "请选择审批人"
+    ],
+    "rows": 0,
+    "tableCount": 281,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "其它报表",
+    "name": "短信费用明细报表",
+    "hash": "#/finance_report/others_report/or_dxfm_report",
+    "activeTab": "短信费用明细报表",
+    "headings": [],
+    "columns": [
+      "时间",
+      "短信类型",
+      "短信内容",
+      "接收号码",
+      "费用"
+    ],
+    "buttons": [
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "开始时间",
+      "结束时间",
+      "请选择门店",
+      "请选择短信类型",
+      "请输入手机号"
+    ],
+    "rows": 0,
+    "tableCount": 283,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "其它报表",
+    "name": "包厢微信登录报表",
+    "hash": "#/finance_report/others_report/or_wx_login_report",
+    "activeTab": "包厢微信登录报表",
+    "headings": [],
+    "columns": [
+      "扫码登录时间",
+      "门店名称",
+      "包厢名称",
+      "账单号",
+      "微信昵称",
+      "头像",
+      "操作"
+    ],
+    "buttons": [
+      "黑名单管理",
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "开始时间",
+      "结束时间",
+      "请选择门店",
+      "请选择包厢",
+      "请输入微信昵称",
+      "请输入账单号"
+    ],
+    "rows": 0,
+    "tableCount": 287,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "其它报表",
+    "name": "歌曲点播排行报表",
+    "hash": "#/finance_report/others_report/or_song_month_report",
+    "activeTab": "歌曲点播排行报表",
+    "headings": [],
+    "columns": [
+      "排序",
+      "歌星",
+      "歌曲",
+      "歌曲编号",
+      "分类",
+      "语言",
+      "点播数"
+    ],
+    "buttons": [
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "请选择门店",
+      "请选择月份",
+      "请输入歌手名称",
+      "请输入歌曲名称",
+      "请输入歌曲编号"
+    ],
+    "rows": 0,
+    "tableCount": 289,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "其它报表",
+    "name": "签到用户明细报表",
+    "hash": "#/finance_report/others_report/or_signed_details_report",
+    "activeTab": "签到用户明细报表",
+    "headings": [],
+    "columns": [
+      "签到时间",
+      "预订用户",
+      "签到人姓名",
+      "电话",
+      "门店名称",
+      "邀请人",
+      "微信昵称",
+      "微信头像",
+      "预订包厢",
+      "预订时间",
+      "是否抽奖",
+      "奖品",
+      "备注"
+    ],
+    "buttons": [
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "开始时间",
+      "结束时间",
+      "请选择门店",
+      "请输入预订用户",
+      "请输入预订包厢",
+      "请输入电话"
+    ],
+    "rows": 0,
+    "tableCount": 291,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "其它报表",
+    "name": "邀请函用户明细报表",
+    "hash": "#/finance_report/others_report/or_invitation_user_report",
+    "activeTab": "邀请函用户明细报表",
+    "headings": [],
+    "columns": [
+      "接收邀请时间",
+      "预订用户",
+      "被邀请人姓名",
+      "电话",
+      "门店名称",
+      "邀请人",
+      "用户昵称",
+      "微信头像",
+      "预订包厢",
+      "预订时间",
+      "备注",
+      "操作"
+    ],
+    "buttons": [
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "开始时间",
+      "结束时间",
+      "请选择门店",
+      "请输入预订用户",
+      "请输入预订包厢",
+      "请输入电话"
+    ],
+    "rows": 0,
+    "tableCount": 293,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "花单报表",
+    "name": "花单明细报表",
+    "hash": "#/finance_report/flower_report/flower_detail_report",
+    "activeTab": "花单明细报表",
+    "headings": [],
+    "columns": [
+      "开房时间",
+      "包厢区域",
+      "包厢号",
+      "账单号",
+      "花单号",
+      "组别",
+      "员工",
+      "工号/腰牌号",
+      "花名",
+      "数量",
+      "单价",
+      "金额",
+      "操作人",
+      "操作时间",
+      "操作类型",
+      "付款状态",
+      "付款方式"
+    ],
+    "buttons": [
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "开始时间",
+      "结束时间",
+      "请选择门店",
+      "请选择包厢",
+      "请输入账单号",
+      "请选择",
+      "请输入员工姓名/艺名",
+      "请选择组别",
+      "请输入员工号/腰牌号",
+      "请输入花单号",
+      "请选择下单操作人",
+      "请选择操作类型",
+      "请选择付款方式",
+      "请选择包厢区域",
+      "请输入花名",
+      "请选择付款状态"
+    ],
+    "rows": 0,
+    "tableCount": 295,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "花单报表",
+    "name": "花单汇总报表",
+    "hash": "#/finance_report/flower_report/flower_total_report",
+    "activeTab": "花单汇总报表",
+    "headings": [],
+    "columns": [
+      "组别",
+      "员工",
+      "工号/腰牌号",
+      "金额",
+      "已付款金额",
+      "未付款金额"
+    ],
+    "buttons": [
+      "按员工统计",
+      "按花名统计",
+      "按员工及花名统计",
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "开始时间",
+      "结束时间",
+      "请选择门店",
+      "请选择",
+      "请输入员工姓名/艺名",
+      "请选择组别",
+      "请输入员工号/腰牌号",
+      "请选择包厢区域"
+    ],
+    "rows": 0,
+    "tableCount": 297,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "商品盈利报表",
+    "name": "商品盈利明细报表",
+    "hash": "#/finance_report/goods_profit_report/profit_detail_report",
+    "activeTab": "商品盈利明细报表",
+    "headings": [],
+    "columns": [
+      "包厢号",
+      "包厢类型",
+      "包厢区域",
+      "账单号",
+      "预订员工",
+      "订单编号",
+      "订单类型",
+      "支付类型",
+      "支付时间",
+      "商品类型",
+      "商品名称",
+      "单位",
+      "单价",
+      "净销售数量",
+      "折后单价",
+      "折后总额",
+      "成本单价",
+      "成本总额",
+      "利润总额",
+      "利润率"
+    ],
+    "buttons": [
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "开始时间",
+      "结束时间",
+      "请选择门店",
+      "请选择包厢区域",
+      "请选择包厢",
+      "请选择包厢类型",
+      "请选择订单类型",
+      "请选择支付类型",
+      "请选择商品类型",
+      "请输入商品名称",
+      "请选择",
+      "请输入预订人姓名",
+      "请选择销售类型",
+      "请选择价格策略"
+    ],
+    "rows": 0,
+    "tableCount": 299,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "商品盈利报表",
+    "name": "商品盈利汇总报表",
+    "hash": "#/finance_report/goods_profit_report/profit_total_report",
+    "activeTab": "商品盈利汇总报表",
+    "headings": [],
+    "columns": [
+      "商品类型",
+      "商品名称",
+      "单位",
+      "单价",
+      "净销售数量",
+      "折后单价",
+      "折后总额",
+      "成本单价",
+      "成本总额",
+      "利润总额",
+      "利润率"
+    ],
+    "buttons": [
+      "按商品统计",
+      "按出货仓库统计",
+      "按区域统计",
+      "按商品类型统计",
+      "按销售类型统计",
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "开始时间",
+      "结束时间",
+      "请选择门店",
+      "请选择商品类型",
+      "请输入商品名称",
+      "请选择商品类型",
+      "请选择价格策略"
+    ],
+    "rows": 0,
+    "tableCount": 301,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "商品盈利报表",
+    "name": "商品套餐盈利明细报表",
+    "hash": "#/finance_report/goods_profit_report/goodspackage_detail_report",
+    "activeTab": "商品套餐盈利明细报表",
+    "headings": [],
+    "columns": [
+      "包厢号",
+      "包厢类型",
+      "包厢区域",
+      "账单号",
+      "预订员工",
+      "订单编号",
+      "支付类型",
+      "支付时间",
+      "商品套餐类型",
+      "商品套餐名称",
+      "单位",
+      "单价",
+      "净销售数量",
+      "折后单价",
+      "折后总额",
+      "成本单价",
+      "成本总额",
+      "利润总额",
+      "利润率"
+    ],
+    "buttons": [
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "开始时间",
+      "结束时间",
+      "请选择门店",
+      "请选择包厢区域",
+      "请选择包厢类型",
+      "请选择包厢",
+      "请选择支付类型",
+      "请选择商品套餐类型",
+      "请输入商品套餐名称",
+      "请选择",
+      "请输入预订人姓名"
+    ],
+    "rows": 0,
+    "tableCount": 303,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "商品盈利报表",
+    "name": "商品套餐盈利汇总报表",
+    "hash": "#/finance_report/goods_profit_report/goodspackage_total_report",
+    "activeTab": "商品套餐盈利汇总报表",
+    "headings": [],
+    "columns": [
+      "商品套餐类型",
+      "商品套餐名称",
+      "单位",
+      "单价",
+      "销售总量",
+      "折后单价",
+      "折后总额",
+      "成本单价",
+      "成本总额",
+      "利润总额",
+      "利润率"
+    ],
+    "buttons": [
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "开始时间",
+      "结束时间",
+      "请选择门店",
+      "请选择商品套餐类型",
+      "请输入商品套餐名称"
+    ],
+    "rows": 0,
+    "tableCount": 305,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "商品盈利报表",
+    "name": "开房套餐盈利明细报表",
+    "hash": "#/finance_report/goods_profit_report/kfpackage_detail_report",
+    "activeTab": "开房套餐盈利明细报表",
+    "headings": [],
+    "columns": [
+      "包厢号",
+      "包厢类型",
+      "包厢区域",
+      "账单号",
+      "预订员工",
+      "订单编号",
+      "支付类型",
+      "支付时间",
+      "开房套餐类型",
+      "开房套餐名称",
+      "单价",
+      "净销售数量",
+      "折后总额",
+      "成本总额",
+      "利润总额",
+      "利润率"
+    ],
+    "buttons": [
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "开始时间",
+      "结束时间",
+      "请选择门店",
+      "请选择包厢区域",
+      "请选择包厢类型",
+      "请选择包厢",
+      "请选择支付类型",
+      "请选择开房套餐类型",
+      "请输入开房套餐名称",
+      "请选择",
+      "请输入预订人姓名"
+    ],
+    "rows": 0,
+    "tableCount": 307,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "商品盈利报表",
+    "name": "开房套餐盈利汇总报表",
+    "hash": "#/finance_report/goods_profit_report/kfpackage_total_report",
+    "activeTab": "开房套餐盈利汇总报表",
+    "headings": [],
+    "columns": [
+      "开房套餐类型",
+      "开房套餐名称",
+      "单价",
+      "销售总量",
+      "折后单价",
+      "折后总额",
+      "成本单价",
+      "成本总额",
+      "利润总额",
+      "利润率"
+    ],
+    "buttons": [
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "开始时间",
+      "结束时间",
+      "请选择门店",
+      "请选择开房套餐类型",
+      "请输入开房套餐名称"
+    ],
+    "rows": 0,
+    "tableCount": 309,
+    "dialogs": [],
+    "routeChanged": true
+  },
+  {
+    "module": "报表",
+    "group": "客户报表",
+    "name": "客户资料报表",
+    "hash": "#/finance_report/customer_report/customer_data_report",
+    "activeTab": "客户资料报表",
+    "headings": [],
+    "columns": [
+      "门店",
+      "添加时间",
+      "客户姓名",
+      "手机号",
+      "营销员工",
+      "最近消费时间",
+      "消费次数",
+      "消费金额",
+      "性别",
+      "生日",
+      "年龄",
+      "行业",
+      "客户情况",
+      "消费习惯",
+      "备注"
+    ],
+    "buttons": [
+      "按客户",
+      "按营销员工-客户",
+      "按营销员工",
+      "按门店",
+      "查询",
+      "导出"
+    ],
+    "placeholders": [
+      "开始时间",
+      "结束时间",
+      "请选择门店",
+      "请输入客户姓名",
+      "请输入手机号"
+    ],
+    "rows": 0,
+    "tableCount": 311,
+    "dialogs": [],
+    "routeChanged": true
+  }
+]

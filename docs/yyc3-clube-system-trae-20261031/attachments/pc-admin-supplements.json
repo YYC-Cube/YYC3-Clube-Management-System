@@ -1,0 +1,90 @@
+{
+  "source": "user-provided PC screenshots",
+  "capturedAt": "2026-10-31",
+  "note": "非菜单入口页面；截图仅含结构标签与配置项，不含真实业务数据；配置为门店级",
+  "pages": [
+    {
+      "module": "员工/艺人域",
+      "name": "艺人设置",
+      "type": "非菜单入口配置页",
+      "hash": null,
+      "scope": "store",
+      "items": [
+        {
+          "name": "艺人资料必填项设置",
+          "type": "yes/no",
+          "children": [
+            { "name": "艺人身份证是否必填", "type": "yes/no", "default": true, "note": "默认必填；选否后 App 新增/审核可不填" },
+            { "name": "艺人资料等级是否必填", "type": "yes/no", "default": false, "note": "选是后 App 新增/审核必须选择艺人等级" }
+          ]
+        },
+        {
+          "name": "艺人报备设置",
+          "type": "on/off",
+          "children": [
+            { "name": "艺人微信报备设置", "type": "on/off", "note": "关闭后巨嗨佳人微信端报备入口隐藏" },
+            { "name": "艺人app端扫码报备设置", "type": "on/off", "note": "关闭后 App 端艺人报备二维码不显示" },
+            { "name": "艺人app端刷卡报备设置", "type": "on/off", "note": "关闭后 App 端不支持刷卡报备" },
+            { "name": "二次签到设置", "type": "on/off", "note": "开启后当天签退可再次签到" }
+          ]
+        },
+        {
+          "name": "艺人签到后多久可签退",
+          "type": "number(minutes)",
+          "children": [
+            { "name": "可签退间隔", "type": "number", "unit": "分钟", "example": 0, "note": "0 表示签到后可立即签退" }
+          ]
+        },
+        {
+          "name": "艺人是否支持手动扫码下钟",
+          "type": "yes/no",
+          "children": [
+            { "name": "支持手动扫码下钟", "type": "yes/no", "note": "选否需下钟审批，审批通过/服务停止/关房后自动下钟" }
+          ]
+        },
+        {
+          "name": "未签到是否支持上钟打卡",
+          "type": "yes/no",
+          "children": [
+            { "name": "未签到可上钟", "type": "yes/no", "note": "选否时未报备签到无法在包厢扫码上钟" }
+          ]
+        },
+        {
+          "name": "台票购买设置",
+          "type": "yes/no",
+          "children": [
+            { "name": "未签到是否可购买", "type": "yes/no", "note": "否：未报备签到无法购买台票" },
+            { "name": "购票未使用是否可购买", "type": "yes/no", "note": "否：单个营业日内未上钟使用无法重复购票" },
+            { "name": "上钟状态下是否可购买", "type": "yes/no", "note": "否：上钟未下钟无法购买台票" }
+          ]
+        },
+        {
+          "name": "艺人上钟模式设置",
+          "type": "enum",
+          "options": ["台费", "台票", "自定义"],
+          "note": "台费=扣台费规则金额；台票=需先购票；自定义规则待定义"
+        }
+      ],
+      "dataFlow": "App 管理编辑 -> 数据回传 CMS；CMS 只读查询/报表/导出 + 艺人设置"
+    },
+    {
+      "module": "报表",
+      "name": "艺人报表",
+      "group": "艺人报表",
+      "type": "菜单（已含于 160 项）",
+      "hash": "#/finance_report/waiter_report/*",
+      "items": [
+        "艺人台费扣款明细报表",
+        "艺人台费充值报表",
+        "艺人台费流水汇总报表",
+        "艺人报备明细报表",
+        "艺人报备汇总报表",
+        "艺人上下钟明细报表",
+        "艺人上下钟汇总报表",
+        "艺人主管轮台报表",
+        "艺人台票购买明细报表",
+        "艺人台票使用明细报表"
+      ]
+    }
+  ]
+}
