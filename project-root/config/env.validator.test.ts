@@ -1,4 +1,4 @@
-import { env } from "./env.test"
+import { env } from "./env.fixtures"
 
 describe("环境变量测试注入校验", () => {
   it("应包含关键字段", () => {

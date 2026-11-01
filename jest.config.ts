@@ -64,30 +64,10 @@ const customJestConfig: Config = {
     '**/__tests__/*.test.{js,jsx,ts,tsx}',
     '**/*.(test|spec).{js,jsx,ts,tsx}',
   ],
-  // 存量红分类治理（2026-11-02，修正版）：archive-* 归档批次不进门禁。
-  // A 类收编：/e2e/ 为 playwright testDir（jest 不收集）；/tests/security/ 为 testDir 外
-  // 孤儿 playwright 规格（待人工归位）。B/C 类残件与混合目录中的红灯文件一律 ignore
-  // （物理归档待人工 git mv；Mimosa 钩子拦 Bash 级测试文件移动，见 decisions.log）。
-  // 混合目录（extended/、integration/）红灯文件 ignore 而非目录归档——避免连坐绿灯套件。
-  testPathIgnorePatterns: [
-    '/node_modules/',
-    '__tests__/archive-',
-    '/e2e/',
-    '/tests/security/',
-    '__tests__/quick-coverage-boost\\.test\\.tsx$',
-    '__tests__/essential-coverage\\.test\\.tsx$',
-    '__tests__/core-components\\.test\\.tsx$',
-    '__tests__/core-api-routes\\.test\\.tsx$',
-    '__tests__/performance-monitoring\\.test\\.tsx$',
-    'components/ui/button\\.test\\.tsx$',
-    'components/product-form\\.test\\.tsx$',
-    'project-root/config/env\\.test\\.ts$',
-    'integration/product-management\\.test\\.tsx$',
-    'integration/order-management\\.test\\.tsx$',
-    'integration/member-management\\.test\\.tsx$',
-    'extended/ai-ops-system\\.test\\.tsx$',
-    'extended/auth\\.test\\.tsx$',
-  ],
+  // 存量红分类治理（2026-11-02 定稿）：archive-* 归档批次不进门禁（13 红灯残件已物理
+  // 归档至此批次，见 decisions.log 通道注记）；孤儿 playwright 规格已归位 e2e/。
+  // /e2e/ 为 playwright testDir（jest 不收集）；/tests/security/ 兜底防复发。
+  testPathIgnorePatterns: ['/node_modules/', '__tests__/archive-', '/e2e/', '/tests/security/'],
   transform: {
     '^.+\\.(ts|tsx)$': 'ts-jest',
   },
