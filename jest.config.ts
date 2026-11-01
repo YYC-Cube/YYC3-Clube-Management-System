@@ -36,10 +36,11 @@ const customJestConfig: Config = {
   testMatch: [
     '**/__tests__/**/*.test.{js,jsx,ts,tsx}',
     '**/__tests__/working/**/*.test.{js,jsx,ts,tsx}',
-    '**/__tests__/basic/**/*.test.{js,jsx,ts,tsx}',
     '**/__tests__/*.test.{js,jsx,ts,tsx}',
     '**/*.(test|spec).{js,jsx,ts,tsx}',
   ],
+  // ③类生成式测试治理：archive-* 为「归档待重写」批次，不进门禁（协同规范 05 §6 测试建议）
+  testPathIgnorePatterns: ['/node_modules/', '__tests__/archive-'],
   transform: {
     '^.+\\.(ts|tsx)$': 'ts-jest',
   },
