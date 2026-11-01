@@ -11,6 +11,9 @@ const customJestConfig: Config = {
     '^@/(.*)$': '<rootDir>/$1',
     '^@/components/(.*)$': '<rootDir>/components/$1',
     '^@/lib/(.*)$': '<rootDir>/lib/$1',
+    // @happy-dom/jest-environment pnpm symlink 下 docblock 解析不到，显式映射真实入口
+    '^@happy-dom/jest-environment$':
+      '<rootDir>/node_modules/.pnpm/@happy-dom+jest-environment@21.0.4_@jest+environment@30.4.1_@jest+fake-timers@30.4.1_@j_5052c52b280ef2ae45ebe62cc89baadb/node_modules/@happy-dom/jest-environment/lib/index.js',
     // pnpm symlink 下 jest resolver 解析不到 msw exports 子路径；映射 CJS 入口
     '^msw/node$':
       '<rootDir>/node_modules/.pnpm/msw@2.14.6_@types+node@22.19.19_typescript@5.9.3/node_modules/msw/lib/node/index.js',

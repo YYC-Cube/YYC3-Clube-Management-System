@@ -18,6 +18,40 @@ if (!globalThis.MessagePort) globalThis.MessagePort = MessagePort as typeof Mess
 if (!globalThis.Event) globalThis.Event = NodeEvent as typeof NodeEvent
 if (!globalThis.EventTarget) globalThis.EventTarget = NodeEventTarget as typeof NodeEventTarget
 
+// undici fetch/Request/Response/Headers（Node 标准实现）：msw(node) 拦截链可拦；
+// **Request 无条件替换为 undici 版**：msw ClientRequest 分片以 undefined headers
+// 构造 Request，happy-dom 原生 Request 会 Object.keys(undefined) 崩——兼容包装转空对象
+const undici = require('undici') as {
+  fetch: unknown
+  Request: new (input: string, init?: { headers?: Record<string, string> }) => Request
+  Response: unknown
+  Headers: unknown
+}
+;(globalThis as unknown as { fetch: unknown }).fetch = undici.fetch
+;(globalThis as unknown as { Request: unknown }).Request = new Proxy(undici.Request, {
+  construct(target, args: [string, Record<string, unknown>?]) {
+    const [input, init] = args
+    // 相对 URL 补 baseUrl（undici 无 window.location 语义；jsdom location 提供原点）
+    const base = (globalThis as unknown as { location?: { href: string } }).location?.href
+    const absolute = base ? new URL(input, base).href : input
+    // init.headers undefined 时 happy-dom/undici 互操作会崩，转空对象
+    const fixed = init && init.headers === undefined ? { ...init, headers: {} } : init
+    const instance = new target(absolute, fixed)
+    // undici@8 Request 精简了 Body mixin：补 arrayBuffer（msw getBodyByteLength 依赖）
+    if (typeof (instance as unknown as { arrayBuffer?: unknown }).arrayBuffer !== 'function') {
+      ;(instance as unknown as { arrayBuffer: () => Promise<ArrayBuffer> }).arrayBuffer =
+        async () => {
+          const text = await (instance as unknown as { text: () => Promise<string> }).text()
+          const buf = Buffer.from(text, 'utf-8')
+          return buf.buffer.slice(buf.byteOffset, buf.byteOffset + buf.byteLength)
+        }
+    }
+    return instance
+  },
+})
+;(globalThis as unknown as { Response: unknown }).Response = undici.Response
+;(globalThis as unknown as { Headers: unknown }).Headers = undici.Headers
+
 // undici fetch 注入实验已回滚：undici fetch 走自有连接器（非 http.ClientRequest），
 // 与 msw(node) 的 ClientRequestInterceptor 不匹配；jsdom XHR 拦截语义列专项继续
 

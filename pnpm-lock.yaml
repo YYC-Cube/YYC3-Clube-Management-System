@@ -273,6 +273,9 @@ importers:
       '@eslint/js':
         specifier: ^9.39.2
         version: 9.39.4
+      '@happy-dom/jest-environment':
+        specifier: ^21.0.4
+        version: 21.0.4(@jest/environment@30.4.1)(@jest/fake-timers@30.4.1)(@jest/types@30.4.1)(jest-mock@30.4.1)(jest-util@30.4.1)
       '@jest/globals':
         specifier: ^30.2.0
         version: 30.4.1(supports-color@8.1.1)
@@ -1690,6 +1693,16 @@ packages:
 
   '@hapi/topo@5.1.0':
     resolution: {integrity: sha512-foQZKJig7Ob0BMAYBfcJk8d77QtOe7Wo4ox7ff1lQYoNNAb6jwcY1ncdoy2e9wQZzvNy7ODZCYJkK8kzmcAnAg==}
+
+  '@happy-dom/jest-environment@21.0.4':
+    resolution: {integrity: sha512-cojN5sDL1sGorR7TEwgMRZng4pxVz1UTVSHsOaJYT9eDVoXIm7g4c10vw3twFYnu/iCEvvEnCFzDHuIcmc+NGA==}
+    engines: {node: '>=20.0.0'}
+    peerDependencies:
+      '@jest/environment': '>=25.0.0'
+      '@jest/fake-timers': '>=25.0.0'
+      '@jest/types': '>=25.0.0'
+      jest-mock: '>=25.0.0'
+      jest-util: '>=25.0.0'
 
   '@hookform/resolvers@7.0.1':
     resolution: {integrity: sha512-F3aM0dDWsRGmFjnnXjogaGLwP7gY2HA6/c5qp4v4Im/UV7pTNkX+WAjcOlM1V0PE0zoMzuPqCyaYtMzUhoFToA==}
@@ -11384,6 +11397,18 @@ snapshots:
     dependencies:
       '@hapi/hoek': 9.3.0
     optional: true
+
+  '@happy-dom/jest-environment@21.0.4(@jest/environment@30.4.1)(@jest/fake-timers@30.4.1)(@jest/types@30.4.1)(jest-mock@30.4.1)(jest-util@30.4.1)':
+    dependencies:
+      '@jest/environment': 30.4.1
+      '@jest/fake-timers': 30.4.1
+      '@jest/types': 30.4.1
+      happy-dom: 21.0.4
+      jest-mock: 30.4.1
+      jest-util: 30.4.1
+    transitivePeerDependencies:
+      - bufferutil
+      - utf-8-validate
 
   '@hookform/resolvers@7.0.1(@standard-schema/spec@1.1.0)(ajv@6.15.0)(joi@17.13.9)(react-hook-form@7.91.0(@types/react@19.3.0)(react@19.3.1))(zod@4.6.7)':
     dependencies:
