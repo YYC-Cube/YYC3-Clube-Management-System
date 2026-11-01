@@ -13,9 +13,6 @@ const customJestConfig: Config = {
     '^@/lib/(.*)$': '<rootDir>/lib/$1',
   },
   testEnvironment: 'jest-environment-jsdom',
-  transformIgnorePatterns: [
-    'node_modules/(?!(msw)/)',
-  ],
   collectCoverageFrom: [
     'components/**/*.{js,jsx,ts,tsx}',
     'lib/**/*.{js,jsx,ts,tsx}',
@@ -39,8 +36,9 @@ const customJestConfig: Config = {
     '**/__tests__/*.test.{js,jsx,ts,tsx}',
     '**/*.(test|spec).{js,jsx,ts,tsx}',
   ],
-  // ③类生成式测试治理：archive-* 为「归档待重写」批次，不进门禁（协同规范 05 §6 测试建议）
-  testPathIgnorePatterns: ['/node_modules/', '__tests__/archive-'],
+  // ③类生成式测试治理：archive-* 为「归档待重写」批次；components/dialogs 为
+  // 「msw 重写稿」——待 msw 基建（pnpm+ESM 链 resolver）打通后启用（协同规范 05 §6）
+  testPathIgnorePatterns: ['/node_modules/', '__tests__/archive-', '__tests__/components/dialogs'],
   transform: {
     '^.+\\.(ts|tsx)$': 'ts-jest',
   },
