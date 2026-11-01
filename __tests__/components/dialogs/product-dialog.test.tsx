@@ -16,7 +16,7 @@ const mockCategories = [
   { id: "cat-2", name: "小食" },
 ]
 
-beforeAll(() => server.listen({ onUnhandledRequest: "bypass" }))
+beforeAll(() => server.listen({ onUnhandledRequest: "error" }))
 afterEach(() => server.resetHandlers())
 afterAll(() => server.close())
 
