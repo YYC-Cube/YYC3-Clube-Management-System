@@ -54,3 +54,6 @@ kanban-schema-gate.json
 /mobile-app/dist/
 /mobile-app/.expo/
 /mobile-app/node_modules/
+
+# python
+__pycache__/
