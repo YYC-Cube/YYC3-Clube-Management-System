@@ -37,7 +37,7 @@ function trimmed(value: string | null | undefined): string | undefined {
 function bearerToken(headers: Headers): string | undefined {
   const authorization = trimmed(headers.get("authorization"))
   if (!authorization) return undefined
-  const match = /^Bearer\s+([^\s]+)$/i.exec(authorization)
+  const match = authorization.match(/^Bearer\s+([^\s]+)$/i)
   return match?.[1]
 }
 

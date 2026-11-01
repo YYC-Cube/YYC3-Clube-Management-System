@@ -33,14 +33,15 @@ class LogAnalyzer {
   /**
    * 运行日志分析
    */
-  async analyzeLogs(logDir = null) {
+  async analyzeLogs() {
     console.log(chalk.blue('🔍 开始日志分析...'));
     console.log(chalk.gray(`时间: ${moment().format('YYYY-MM-DD HH:mm:ss')}`));
     console.log('=' .repeat(60));
-    
-    const targetLogDir = logDir || this.workspacePath;
-    
-    await this.findAndAnalyzeLogs(targetLogDir);
+
+    // 防路径穿越：仅扫描内置工作区日志目录，不接受外部路径输入（安全门禁要求）
+    const targetLogDir = path.resolve(this.workspacePath);
+
+    await this.findAndAnalyzeLogs();
     await this.analyzeErrorPatterns();
     await this.generateTrendAnalysis();
     this.generateReport();
@@ -50,7 +51,9 @@ class LogAnalyzer {
   /**
    * 查找并分析日志文件
    */
-  async findAndAnalyzeLogs(directory) {
+  async findAndAnalyzeLogs() {
+    // 防路径穿越：仅扫描内置工作区日志目录，无外部路径输入（安全门禁要求）
+    const directory = path.resolve(this.workspacePath);
     console.log(chalk.yellow(`\n📋 在 ${directory} 中查找日志文件...`));
     
     // 使用glob查找日志文件
@@ -447,12 +450,9 @@ class LogAnalyzer {
 
 // 命令行接口
 if (require.main === module) {
-  const args = process.argv.slice(2);
-  const logDirIndex = args.indexOf('--log-dir');
-  const logDir = logDirIndex !== -1 ? args[logDirIndex + 1] : null;
-  
+  // 仅扫描内置工作区日志目录，不接受外部路径参数（防路径穿越，安全门禁要求）
   const analyzer = new LogAnalyzer();
-  analyzer.analyzeLogs(logDir).catch(console.error);
+  analyzer.analyzeLogs().catch(console.error);
 }
 
 module.exports = LogAnalyzer;

@@ -9,7 +9,7 @@
  * @created 2025-11-15
  */
 
-const { exec } = require('child_process');
+const { execFile } = require('child_process');
 const fs = require('fs');
 const path = require('path');
 const chalk = require('chalk');
@@ -52,9 +52,9 @@ class SystemDiagnostic {
     console.log(chalk.yellow('\n📊 检查系统资源...'));
     
     try {
-      // 检查磁盘空间
-      const diskUsage = await this.execCommand('df -h');
-      const memoryUsage = await this.execCommand('vm_stat');
+      // 检查磁盘空间（固定命令 + 参数数组）
+      const diskUsage = await this.execCommand('df', ['-h']);
+      const memoryUsage = await this.execCommand('vm_stat', []);
       
       console.log(chalk.green('✅ 系统资源检查完成'));
       this.logIssue('low', 'system_resources', '磁盘和内存状态正常');
@@ -84,7 +84,7 @@ class SystemDiagnostic {
    */
   async checkNextJSProcesses() {
     try {
-      const psOutput = await this.execCommand('ps aux | grep -i next');
+      const psOutput = await this.execCommand('ps', ['aux']);
       const nextjsProcesses = psOutput.split('\n').filter(line => 
         line.includes('node') && (line.includes('next') || line.includes('react'))
       );
@@ -145,7 +145,12 @@ class SystemDiagnostic {
     
     for (const config of configFiles) {
       try {
-        const configPath = path.join(this.workspacePath, config.file);
+        const workspaceRoot = path.resolve(this.workspacePath);
+        const configPath = path.resolve(workspaceRoot, config.file);
+        if (!configPath.startsWith(workspaceRoot + path.sep)) {
+          this.logIssue('medium', 'config', `${config.file} 路径超出工作区，已跳过`);
+          continue;
+        }
         if (fs.existsSync(configPath)) {
           const content = fs.readFileSync(configPath, 'utf8');
           if (content.includes(config.check)) {
@@ -444,13 +449,14 @@ class SystemDiagnostic {
   /**
    * 执行命令
    */
-  execCommand(command) {
+  execCommand(file, args) {
+    // 固定命令 + 参数数组，不经 shell 拼接（安全门禁要求）
     return new Promise((resolve, reject) => {
-      exec(command, (error, stdout, stderr) => {
+      execFile(file, args, (error, stdout) => {
         if (error) {
           reject(error);
         } else {
-          resolve(stdout);
+          resolve(String(stdout));
         }
       });
     });

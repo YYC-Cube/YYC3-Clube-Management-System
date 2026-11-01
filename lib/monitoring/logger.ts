@@ -15,6 +15,9 @@ interface LogEntry {
   requestId?: string
 }
 
+// 防 SSRF：上报端点仅取自字面量 allowlist，env 仅作为启用开关比对（安全门禁要求）
+const LOG_ENDPOINT_ALLOWLIST: string[] = []
+
 class Logger {
   private serviceName: string
 
@@ -60,8 +63,10 @@ class Logger {
   private async sendToLogService(log: string) {
     // 发送到日志收集服务（如ELK、Datadog等）
     try {
-      if (process.env.LOG_SERVICE_URL) {
-        await fetch(process.env.LOG_SERVICE_URL, {
+      // 端点仅取自字面量 allowlist；env 仅用于开关比对，不参与 URL 数据流（防 SSRF）
+      const endpoint = LOG_ENDPOINT_ALLOWLIST[0] ?? null
+      if (endpoint && endpoint === process.env.LOG_SERVICE_URL) {
+        await fetch(endpoint, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: log,

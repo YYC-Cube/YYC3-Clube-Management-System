@@ -5,7 +5,7 @@
  * 用于执行所有测试并生成详细报告
  */
 
-import { execSync } from "child_process"
+import { spawnSync } from "child_process"
 import * as fs from "fs"
 import * as path from "path"
 
@@ -47,14 +47,11 @@ class TestRunner {
     console.log("🚀 启动完整测试套件...\n")
     this.startTime = Date.now()
 
-    // 运行单元测试
-    await this.runTestSuite("单元测试", "npm run test:unit -- --ci --json --outputFile=test-results-unit.json")
+    // 运行单元测试（固定命令 + 字面量参数数组，不经 shell）
+    await this.runUnitTests()
 
     // 运行集成测试
-    await this.runTestSuite(
-      "集成测试",
-      "npm run test:integration -- --ci --json --outputFile=test-results-integration.json",
-    )
+    await this.runIntegrationTests()
 
     // 运行覆盖率测试
     await this.runCoverageTest()
@@ -63,17 +60,34 @@ class TestRunner {
     return this.generateReport()
   }
 
-  private async runTestSuite(name: string, command: string): Promise<void> {
-    console.log(`\n📋 运行 ${name}...`)
+  private async runUnitTests(): Promise<void> {
+    console.log(`\n📋 运行单元测试...`)
 
     try {
-      execSync(command, {
+      // 固定命令 + 字面量参数数组，不经 shell 拼接（安全门禁要求）
+      spawnSync("npm", ["run", "test:unit", "--", "--ci", "--json", "--outputFile=test-results-unit.json"], {
         stdio: "inherit",
         cwd: process.cwd(),
       })
-      console.log(`✅ ${name} 完成`)
+      console.log(`✅ 单元测试 完成`)
     } catch (error) {
-      console.error(`❌ ${name} 失败`)
+      console.error(`❌ 单元测试 失败`)
+      // 继续执行其他测试
+    }
+  }
+
+  private async runIntegrationTests(): Promise<void> {
+    console.log(`\n📋 运行集成测试...`)
+
+    try {
+      // 固定命令 + 字面量参数数组，不经 shell 拼接（安全门禁要求）
+      spawnSync("npm", ["run", "test:integration", "--", "--ci", "--json", "--outputFile=test-results-integration.json"], {
+        stdio: "inherit",
+        cwd: process.cwd(),
+      })
+      console.log(`✅ 集成测试 完成`)
+    } catch (error) {
+      console.error(`❌ 集成测试 失败`)
       // 继续执行其他测试
     }
   }
@@ -82,7 +96,8 @@ class TestRunner {
     console.log("\n📊 运行覆盖率测试...")
 
     try {
-      execSync("npm run test:coverage -- --ci", {
+      // 固定命令 + 字面量参数数组，不经 shell 拼接（安全门禁要求）
+      spawnSync("npm", ["run", "test:coverage", "--", "--ci"], {
         stdio: "inherit",
         cwd: process.cwd(),
       })
@@ -126,8 +141,10 @@ class TestRunner {
 
   private readTestResults(filename: string): TestResult {
     try {
-      const filePath = path.join(process.cwd(), filename)
-      if (fs.existsSync(filePath)) {
+      const cwd = path.resolve(process.cwd())
+      const filePath = path.resolve(cwd, filename)
+      // 防路径穿越：仅读取 cwd 内的结果文件
+      if (filePath.startsWith(cwd + path.sep) && fs.existsSync(filePath)) {
         const data = JSON.parse(fs.readFileSync(filePath, "utf-8"))
         return {
           suite: filename.includes("unit") ? "单元测试" : "集成测试",

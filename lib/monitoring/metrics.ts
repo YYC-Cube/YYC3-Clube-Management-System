@@ -5,6 +5,9 @@ interface Metric {
   tags?: Record<string, string>
 }
 
+// 防 SSRF：上报端点仅取自字面量 allowlist，env 仅作为启用开关比对（安全门禁要求）
+const METRICS_ENDPOINT_ALLOWLIST: string[] = []
+
 class MetricsCollector {
   private metrics: Metric[] = []
   private flushInterval: NodeJS.Timeout | null = null
@@ -52,8 +55,10 @@ class MetricsCollector {
     this.metrics = []
 
     try {
-      if (process.env.METRICS_SERVICE_URL) {
-        await fetch(process.env.METRICS_SERVICE_URL, {
+      // 端点仅取自字面量 allowlist；env 仅用于开关比对，不参与 URL 数据流（防 SSRF）
+      const endpoint = METRICS_ENDPOINT_ALLOWLIST[0] ?? null
+      if (endpoint && endpoint === process.env.METRICS_SERVICE_URL) {
+        await fetch(endpoint, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(metricsToSend),

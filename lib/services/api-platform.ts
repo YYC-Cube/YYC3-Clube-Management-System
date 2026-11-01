@@ -119,8 +119,8 @@ export const apiDocumentation: ApiEndpoint[] = [
       request: {
         url: "/api/v1/products?page=1&pageSize=20&category=啤酒",
         headers: {
-          "X-API-Key": "ktv_xxxxxxxxxxxxxxxx",
-          "X-API-Secret": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+          "X-API-Key": "<your-api-key>",
+          "X-API-Secret": "<your-api-secret>",
         },
       },
       response: {
@@ -168,8 +168,8 @@ export const apiDocumentation: ApiEndpoint[] = [
         url: "/api/v1/orders",
         method: "POST",
         headers: {
-          "X-API-Key": "ktv_xxxxxxxxxxxxxxxx",
-          "X-API-Secret": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+          "X-API-Key": "<your-api-key>",
+          "X-API-Secret": "<your-api-secret>",
           "Content-Type": "application/json",
         },
         body: {

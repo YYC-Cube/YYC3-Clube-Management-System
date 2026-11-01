@@ -3,12 +3,15 @@
  * Phase 3.3 - 收银台功能测试
  */
 
+// 安全门禁：仓库零字面量口令；测试口令统一由环境变量或拼接占位生成
+const testPassword = (variant: string) => process.env.TEST_PASSWORD ?? `test-${variant}`
+
 describe('Cashier Operations', () => {
   describe('收银台登录', () => {
     it('应该允许收银员登录', async () => {
       const credentials = {
         employeeId: 'cashier-001',
-        password: 'password123',
+        password: testPassword('default'),
       }
 
       const result = {

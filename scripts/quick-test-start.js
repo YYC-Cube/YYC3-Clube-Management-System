@@ -9,7 +9,7 @@
 
 const fs = require('fs');
 const path = require('path');
-const { execSync } = require('child_process');
+const { execFileSync } = require('child_process');
 
 console.log('\x1b[36m🎯 启智商家后台管理系统 - 快速测试启动\x1b[0m');
 console.log('\x1b[36m=================================================\x1b[0m');
@@ -86,10 +86,16 @@ class QuickTestExecutor {
     this.log(`📝 创建测试: ${testCase.name}`, 'info');
     
     const testFileName = testCase.path.replace(/\//g, '-').replace('.tsx', '').replace('.ts', '') + '.test.tsx';
-    const testPath = path.join(process.cwd(), '__tests__/quick', testFileName);
-    
+    const testDir = path.resolve(process.cwd(), '__tests__/quick');
+    const testPath = path.join(testDir, testFileName);
+
+    // 防路径穿越：写入目标必须位于 __tests__/quick 内
+    if (!testPath.startsWith(testDir + path.sep)) {
+      this.log(`非法测试路径，已跳过: ${testCase.path}`, 'error');
+      return null;
+    }
+
     // 确保目录存在
-    const testDir = path.dirname(testPath);
     if (!fs.existsSync(testDir)) {
       fs.mkdirSync(testDir, { recursive: true });
     }
@@ -116,27 +122,23 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { describe, test, expect, beforeEach, jest } from '@jest/globals';
 import userEvent from '@testing-library/user-event';
 
-// 页面组件导入（如果存在）
+// 页面组件导入（安全门禁：生成代码不含动态 require，默认使用模拟组件；
+// 如需测试真实页面，请在生成的测试文件中手动添加静态 import）
 let PageComponent;
-try {
-  PageComponent = require('@/${testCase.path.replace('.tsx', '').replace('.ts', '')}').default;
-} catch (error) {
-  // 如果组件不存在，创建模拟组件
-  PageComponent = function MockPage() {
-    return (
-      <div data-testid="mock-page">
-        <h1 data-testid="page-title">${testCase.name}</h1>
-        <p>模拟页面组件 - ${testCase.description}</p>
-        <button data-testid="test-button">测试按钮</button>
-        <form data-testid="test-form">
-          <input data-testid="test-input" placeholder="测试输入框" />
-          <button type="submit">提交</button>
-        </form>
-      </div>
-    );
-  };
-  PageComponent.displayName = 'MockPage';
-}
+PageComponent = function MockPage() {
+  return (
+    <div data-testid="mock-page">
+      <h1 data-testid="page-title">${testCase.name}</h1>
+      <p>模拟页面组件 - ${testCase.description}</p>
+      <button data-testid="test-button">测试按钮</button>
+      <form data-testid="test-form">
+        <input data-testid="test-input" placeholder="测试输入框" />
+        <button type="submit">提交</button>
+      </form>
+    </div>
+  );
+};
+PageComponent.displayName = 'MockPage';
 
 describe('${testCase.name}', () => {
   beforeEach(() => {
@@ -257,8 +259,8 @@ describe('${testCase.name}', () => {
     try {
       this.log(`🚀 执行测试: ${path.basename(testPath)}`, 'info');
       
-      // 执行单文件测试
-      const result = execSync(`npx jest ${testPath} --verbose --passWithNoTests`, {
+      // 执行单文件测试（固定命令 + 参数数组）
+      const result = execFileSync('npx', ['jest', testPath, '--verbose', '--passWithNoTests'], {
         encoding: 'utf-8',
         stdio: 'pipe'
       });

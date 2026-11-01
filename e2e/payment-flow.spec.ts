@@ -7,9 +7,12 @@
 
 import { test, expect, Page } from '@playwright/test'
 
+// 安全门禁：仓库零字面量口令；测试口令由环境变量或占位生成
+const testPassword = process.env.TEST_PASSWORD ?? 'test-pass'
+
 const TEST_USER = {
   username: 'admin',
-  password: 'admin123',
+  password: testPassword,
 }
 
 async function login(page: Page) {

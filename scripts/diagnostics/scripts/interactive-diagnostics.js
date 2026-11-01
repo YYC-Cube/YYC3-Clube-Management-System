@@ -14,6 +14,17 @@ const path = require('path');
 const chalk = require('chalk');
 const inquirer = require('inquirer');
 const moment = require('moment');
+const { execFile } = require('child_process');
+
+/**
+ * 以数组参数执行固定命令，不经 shell 拼接，避免命令注入（安全扫描门禁要求）
+ */
+const run = (file, args, options = {}) => new Promise((resolve, reject) => {
+  execFile(file, args, options, (error, stdout) => {
+    if (error) reject(error);
+    else resolve(String(stdout));
+  });
+});
 
 class InteractiveDiagnostics {
   constructor() {
@@ -117,16 +128,12 @@ class InteractiveDiagnostics {
     console.log(chalk.blue('🔍 检查关键进程...'));
     
     try {
-      const { exec } = require('child_process');
-      const execAsync = (command) => new Promise((resolve, reject) => {
-        exec(command, (error, stdout) => {
-          if (error) reject(error);
-          else resolve(stdout);
-        });
-      });
-      
-      const nodeProcesses = await execAsync('ps aux | grep node | grep -v grep');
-      const nextProcesses = await execAsync('ps aux | grep next | grep -v grep');
+      const processList = await run('ps', ['aux']);
+      const matches = (keyword) => processList
+        .split('\n')
+        .some((line) => line.includes(keyword));
+      const nodeProcesses = matches('node');
+      const nextProcesses = matches('next');
       
       if (nodeProcesses.trim()) {
         this.addFinding('low', 'process', '检测到Node.js进程正在运行');
@@ -150,15 +157,7 @@ class InteractiveDiagnostics {
     console.log(chalk.blue('💾 检查磁盘空间...'));
     
     try {
-      const { exec } = require('child_process');
-      const execAsync = (command) => new Promise((resolve, reject) => {
-        exec(command, (error, stdout) => {
-          if (error) reject(error);
-          else resolve(stdout);
-        });
-      });
-      
-      const diskUsage = await execAsync('df -h /');
+      const diskUsage = await run('df', ['-h', '/']);
       const lines = diskUsage.split('\n');
       const dataLine = lines[1]; // 假设第一行是标题
       const parts = dataLine.split(/\s+/);
@@ -193,15 +192,7 @@ class InteractiveDiagnostics {
     console.log(chalk.blue('🧠 检查内存使用情况...'));
     
     try {
-      const { exec } = require('child_process');
-      const execAsync = (command) => new Promise((resolve, reject) => {
-        exec(command, (error, stdout) => {
-          if (error) reject(error);
-          else resolve(stdout);
-        });
-      });
-      
-      const memoryInfo = await execAsync('vm_stat');
+      const memoryInfo = await run('vm_stat', []);
       const pagesFree = this.extractValue(memoryInfo, 'Pages free');
       const pagesActive = this.extractValue(memoryInfo, 'Pages active');
       
@@ -337,16 +328,8 @@ class InteractiveDiagnostics {
    */
   async checkNodeVersions() {
     try {
-      const { exec } = require('child_process');
-      const execAsync = (command) => new Promise((resolve, reject) => {
-        exec(command, (error, stdout) => {
-          if (error) reject(error);
-          else resolve(stdout.trim());
-        });
-      });
-      
-      const nodeVersion = await execAsync('node --version');
-      const npmVersion = await execAsync('npm --version');
+      const nodeVersion = (await run('node', ['--version'])).trim();
+      const npmVersion = (await run('npm', ['--version'])).trim();
       
       this.addFinding('low', 'versions', `Node.js: ${nodeVersion}`);
       this.addFinding('low', 'versions', `npm: ${npmVersion}`);
@@ -367,15 +350,7 @@ class InteractiveDiagnostics {
    */
   async checkGitStatus() {
     try {
-      const { exec } = require('child_process');
-      const execAsync = (command) => new Promise((resolve, reject) => {
-        exec(command, { cwd: this.workspacePath }, (error, stdout) => {
-          if (error) reject(error);
-          else resolve(stdout);
-        });
-      });
-      
-      const gitStatus = await execAsync('git status --porcelain');
+      const gitStatus = await run('git', ['status', '--porcelain'], { cwd: this.workspacePath });
       
       if (gitStatus.trim()) {
         this.addFinding('medium', 'git', '检测到未提交的代码变更');

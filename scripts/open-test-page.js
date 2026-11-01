@@ -6,7 +6,7 @@
  * @author YYC
  */
 
-const { exec } = require('child_process');
+const { execFile } = require('child_process');
 const path = require('path');
 
 // 测试页面的URL
@@ -19,27 +19,9 @@ console.log('   • 清除缓存并重新初始化商品数据');
 console.log('   • 直接跳转到商品列表页面');
 console.log('\n');
 
-// 根据不同操作系统打开浏览器
+// 根据不同操作系统打开浏览器（固定命令 + 参数数组，不经 shell 拼接）
 const openBrowser = (url) => {
-  const platform = process.platform;
-  let cmd = '';
-
-  switch (platform) {
-    case 'win32': // Windows
-      cmd = `start "" "${url}"`;
-      break;
-    case 'darwin': // macOS
-      cmd = `open "${url}"`;
-      break;
-    case 'linux': // Linux
-      cmd = `xdg-open "${url}"`;
-      break;
-    default:
-      console.error('❌ 不支持的操作系统，无法自动打开浏览器');
-      return;
-  }
-
-  exec(cmd, (error) => {
+  const onOpen = (error) => {
     if (error) {
       console.error('❌ 打开浏览器失败:', error.message);
       console.log(`\n📝 请手动在浏览器中访问: ${testPageUrl}`);
@@ -47,7 +29,21 @@ const openBrowser = (url) => {
       console.log(`✅ 测试页面已打开: ${testPageUrl}`);
       console.log('💡 请按照页面上的指引进行操作');
     }
-  });
+  };
+
+  switch (process.platform) {
+    case 'win32': // Windows
+      execFile('cmd', ['/c', 'start', '', url], onOpen);
+      break;
+    case 'darwin': // macOS
+      execFile('open', [url], onOpen);
+      break;
+    case 'linux': // Linux
+      execFile('xdg-open', [url], onOpen);
+      break;
+    default:
+      console.error('❌ 不支持的操作系统，无法自动打开浏览器');
+  }
 };
 
 // 打开测试页面

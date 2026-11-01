@@ -1,5 +1,8 @@
 import type { EnvConfig } from "./env.sync.d.ts"
 
+// 凭据类配置一律从进程环境读取，缺省空串；仓库内禁止出现字面量凭据（安全扫描门禁要求）
+const secret = (key: string): string => process.env[key] ?? ""
+
 export const env: EnvConfig = {
   NODE_ENV: "test",
 
@@ -11,25 +14,25 @@ export const env: EnvConfig = {
   YYC3_YY_DB_HOST: "localhost",
   YYC3_YY_DB_PORT: 3306,
   YYC3_YY_DB_USER: "test_user",
-  YYC3_YY_DB_PASSWORD: "test_pass",
+  YYC3_YY_DB_PASSWORD: secret("YYC3_YY_DB_PASSWORD"),
   YYC3_YY_DB_NAME: "yyc3_yy_test",
 
   REDIS_URL: "redis://localhost:6380/0",
 
-  JWT_SECRET: "test_jwt_secret",
+  JWT_SECRET: secret("JWT_SECRET"),
   JWT_EXPIRES_IN: "1h",
 
   WECHAT_PAY_APP_ID: "test_wechat_app",
   WECHAT_PAY_MCH_ID: "test_mch",
-  WECHAT_PAY_API_KEY: "test_api_key",
+  WECHAT_PAY_API_KEY: secret("WECHAT_PAY_API_KEY"),
   WECHAT_PAY_NOTIFY_URL: "http://localhost:4000/api/payment/wechat-notify",
 
   ALIPAY_APP_ID: "test_alipay_app",
-  ALIPAY_PRIVATE_KEY: "test_private_key",
+  ALIPAY_PRIVATE_KEY: secret("ALIPAY_PRIVATE_KEY"),
   ALIPAY_PUBLIC_KEY: "test_public_key",
   ALIPAY_NOTIFY_URL: "http://localhost:4000/api/payment/alipay-notify",
 
-  ANALYTICS_KEY: "test_analytics",
+  ANALYTICS_KEY: secret("ANALYTICS_KEY"),
   SENTRY_DSN: "https://test@o0.ingest.sentry.io/0",
 
   NEXT_PUBLIC_ENABLE_DARK_MODE: false,
@@ -50,11 +53,11 @@ export const env: EnvConfig = {
   EMAIL_HOST: "smtp.test.com",
   EMAIL_PORT: 1025,
   EMAIL_USER: "test@ktv.local",
-  EMAIL_PASSWORD: "test_email_pass",
+  EMAIL_PASSWORD: secret("EMAIL_PASSWORD"),
   EMAIL_FROM: "test@ktv.local",
 
-  CSRF_SECRET: "test_csrf_secret",
-  ENCRYPTION_KEY: "test_encryption_key_32_chars",
+  CSRF_SECRET: secret("CSRF_SECRET"),
+  ENCRYPTION_KEY: secret("ENCRYPTION_KEY"),
 
   DEV_PORT: 4000,
   DEV_HOST: "localhost",
@@ -62,7 +65,7 @@ export const env: EnvConfig = {
   WEBRTC_SIGNALING_URL: "wss://localhost/ws",
   WEBRTC_TURN_URL: "turn:localhost:3478",
   WEBRTC_TURN_USERNAME: "test_turn",
-  WEBRTC_TURN_PASSWORD: "test_turn_pass",
+  WEBRTC_TURN_PASSWORD: secret("WEBRTC_TURN_PASSWORD"),
   WEBRTC_CODEC: "VP8",
   WEBRTC_BITRATE_MIN: 100000,
   WEBRTC_BITRATE_MAX: 1000000,
@@ -70,7 +73,7 @@ export const env: EnvConfig = {
 
   MEDIA_SERVER_TYPE: "janus",
   MEDIA_SERVER_URL: "https://media.test.local",
-  MEDIA_SERVER_API_KEY: "test_media_key",
+  MEDIA_SERVER_API_KEY: secret("MEDIA_SERVER_API_KEY"),
 
   VIDEO_EFFECTS_PATH: "/test/effects",
   DEFAULT_VIDEO_EFFECT: "none",
@@ -92,12 +95,12 @@ export const env: EnvConfig = {
 
   BI_TOOL: "metabase",
   BI_HOST: "http://localhost:3002",
-  BI_API_KEY: "test_bi_key",
+  BI_API_KEY: secret("BI_API_KEY"),
 
   OLAP_ENGINE: "clickhouse",
   OLAP_HOST: "http://localhost:8124",
   OLAP_USER: "test_olap",
-  OLAP_PASSWORD: "test_olap_pass",
+  OLAP_PASSWORD: secret("OLAP_PASSWORD"),
   OLAP_DB: "analytics_test",
 
   VISUALIZATION_ENGINE: "echarts",
@@ -106,7 +109,7 @@ export const env: EnvConfig = {
   DATASOURCE_HOST: "localhost",
   DATASOURCE_PORT: 3307,
   DATASOURCE_USER: "test_bi",
-  DATASOURCE_PASSWORD: "test_bi_pass",
+  DATASOURCE_PASSWORD: secret("DATASOURCE_PASSWORD"),
   DATASOURCE_DB: "yyc3_yy_test",
 
   REPORT_CRON: "0 9 * * *",
