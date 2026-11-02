@@ -58,22 +58,11 @@ export function validateDatabaseConfig(): ConfigValidationResult {
 }
 
 export function validateAIConfig(): ConfigValidationResult {
-  const missing: string[] = []
-  const warnings: string[] = []
-
-  if (!process.env.OPENAI_API_KEY) warnings.push('OPENAI_API_KEY 未设置，AI 功能将不可用')
-
-  return { isValid: true, missing, warnings }
+  return { isValid: true, missing: [], warnings: [] }
 }
 
 export function validateBigDataConfig(): ConfigValidationResult {
   return { isValid: true, missing: [], warnings: [] }
-}
-
-export function validateIoTConfig(): ConfigValidationResult {
-  const warnings: string[] = []
-  if (!process.env.MQTT_BROKER_URL) warnings.push('MQTT_BROKER_URL 未设置，IoT 设备通信将不可用')
-  return { isValid: true, missing: [], warnings }
 }
 
 export function validateRedisConfig(): ConfigValidationResult {
@@ -97,7 +86,6 @@ export function validateAllConfigs(): {
     database: validateDatabaseConfig(),
     ai: validateAIConfig(),
     bigdata: validateBigDataConfig(),
-    iot: validateIoTConfig(),
     redis: validateRedisConfig(),
   }
 
