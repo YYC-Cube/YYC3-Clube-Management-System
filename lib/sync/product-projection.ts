@@ -192,6 +192,31 @@ export async function projectProductEvent(
     stock: snapshot.stock,
     status: snapshot.status,
   })
+  // 增量合并保旧（04 §投影策略）：部分载荷（如仅改价）缺省字段读旧值合并，
+  // 避免 NOT NULL 列被 null 覆盖（unit 约束实证）；读旧→JS 合并→全参数化写回
+  const existing = await client.query<{
+    name: string | null
+    category_id: string | null
+    unit: string | null
+    price_cents: number | null
+    member_price_cents: number | null
+    stock: number | null
+    status: string | null
+  }>(
+    `SELECT name, category_id, unit, price_cents, member_price_cents, stock, status
+       FROM public.operational_product WHERE id = $1`,
+    [productId],
+  )
+  const prev = existing.rows[0]
+  const merged = {
+    name: snapshot.name ?? prev?.name ?? null,
+    categoryId: snapshot.categoryId ?? prev?.category_id ?? null,
+    unit: snapshot.unit ?? prev?.unit ?? null,
+    priceCents: snapshot.priceCents ?? prev?.price_cents ?? null,
+    memberPriceCents: snapshot.memberPriceCents ?? prev?.member_price_cents ?? null,
+    stock: snapshot.stock ?? prev?.stock ?? null,
+    status: snapshot.status ?? prev?.status ?? null,
+  }
   await client.query(
     `UPDATE public.operational_product
         SET name = $2,
@@ -209,13 +234,13 @@ export async function projectProductEvent(
       WHERE id = $1`,
     [
       productId,
-      snapshot.name,
-      snapshot.categoryId,
-      snapshot.unit,
-      snapshot.priceCents,
-      snapshot.memberPriceCents,
-      snapshot.stock,
-      snapshot.status,
+      merged.name,
+      merged.categoryId,
+      merged.unit,
+      merged.priceCents,
+      merged.memberPriceCents,
+      merged.stock,
+      merged.status,
       snapshot.recordVersion,
       envelope.eventId,
       updateSnapshot,

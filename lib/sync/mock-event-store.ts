@@ -24,7 +24,11 @@ export interface MockProductRow {
   tenant_id: string
   store_id: string
   name: string
+  category_id?: string | null
+  unit?: string | null
   price_cents: number
+  member_price_cents?: number | null
+  stock?: number | null
   record_version: number
   status: string
   deleted: boolean
@@ -50,6 +54,7 @@ const EVENT_INSERT = "INSERT INTO public.sync_event_log"
 const EVENT_MAX_SEQ = "SELECT MAX(sequence) AS sequence FROM public.sync_event_log"
 const EVENT_REJECT = "UPDATE public.sync_event_log SET status = 'rejected'"
 const PRODUCT_VERSION = "SELECT record_version FROM public.operational_product WHERE id = $1"
+const PRODUCT_MERGE_SELECT = "SELECT name, category_id, unit, price_cents, member_price_cents, stock, status"
 const PRODUCT_DELETE = "UPDATE public.operational_product"
 const PRODUCT_INSERT = "INSERT INTO public.operational_product"
 const PRODUCT_UPDATE = "UPDATE public.operational_product SET name = $2"
@@ -135,6 +140,22 @@ function execute(store: MockStore, text: string, params: unknown[]): unknown[] {
     return [{ record_version: row ? row.record_version : null }]
   }
 
+  if (normalized.startsWith(PRODUCT_MERGE_SELECT)) {
+    const row = store.products.get(String(params[0]))
+    if (!row) return []
+    return [
+      [
+        row.name,
+        row.category_id ?? null,
+        row.unit ?? null,
+        row.price_cents,
+        row.member_price_cents ?? null,
+        row.stock ?? null,
+        row.status,
+      ],
+    ]
+  }
+
   if (normalized.startsWith(PRODUCT_DELETE)) {
     const row = store.products.get(String(params[0]))
     if (row) {
@@ -153,7 +174,11 @@ function execute(store: MockStore, text: string, params: unknown[]): unknown[] {
       tenant_id: String(params[1]),
       store_id: String(params[2]),
       name: String(params[4]),
+      category_id: params[5] == null ? null : String(params[5]),
+      unit: params[6] == null ? null : String(params[6]),
       price_cents: Number(params[7]),
+      member_price_cents: params[8] == null ? null : Number(params[8]),
+      stock: params[9] == null ? null : Number(params[9]),
       record_version: Number(params[11]),
       status: String(params[10]),
       deleted: false,
@@ -166,7 +191,11 @@ function execute(store: MockStore, text: string, params: unknown[]): unknown[] {
     const row = store.products.get(String(params[0]))
     if (row) {
       row.name = String(params[1])
+      row.category_id = params[2] == null ? null : String(params[2])
+      row.unit = params[3] == null ? null : String(params[3])
       row.price_cents = Number(params[4])
+      row.member_price_cents = params[5] == null ? null : Number(params[5])
+      row.stock = params[6] == null ? null : Number(params[6])
       row.record_version = Number(params[8])
       row.status = String(params[7])
       row.deleted = false
