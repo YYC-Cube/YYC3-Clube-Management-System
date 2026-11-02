@@ -38,20 +38,23 @@ function asInt(value: unknown): number | null {
   return typeof value === "number" && Number.isInteger(value) ? value : null
 }
 
-/** 白名单重构：只保留投影所需已知字段，未知字段不进入绑定参数。 */
+/** 白名单重构：只保留投影所需已知字段，未知字段不进入绑定参数。
+ *  载荷双形态兼容：真实 outbox 事件字段值嵌套在 fields.* 下（operation/recordVersion/
+ *  override* 在顶层），e2e 直投脚本为扁平形态——fields 存在时以 fields 为字段值源。 */
 function toSnapshot(payload: Record<string, unknown>): ProductSnapshot {
+  const fields = (payload.fields ?? payload) as Record<string, unknown>
   return {
-    productId: asString(payload.productId),
-    name: asString(payload.name),
-    categoryId: asString(payload.categoryId),
-    unit: asString(payload.unit),
-    priceCents: asInt(payload.priceCents),
-    memberPriceCents: asInt(payload.memberPriceCents),
-    stock: asInt(payload.stock),
-    status: asString(payload.status) === "inactive" ? "inactive" : "active",
-    recordVersion: asInt(payload.recordVersion) ?? 0,
-    deletedAt: asString(payload.deletedAt),
-    operation: asString(payload.operation),
+    productId: asString(fields.productId),
+    name: asString(fields.name),
+    categoryId: asString(fields.categoryId),
+    unit: asString(fields.unit),
+    priceCents: asInt(fields.priceCents),
+    memberPriceCents: asInt(fields.memberPriceCents),
+    stock: asInt(fields.stock),
+    status: asString(fields.status) === "inactive" ? "inactive" : "active",
+    recordVersion: asInt(payload.recordVersion) ?? asInt(fields.recordVersion) ?? 0,
+    deletedAt: asString(payload.deletedAt) ?? asString(fields.deletedAt),
+    operation: asString(payload.operation) ?? asString(fields.operation),
   }
 }
 
@@ -106,10 +109,6 @@ export async function projectProductEvent(
     return { applied: true, recordVersion: snapshot.recordVersion }
   }
 
-  if (!snapshot.name) {
-    throw new Error(`master.product 事件缺少 name：${envelope.eventId}`)
-  }
-
   // 04 §4 价格覆写审计：override* 三元组存在时，除常规投影外落审计行
   // （普通改价无 overrideCents，不产生审计行——审计口径分界）
   const overrideCents = asInt(envelope.payload.overrideCents)
@@ -138,6 +137,10 @@ export async function projectProductEvent(
   }
 
   if (known === 0) {
+    // name 必填只约束 CREATE：合并语义下部分更新（如仅改价）无 name 合法（读旧合并补齐）
+    if (!snapshot.name) {
+      throw new Error(`master.product 事件缺少 name：${envelope.eventId}`)
+    }
     const insertSnapshot = JSON.stringify({
       operation: snapshot.operation ?? "create",
       writer: "app",
